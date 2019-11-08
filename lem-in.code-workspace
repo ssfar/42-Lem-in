@@ -6,7 +6,8 @@
 	],
 	"settings": {
 		"files.associations": {
-			"lem_in.h": "c"
+			"lem_in.h": "c",
+			"stdlib.h": "c"
 		}
 	}
 }

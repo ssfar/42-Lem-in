@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:06:54 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/08 16:50:11 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/08 18:05:30 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	free_tube(t_tube *to_delete)
 {
 	free(to_delete->link);
-	to_delete->next = NULL;
 	free(to_delete);
 }
 

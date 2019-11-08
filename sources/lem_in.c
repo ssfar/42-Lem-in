@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:57:42 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/08 17:58:30 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/08 18:05:14 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exit_failure(t_lem_in *l, size_t id)
 
 void	link_room(t_lem_in *l)
 {
-	
+	//relier les rooms ici
 }
 
 uint_fast8_t	find_room(char *line, size_t h, size_t i, t_room *first)
@@ -75,16 +75,16 @@ uint_fast16_t	read_tube(t_lem_in *l)
 	while (get_next_line(0, &line) > 0)
 	{
 		if (is_tube(line, l) == 0)
-			return (0);
+			return (1);
 		else if (line[0] != '#')
 		{
 			free(line);
-			return (0);
+			return (1);
 		}
 		l->tube->link = line;
+		l->tube = l_tube->next;
 	}
 	return (1);
-	
 }
 
 uint_fast8_t	is_room2(char *line, size_t	i)

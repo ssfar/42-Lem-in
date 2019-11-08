@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:30:49 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/08 16:34:10 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/08 18:06:41 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ uint_fast8_t	is_tube(char *line)
 		return (0);
 	while (line[i] && line[i] != '-' && line[i] != ' ')
 		i++;
-	printf("c vaut %c\n", line[i]);
 	if (line[i] == '\0')
 		return (1);
 	return (0);
