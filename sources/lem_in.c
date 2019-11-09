@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:57:42 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/08 18:05:14 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/09 11:29:41 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	exit_failure(t_lem_in *l, size_t id)
 {
 	room_clear(l->first);
-	tube_clear(l->tube);
+	if (id == 2)
+		tube_clear(l->tube);
 	ft_printf("ERROR");
 	exit(EXIT_FAILURE);
 }
@@ -133,7 +134,7 @@ void	init_struct(t_lem_in *l)
 	l->current = NULL;
 }
 
-void	get_tip(s_room **tip)
+void	get_tip(t_room **tip, t_lem_in *l)
 {
 	char	*line;
 
@@ -142,41 +143,15 @@ void	get_tip(s_room **tip)
 		free(line);
 		exit_failure(l, 1);
 	}
-	room_push_back(&l, initialize_room(line));
+	room_push_back(l, create_room(line));
 	*tip = l->current;
-}
-
-int	main(void)
-{
-	char		*line;
-	t_lem_in	l; 
-
-	l.ant = get_ant_nb();
-	while (get_next_line(0, &line) > 0)
-	{
-		if (is_room(line))
-			room_push_back(&l, initialize_room(line));
-		else if (ft_strcmp("#", line))
-		{
-			room_push_back(&l, initialize_room(line));
-			if (ft_strcmp("##start", line))
-				get_tip(l->start);	
-			else if (ft_strcmp("##end", line))
-				get_tip(l->end);
-		}
-	}
-	if (read_tube(&l) == 0)
-		exit_failure(&l, 2);
-	
-	// check infos
-	// room_push_back(current, initialize_room(line));
 }
 
 ssize_t	get_ant_nb(void)
 {
 	char	*line;
 	ssize_t	ant;
-	
+
 	line = NULL;
 	if (get_next_line(0, &line) <= 0 || !line)
 		exit(EXIT_FAILURE);
@@ -187,4 +162,39 @@ ssize_t	get_ant_nb(void)
 	}
 	free(line);	
 	return (ant);
+}
+
+int	main(void)
+{
+	char		*line;
+	t_lem_in	l;
+
+	l.ant = read_ant_nb();
+	while (get_next_line(0, &line) > 0)
+	{
+		if (is_room(line))
+		{
+			if (get_room(line, &l)
+			{
+				free(line);
+				exit_failure(&l, 1);
+			}
+			room_push_back(&l, create_room(line));
+		}
+		else if (ft_strcmp("#", line))
+		{
+			room_push_back(&l, create_room(line));
+			if (ft_strcmp("##start", line))
+				get_tip(&l.start);
+			else if (ft_strcmp("##end", line))
+				get_tip(&l.end);
+		}
+		else
+			break;
+	}
+	if (read_tube(&l) == 0)
+		exit_failure(&l, 2);
+	
+	// check infos
+	// room_push_back(current, create_room(line));
 }

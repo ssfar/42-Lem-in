@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 19:44:32 by ssfar             #+#    #+#             */
-/*   Updated: 2019/10/19 20:02:11 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/08 20:02:02 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,4 +162,5 @@ char			*utoa(size_t unb);
 char			**strtab(ssize_t x, ssize_t y);
 void			strtab_iteri(char **tab, void (*f)(unsigned int, char *));
 char			**free_strtab_offset(char **tab, ssize_t offset);
+int_fast16_t	strccmp(const char *s1, const char *s2, char c);
 #endif

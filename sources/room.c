@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:33:38 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/08 18:05:27 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/09 11:29:44 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,21 @@ void	print_room(t_room *room, char *message)
 	}
 }
 
-t_room	create_room(char *r_name)
+void	init_room(t_room *new, char *r_name)
 {
-	t_room	result;
-
-	result.name = r_name;
-	result.next = NULL;
-	result.connexion = NULL;
-	return (result);
+	new.name = r_name;
+	new.next = NULL;
+	new.connexion = NULL;
 }
 
-t_room	*initialize_room(char *r_name)
+t_room	*create_room(char *r_name)
 {
-	t_room	*result;
+	t_room	*new;
 
-	if (!(result = (t_room*)malloc(sizeof(t_room))))
+	if (!(new = (t_room*)malloc(sizeof(t_room))))
 		return (NULL);
-	*result = create_room(r_name);
-	return (result);
+	init_room(new, r_name);
+	return (new);
 }
 
 void	room_push_back(t_lem_in *l, t_room *to_add)
@@ -69,9 +66,21 @@ void	room_push_back(t_lem_in *l, t_room *to_add)
 	}
 	else
 	{
-		while (l->current->next != NULL)
-			l->current = l->current->next;
 		l->current->next = to_add;
 		l->current = l->current->next;
 	}
+}
+
+t_room	*get_room(char *line, t_lem_in *l)
+{
+	t_room	*tmp;
+
+	tmp = l->start;
+	while (tmp)
+	{
+		if (ft_strccmp(line, tmp->name, ' ') == 0)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
