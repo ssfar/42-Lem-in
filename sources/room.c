@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:33:38 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/09 11:29:44 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:26:27 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ void	room_clear(t_room *to_clear)
 
 void	print_room(t_room *room, char *message)
 {
-	ft_printf("%s", message);
+	ft_printf("%s\n", message);
 	while (room != NULL)
 	{
-		ft_printf("%s", room->name);
+		ft_printf("%s\n", room->name);
 		room = room->next;
 	}
 }
 
 void	init_room(t_room *new, char *r_name)
 {
-	new.name = r_name;
-	new.next = NULL;
-	new.connexion = NULL;
+	new->name = r_name;
+	new->next = NULL;
+	new->link = NULL;
 }
 
 t_room	*create_room(char *r_name)
@@ -75,10 +75,10 @@ t_room	*get_room(char *line, t_lem_in *l)
 {
 	t_room	*tmp;
 
-	tmp = l->start;
+	tmp = l->first;
 	while (tmp)
 	{
-		if (ft_strccmp(line, tmp->name, ' ') == 0)
+		if (room_compare(line, tmp->name) == 0)
 			return (tmp);
 		tmp = tmp->next;
 	}

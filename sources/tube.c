@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:06:54 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/08 18:05:30 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:24:53 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,28 @@ void	tube_clear(t_tube *to_clear)
 
 void	print_tube(t_tube *tube, char *message)
 {
-	ft_printf("%s", message);
+	ft_printf("%s\n", message);
 	while (tube != NULL)
 	{
-		ft_printf("%s", tube->link);
+		ft_printf("%s\n", tube->link);
 		tube = tube->next;
 	}
 }
 
-t_tube	create_tube(char *t_link)
+void	init_tube(t_tube *new, char *t_link)
 {
-	t_tube result;
-
-	result.link = t_link;
-	result.next = NULL;
-	return (result);
+	new->link = t_link;
+	new->next = NULL;
 }
 
-t_tube *initialize_tube(char *t_link)
+t_tube	*create_tube(char *t_link)
 {
-	t_tube *result;
+	t_tube *new;
 
-	if (!(result = (t_tube*)malloc(sizeof(t_tube))))
+	if (!(new = (t_tube*)malloc(sizeof(t_tube))))
 		return (NULL);
-	*result = create_tube(t_link);
-	return (result);
+	init_tube(new, t_link);
+	return (new);
 }
 
 void	tube_push_back(t_tube *src, t_tube *to_add)

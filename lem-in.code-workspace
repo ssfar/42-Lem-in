@@ -8,7 +8,8 @@
 		"files.associations": {
 			"lem_in.h": "c",
 			"stdlib.h": "c",
-			"libft.h": "c"
+			"libft.h": "c",
+			"ft_printf.h": "c"
 		}
 	}
 }

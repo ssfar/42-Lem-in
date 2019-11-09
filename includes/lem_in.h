@@ -6,40 +6,42 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:52:42 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/09 11:29:30 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/09 17:29:35 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-typedef struct	s_lem_in
-{
-	ssize_t	ant;
-	t_room	*start;
-	t_room	*end;
-	t_room	*first;
-	t_room	*last;
-	t_tube	*tube;
-}				t_lem_in;
+#include "get_next_line.h"
+#include "ft_printf.h"
 
 typedef struct	s_room
 {
 	char		*name;
-	s_room		*next;
-	s_connexion	*connexion;
+	struct s_room		*next;
+	struct s_link		*link;
 }				t_room;
 
-typedef struct s_connexion
+typedef struct s_link
 {
-	s_room		*neighbour;
-	s_connexion	*next;
-}				t_connexion;
+	struct s_room		*neighbour;
+	struct s_link		*next;
+}				t_link;
 
 typedef struct	s_tube
 {
 	char	*link;
-	s_tube	*next;
+	struct s_tube	*next;
 }				t_tube;
+
+typedef struct	s_lem_in
+{
+	ssize_t	ant;
+	struct s_room	*start;
+	struct s_room	*end;
+	struct s_room	*first;
+	struct s_room	*current;
+	struct s_tube	*tube;
+}				t_lem_in;
 
 ssize_t	read_ant_nb(void);
 void	init_struct(t_lem_in *l);
@@ -51,9 +53,18 @@ void	room_push_back(t_lem_in *l, t_room *to_add);
 void	print_room(t_room *room, char *message);
 void	free_tube(t_tube *to_delete);
 void	tube_clear(t_tube *to_clear);
-t_tube	create_tube(char *t_link);
-t_tube	*initialize_tube(char *t_link);
+t_tube	*create_tube(char *t_link);
+void	init_tube(t_tube *new, char *t_link);
 void	tube_push_back(t_tube *src, t_tube *to_add);
 void	print_tube(t_tube *tube, char *message);
+void	free_link(t_link *to_delete);
+void	link_clear(t_link *to_clear);
+void	init_link(t_link *link, t_room *room);
+t_link	*create_link(t_room *room);
+void	link_push_back(t_room *src, t_link *to_add);
 uint_fast8_t	is_room(char *line);
 uint_fast8_t	is_room2(char *line, size_t	i);
+char	*read_room(t_lem_in *l);
+t_room	*get_room(char *line, t_lem_in *l);
+void	print_link(t_room *room, char *message);
+uint_fast16_t	room_compare(const char *s1, const char *s2);

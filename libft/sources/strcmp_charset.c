@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strccmp.c                                          :+:      :+:    :+:   */
+/*   strcmp_charset.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/08 19:23:24 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/09 17:24:54 by ssfar            ###   ########.fr       */
+/*   Created: 2019/11/09 12:03:49 by ssfar             #+#    #+#             */
+/*   Updated: 2019/11/09 12:20:22 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,26 @@
 ** string (s1) is greater than, equal to, or less than (s2).
 */
 
-int_fast16_t	strccmp(const char *s1, const char *s2, char c)
+uint_fast16_t	strcmp_charset(const char *s1, const char *s2, char *charset)
 {
+	size_t	i;
+	
 	if (s1 && s2)
 	{
-		while (*s1 && *s2 && *s1 == *s2 && *s1 != c)
+		while (*s1 && *s2 && *s1 == *s2)
 		{
-			s1++;
-			s2++;
+			if (charset)
+			{
+				i = 0;
+				while (charset[i])
+				{
+					if (*s1 == charset[i])
+						return (0);
+					i++;
+				}
+			}
+			*s1++;
+			*s2++;
 		}
 		return ((unsigned char)*s1 - (unsigned char)*s2);
 	}
@@ -36,4 +48,3 @@ int_fast16_t	strccmp(const char *s1, const char *s2, char c)
 		return (-((unsigned char)*s2));
 	return (0);
 }
-
