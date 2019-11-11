@@ -6,7 +6,7 @@
 #    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/10 18:13:01 by ssfar            ###   ########.fr        #
+#    Updated: 2019/11/11 20:47:38 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,7 @@ INC_DIR = includes
 SRC_DIR = sources
 OBJ_DIR = objects
 
-SRC_NAME =	lem_in.c \
-			room.c \
-			tube.c \
-			link.c
+SRC_NAME =	v2_lem_in.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_NAME:.c=.o))
