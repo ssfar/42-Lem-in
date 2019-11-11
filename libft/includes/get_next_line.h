@@ -6,14 +6,14 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 21:21:15 by ssfar             #+#    #+#             */
-/*   Updated: 2019/10/19 17:54:34 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/10 16:59:04 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # include "libft.h"
-# define BUFF_SIZE 1
+# define BUFF_SIZE 7
 
 typedef struct	s_glist
 {

@@ -6,7 +6,7 @@
 #    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/09 13:40:56 by ssfar            ###   ########.fr        #
+#    Updated: 2019/11/10 18:13:01 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = lem-in
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
+CFLAGS = -Ofast -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 
 INC_DIR = includes

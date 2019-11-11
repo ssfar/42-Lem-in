@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 15:06:54 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/09 17:21:37 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/11 15:07:06 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,35 @@
 
 void	free_link(t_link *to_delete)
 {
-	free(to_delete->neighbour);
+	free(to_delete->jump);
 	free(to_delete);
 }
 
 void	print_link(t_room *room, char *message)
 {
-	ft_printf("%s\n", message);
+	size_t	i;
+	size_t	nb_total_links;
+
+	ft_printf("[yellow]%s[a_bold]\n", message);
+	nb_total_links = 0;
 	while (room != NULL)
 	{
 		while (room->link != NULL)
 		{
-			ft_printf("%s to %s\n", room->name, room->link->neighbour->name);
-			room->link = room->link->next;
+			nb_total_links++;
+			i = 0;
+			while (room->name[i] && room->name[i] != ' ')	
+				write(1, &room->name[i++], 1);
+			i = 0;
+			write(1, "_", 1);
+			while (room->link->jump->name[i] && room->link->jump->name[i] != ' ')
+				write(1, &room->link->jump->name[i++], 1);
+			room->link = room->link->l_next;
+			write(1, "\n", 1);
 		}
-		room = room->next;
+		room = room->r_next;
 	}
+	ft_printf("Number of links = %zd[a_reset]\n", nb_total_links);
 }
 
 void	link_clear(t_link *to_clear)
@@ -38,7 +51,7 @@ void	link_clear(t_link *to_clear)
 
 	while (to_clear != NULL)
 	{
-		tmp = to_clear->next;
+		tmp = to_clear->l_next;
 		free_link(to_clear);
 		to_clear = tmp;
 	}
@@ -46,8 +59,8 @@ void	link_clear(t_link *to_clear)
 
 void	init_link(t_link *link, t_room *room)
 {
-	link->neighbour = room;
-	link->next = NULL;
+	link->jump = room;
+	link->l_next = NULL;
 }
 
 t_link	*create_link(t_room *room)
@@ -69,8 +82,8 @@ void	link_push_back(t_room *src, t_link *to_add)
 	else
 	{
 		tmp = src->link;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = to_add;
+		while (tmp->l_next != NULL)
+			tmp = tmp->l_next;
+		tmp->l_next = to_add;
 	}
 }

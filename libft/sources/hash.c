@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_is_numeric.c                                   :+:      :+:    :+:   */
+/*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 14:13:04 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/10 15:02:47 by ssfar            ###   ########.fr       */
+/*   Created: 2019/11/11 15:29:11 by ssfar             #+#    #+#             */
+/*   Updated: 2019/11/11 15:43:36 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** Check if the string (str) contain an only contain numeric characters and signs at start,
-** if so the function return 1 otherwise 0.
-*/
-
-uint_fast8_t	str_is_numeric(char *str)
+ssize_t	hash(char *key, ssize_t tab_size)
 {
-	if (!str)
-		return (0);
-	if (*str == '+' || *str == '-')
-		str++;
-	if (ft_isdigit(*str++))
-	{
-		while (ft_isdigit(*str))
-			str++;
-		return (*str == '\0');
-	}
-	return (0);
+	if (key && key[0] && tab_size > 0)
+		return ((key[0] + key[ft_strlen(key)]) % tab_size);
+	return (-1);
 }

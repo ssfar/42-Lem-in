@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_is_numeric.c                                   :+:      :+:    :+:   */
+/*   v2_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 14:13:04 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/10 15:02:47 by ssfar            ###   ########.fr       */
+/*   Created: 2019/11/11 15:43:02 by ssfar             #+#    #+#             */
+/*   Updated: 2019/11/11 15:44:52 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-/*
-** Check if the string (str) contain an only contain numeric characters and signs at start,
-** if so the function return 1 otherwise 0.
-*/
-
-uint_fast8_t	str_is_numeric(char *str)
+int	main(void)
 {
-	if (!str)
-		return (0);
-	if (*str == '+' || *str == '-')
-		str++;
-	if (ft_isdigit(*str++))
-	{
-		while (ft_isdigit(*str))
-			str++;
-		return (*str == '\0');
-	}
-	return (0);
+	t_lem_in	s;
+
+	read_ant_nb(&s);
 }
