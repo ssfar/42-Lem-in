@@ -9,7 +9,9 @@
 			"lem_in.h": "c",
 			"stdlib.h": "c",
 			"libft.h": "c",
-			"ft_printf.h": "c"
+			"ft_printf.h": "c",
+			"get_next_line.h": "c",
+			"v3_lem_in.h": "c"
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 10:43:09 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/12 14:49:40 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/12 18:06:34 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@
 // 		}
 // 	}
 // }
-//	\ /
-// \(")/
-// -( )-
-// /( )\
+//	\ /  //
+// \(")/ //
+// -( )- // 
+// /( )\ //
 
 
 
@@ -83,16 +83,16 @@ int main(void)
 	unsigned int	v;
 	char			*key;
 
-	key = "ab";
+	key = "0123456";
 	printf("key '%s' -> %u\n", key, hash_to_int(key));
 
-	key = "ba";
+	key = "01234";
 	printf("key '%s' -> %u\n", key, hash_to_int(key));
 
-	key = "room3";
+	key = "012345";
 	printf("key '%s' -> %u\n", key, hash_to_int(key));
 
-	key = "room4";
+	key = "012345678";
 	printf("key '%s' -> %u\n", key, hash_to_int(key));
 	return (0);
 }
