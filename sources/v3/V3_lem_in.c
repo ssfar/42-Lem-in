@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/12 18:41:16 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/12 19:04:41 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,12 @@ uint_fast8_t	is_link(t_lem_in *s, char *line)
 
 void			read_link(t_lem_in *s, char *line)
 {
-	s->pipe = s->info; //position of first pipe saved
 	if (is_link(s, line) == 0)
 	{
 		free(line);
-		exit_failure(s, 1, "Not enought viable info");
+		exit_failure(s, 123, "Not enought viable info");
 	}
+	s->pipe = s->current;
 	while (get_next_line(0, &line))
 	{
 		if (is_link(s, line) == 0)
@@ -299,7 +299,7 @@ void			read_ant_nb(t_lem_in *s)
 			if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
 			{
 				free(line);
-				exit_failure(s, 1, "\nNo/invalid ant nbr");
+				exit_failure(s, 0, "\nNo/invalid ant nbr");
 			}
 			info_push_back(s, create_info(line));
 		}
@@ -311,10 +311,10 @@ void			read_ant_nb(t_lem_in *s)
 		else
 		{
 			free(line);
-			exit_failure(s, 1, "\nNo/invalid ant nbr");
+			exit_failure(s, 0, "\nNo/invalid ant nbr");
 		}
 	}
-	exit_failure(s, 1, "\nNo/invalid ant nbr");
+	exit_failure(s, 0, "\nNo/invalid ant nbr");
 }
 
 void			init_map(t_lem_in *s)
@@ -324,8 +324,8 @@ void			init_map(t_lem_in *s)
 	i = 0;
 	while (i < MAP_SIZE)
 	{
-		s->map[i]->room = NULL;
-		s->map[i]->t_next = NULL;
+		s->map[i].room = NULL;
+		s->map[i].t_next = NULL;
 		i++;
 	}
 }
@@ -333,7 +333,7 @@ void			init_map(t_lem_in *s)
 void			init_struct(t_lem_in *s)
 {
 	s->info = NULL;
-	s->i_current = NULL;
+	s->current = NULL;
 	s->start = NULL;
 	s->end = NULL;
 	s->nb_room = 0;
@@ -348,8 +348,8 @@ int				main(void)
 	init_struct(&s);
 	read_ant_nb(&s);
 	read_link(&s, read_room(&s));
-	if (!(s->room_tab = (t_room*)malloc(sizeof(t_room) * nb_room)))
+	if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 		return (EXIT_FAILURE);
-	write_room(s);
+	write_room(&s);
 	//write_link(s);
 }

@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/12 18:00:09 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/12 18:59:36 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,4 @@ t_info			*create_info(char *str);
 void			info_push_back(t_lem_in *s, t_info *to_add);
 void			init_info(t_info *new, char *str);
 char			*read_room(t_lem_in *s);
-void			read_tip(uint_fast8_t *tip, t_lem_in *s);
+void			read_tip(t_lem_in *s, t_room **tip);
