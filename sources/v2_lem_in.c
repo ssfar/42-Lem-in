@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 15:43:02 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/11 20:47:37 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/12 12:00:43 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,9 +165,7 @@ t_table		*find_table(t_table *table, char *key, size_t index)
 {
 	t_table *tmp;
 
-	if (ft_strcmp(table[index]->key, key) == 0)
-		return(table[index]);
-	tmp = table[index]->next;
+	tmp = table[index];
 	while (tmp != NULL)
 	{
 		if (ft_strcmp(tmp->key, key) == 0)
@@ -268,7 +266,7 @@ void	place_tip(t_lem_in *s, t_table **tip, t_info **tmp)
 	exit_failure(s, 2, "No room after ##star/end command");
 }
 
-void	place_room(t_lem_in *s, char *line)
+void	create_table(t_lem_in *s, char *line)
 {
 	t_info	*tmp;
 
@@ -292,14 +290,16 @@ void	place_room(t_lem_in *s, char *line)
 		}
 		else
 		{
-
+			if (!place_room(s, *tmp->str))
+				exit_failure(s, 1, "Duplicated room");
+			tmp = tmp->next;
 		}
 	}
 }
 
 void	read_pipe(t_lem_in *s, char *line)
 {
-	place_room(s);
+	create_table(s);
 	if (is_pipe(s, line) == 0)
 	{
 		free(line);

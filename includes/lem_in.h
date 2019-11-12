@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 12:52:42 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/11 20:34:31 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/12 14:14:44 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #include "get_next_line.h"
 #include "ft_printf.h"
 
+# define MAP_SIZE	1024
+
 typedef struct	s_lem_in
 {
 	ssize_t			ant;
 	struct s_info	*info;
 	struct s_info	*i_current;
-	struct s_table	*table;
+	struct s_table	*map[MAP_SIZE];
 	struct s_table	*start;
 	struct s_table	*end;
 	size_t			nb_room;

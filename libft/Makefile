@@ -6,7 +6,7 @@
 #    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/11 15:40:26 by ssfar            ###   ########.fr        #
+#    Updated: 2019/11/11 21:15:01 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC_NAME = ft_atoi.c intlen_no_symbol.c ft_islower.c ft_lstdelone.c \
   strlowcase.c ft_strnew.c swap.c repeat_chardup.c str_is_numeric_no_symbol.c \
   strjoin_free.c utoa.c uintlen.c upower.c round_float.c \
   get_float_mantissa.c aproximative_ftoa_no_symbol.c strtab.c \
-  free_strtab_offset.c ft_memdel.c gnl_no_buff.c atou.c hash.c\
+  free_strtab_offset.c ft_memdel.c gnl_no_buff.c atou.c hash.c hash_to_c.c\
   get_next_line.c strtab_iteri.c \
   ft_printf/ft_printf.c \
   ft_printf/parsing.c \
