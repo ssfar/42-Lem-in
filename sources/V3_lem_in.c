@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/13 17:22:58 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/13 18:37:20 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	write_room(t_lem_in *s)
 {
 	size_t	i;
 	size_t	j;
+	size_t k;
 	t_table	*tmp;
 
 	if (!(s->room_tab = malloc(sizeof(t_room) * s->nb_room)))
@@ -82,7 +83,9 @@ void	write_room(t_lem_in *s)
 			free(tmp->room);
 			if (!(s->room_tab[j].link = malloc(sizeof(ssize_t) * s->room_tab[j].nb_link)))
 				exit_failure(s, 123, "Malloc error room_tab");
-			ft_memset(s->room_tab[j].link, -1, s->room_tab[j].nb_link);
+			k = 0;
+			while(k < s->room_tab[j].nb_link)
+				s->room_tab[j].link[k++] = -1;
 			tmp->room = &s->room_tab[j];
 			tmp = tmp->t_next;
 		}
@@ -385,12 +388,13 @@ void	print_datatab(t_lem_in *s)
 	i = 0;
 	while (i < s->nb_room)
 	{
-		j = 0;
 		ft_printf("Name : %s\t", s->room_tab[i].name);
 		ft_printf("Index : %d\t", s->room_tab[i].index);
 		ft_printf("Nb_link : %d\t", s->room_tab[i].nb_link);
 		ft_printf("links : ", s->room_tab[i].nb_link);
-		while (j < s->room_tab[i].nb_link && s->room_tab[i].link[j] != -1)
+		j = 0;
+		// while (j < s->room_tab[i].nb_link && s->room_tab[i].link[j] != -1)
+		while (j < s->room_tab[i].nb_link)
 			ft_printf("%zd\t", s->room_tab[i].link[j++]);
 		ft_printf("\n");
 		i++;
@@ -406,9 +410,10 @@ int				main(void)
 	read_link(&s, read_room(&s));
 	write_room(&s);
 	write_link(&s);
-	print_datatab(&s);
+	//print_datatab(&s);
 
-	print_ant(s.ant);
+
+	//print_ant(s.ant);
 	// print_map(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);

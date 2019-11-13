@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/13 17:23:04 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/13 18:16:29 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,3 +68,4 @@ uint_fast8_t	is_room2(char *line);
 t_room			*place_room(t_lem_in *s, char *key, size_t index);
 void			print_map(t_lem_in *s);
 void			init_map(t_lem_in *s);
+void			print_datatab(t_lem_in *s);
