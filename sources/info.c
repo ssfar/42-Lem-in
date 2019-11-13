@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:17:02 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/12 18:05:58 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/13 17:22:33 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	clear_info(t_info *to_clear)
 
 	while (to_clear != NULL)
 	{
-		tmp = to_clear->next;
+		tmp = to_clear->i_next;
 		free_info(to_clear);
 		to_clear = tmp;
 	}

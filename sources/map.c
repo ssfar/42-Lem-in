@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/11 11:08:33 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/13 17:22:27 by vrobin           ###   ########.fr       */
+/*   Created: 2019/11/13 15:40:16 by vrobin            #+#    #+#             */
+/*   Updated: 2019/11/13 17:22:30 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "V3_lem_in.h"
 
-/*
-** Writes (len) bytes of value (c) to the string (b).
-*/
-
-void	*ft_memset(void *b, int_fast8_t c, size_t len)
+void			init_map(t_lem_in *s)
 {
-	if (b)
-		while (len)
-			((uint8_t*)b)[--len] = (uint8_t)c;
-	return (b);
+	size_t	i;
+
+	i = 0;
+	while (i < MAP_SIZE)
+	{
+		s->map[i] = NULL;
+		//s->map[i].t_next = NULL;
+		i++;
+	}
+}
+
+void			print_map(t_lem_in *s)
+{
+	int i;
+
+	i = 0;
+	while (i < MAP_SIZE)
+	{
+		if (s->map[i])
+			ft_printf("map[%d]->index = %d, ->name = |%s|\n", i, s->map[i]->room->index, s->map[i]->room->name);
+		i++;
+	}
 }
