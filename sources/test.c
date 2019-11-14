@@ -3,7 +3,7 @@
 # include <stdint.h>
 # include <string.h>
 # include <unistd.h>
-# include "libft.h"
+// # include "libft.h"
 
 void			hash_data(void *dest, const size_t size, const char *key)
 {
@@ -33,8 +33,7 @@ unsigned int	hash_to_int(const char *key)
 
 int main(int ac, char **av)
 {
-	char *str = "0\0q";
-	char *str2 = "0";
-	printf("str %d\n", hash_to_int(str));
-	printf("str2 %d\n", hash_to_int(str2));
+	char a[2147483647];
+	a[2147483646] = 'b';
+	printf("%c",a[2147483646]);
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/13 18:16:29 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/14 17:44:32 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
-# define MAP_SIZE	1024
+# define MAP_SIZE	100000
 
 typedef	struct	s_table
 {
@@ -27,8 +27,8 @@ typedef struct	s_lem_in
 	struct	s_info	*info;
 	struct	s_info	*i_current;
 	struct	s_info	*pipe;
-	struct	s_room	*start;
-	struct	s_room	*end;
+	ssize_t			start;
+	ssize_t			end;
 	struct	s_room	*room_tab;
 	size_t			nb_room;
 	struct	s_table	*map[MAP_SIZE];
@@ -49,23 +49,30 @@ typedef	struct	s_room
 	ssize_t	*link;
 }				t_room;
 
-t_room			*place_room(t_lem_in *s, char *key, size_t index);
 void			hash_data(void *dest, const size_t size, const char *key);
 unsigned int	hash_to_int(const char *key);
-t_room			*find_room(t_lem_in *s, char *key, size_t index);
 void			hash_data(void *dest, const size_t size, const char *key);
 void			init_struct(t_lem_in *s);
 void			init_map(t_lem_in *s);
-void			read_ant_nb(t_lem_in *s);
+void			init_info(t_info *new, char *str);
 t_info			*create_info(char *str);
 void			info_push_back(t_lem_in *s, t_info *to_add);
-void			init_info(t_info *new, char *str);
-char			*read_room(t_lem_in *s);
-void			read_tip(t_lem_in *s, t_room **tip);
-void			exit_failure(t_lem_in *s, size_t id, char *message);
-uint_fast8_t	is_room(char *line);
+void			clear_info(t_info *to_clear);
+void			read_ant_nb(t_lem_in *s);
 uint_fast8_t	is_room2(char *line);
+uint_fast8_t	is_room(char *line);
+char			*read_room(t_lem_in *s);
+uint_fast8_t	is_link2(t_lem_in *s, char *line, int i);
+uint_fast8_t	is_link(t_lem_in *s, char *line);
+void			read_link(t_lem_in *s, char *line);
 t_room			*place_room(t_lem_in *s, char *key, size_t index);
+t_room			*find_room(t_lem_in *s, char *key, size_t index);
+void			read_tip(t_lem_in *s, ssize_t *tip);
+t_room			*place_room(t_lem_in *s, char *key, size_t index);
+void			exit_failure(t_lem_in *s, size_t id, char *message);
 void			print_map(t_lem_in *s);
-void			init_map(t_lem_in *s);
 void			print_datatab(t_lem_in *s);
+void			print_info(t_lem_in *s);
+void			print_ant(size_t ant);
+void			write_room(t_lem_in *s);
+void			write_link(t_lem_in *s);

@@ -6,7 +6,7 @@
 #    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/13 17:23:06 by vrobin           ###   ########.fr        #
+#    Updated: 2019/11/14 17:44:38 by vrobin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,13 @@ SRC_DIR = sources
 OBJ_DIR = objects
 
 SRC_NAME =	V3_lem_in.c \
+			room.c \
+			link.c \
 			hash.c \
 			info.c \
-			map.c
+			map.c \
+			print.c \
+			write_room_link.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_NAME:.c=.o))
