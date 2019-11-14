@@ -12,13 +12,12 @@ room8 4 3
 ##end
 end 3 5
 room9 8 2
-start-room1
+start-spacestation
 room1-room2
 room2-room3
 room3-room4
 room4-room5
 room5-room6
-room6-spacestation
 room7-room8
 room8-room9
 room9-end

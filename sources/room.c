@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:38:07 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 17:44:26 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/14 21:22:06 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_room	*init_room(t_lem_in *s, t_table *tmp, char *name)
 {
-	tmp->room = malloc(sizeof(t_room));
+	if (!(tmp->room = malloc(sizeof(t_room))))
+		exit_failure(s, 1, "Can't malloc tmp->room", 0);
 	tmp->room->name = name;
 	tmp->room->index = s->nb_room;
 	tmp->room->nb_link = 0;
@@ -29,10 +30,7 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 	if (!(s->map[index]))
 	{
 		if (!(s->map[index] = malloc(sizeof(t_table))))
-		{
-			free(key);
-			exit_failure(s, 123, "Can't malloc s->map");
-		}
+			exit_failure(s, 1, "Can't malloc s->map[i]", 0);
 		s->map[index]->t_next = NULL;
 		return (init_room(s, s->map[index], key));
 	}
@@ -40,20 +38,13 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 	while (tmp->t_next)
 	{
 		if (ft_strcmp(key, tmp->room->name) == 0)
-		{
-			key[ft_strlen(key)] = ' ';
-			free(key);
-			exit_failure(s, 123, "Room already exist");
-		}
+			exit_failure(s, 1, "Room already exist", 1);
 		tmp = tmp->t_next;
 	}
 	if (ft_strcmp(key, tmp->room->name) == 0)
-	{
-		key[ft_strlen(key)] = ' ';
-		free(key);
-		exit_failure(s, 123, "Room already exist");
-	}
-	tmp->t_next = malloc(sizeof(t_table));
+		exit_failure(s, 1, "Room already exist", 1);
+	if (!(tmp->t_next = malloc(sizeof(t_table))))
+		exit_failure(s, 1, "Can't malloc tmp->t_next", 0);
 	tmp = tmp->t_next;
 	tmp->t_next = NULL;
 	return (init_room(s, tmp, key));
@@ -119,7 +110,7 @@ char			*read_room(t_lem_in *s)
 	{
 		if ('#' == *line)
 		{
-			info_push_back(s, create_info(line));
+			info_push_back(s, create_info(s, line));
 			if (ft_strcmp("##start", line) == 0)
 				read_tip(s, &s->start);
 			else if (ft_strcmp("##end", line) == 0)
@@ -127,8 +118,8 @@ char			*read_room(t_lem_in *s)
 		}
 		else if (is_room(line))
 		{
+			info_push_back(s, create_info(s, line));
 			place_room(s, line, hash_to_int(line));
-			info_push_back(s, create_info(line));
 			s->nb_room++;
 		}
 		else

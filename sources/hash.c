@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:01:50 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 11:47:48 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/14 22:52:57 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ unsigned int	hash_to_int(const char *key)
 
 t_room		*find_room(t_lem_in *s, char *key, size_t index)
 {
-	t_table *tmp;
+	t_table	*tmp;
 
 	if (!s->map[index])
 		return (NULL);

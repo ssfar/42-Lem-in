@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:17:02 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/13 17:22:33 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/14 21:21:10 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ void	init_info(t_info *new, char *str)
 	new->i_next = NULL;
 }
 
-t_info	*create_info(char *str)
+t_info	*create_info(t_lem_in *s, char *str)
 {
 	t_info	*new;
 
-	if (!(new = (t_info*)malloc(sizeof(t_info))))
-		return (NULL);
+	if (!(new = malloc(sizeof(t_info))))
+	{
+		free(str);
+		exit_failure(s, 1, "Can't malloc t_info new", 0);
+	}
 	init_info(new, str);
 	return (new);
 }

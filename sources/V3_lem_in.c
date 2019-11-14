@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/14 17:44:17 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/14 23:10:59 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	clear_map(t_lem_in *s)
 	}
 }
 
-void	exit_failure(t_lem_in *s, size_t id, char *message)
+void	exit_failure(t_lem_in *s, size_t id, char *message, uint_fast8_t error)
 {
 	if (id >= 0)
 		clear_info(s->info);
@@ -78,7 +78,8 @@ void	exit_failure(t_lem_in *s, size_t id, char *message)
 	if (id == 3)
 		clear_map(s);
 	ft_printf("[red]%s[a_reset]\n", message);
-	ft_printf("ERROR");
+	if (error)
+		ft_printf("ERROR");
 	exit(EXIT_FAILURE);
 }
 
@@ -86,30 +87,27 @@ void			read_tip(t_lem_in *s, ssize_t *tip)
 {
 	char	*line;
 
-	if (*tip != -1) 
-		exit_failure(s, 1, "Tip already read");
+	if (*tip != -1)
+		exit_failure(s, 1, "Tip already read", 1);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (*line == '#')
 		{
+			info_push_back(s, create_info(s, line));
 			if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
-			{
-				free(line);
-				exit_failure(s, 1, "Two ##star/end command for the same room"); 
-			}
-			info_push_back(s, create_info(line));
+				exit_failure(s, 1, "Two ##star/end command for the same room", 1); 
 		}
 		else if (is_room(line))
 		{
+			info_push_back(s, create_info(s, line));
 			place_room(s, line, hash_to_int(line));
-			info_push_back(s, create_info(line));
 			*tip = s->nb_room++;
 			break;
 		}
 		else
 		{
 			free(line);
-			exit_failure(s, 1, "Invalid/already exist room after ##start/end command");
+			exit_failure(s, 1, "Invalid/already exist room after ##start/end command", 1);
 		}
 	}
 }
@@ -122,12 +120,9 @@ void			read_ant_nb(t_lem_in *s)
 	{
 		if (*line == '#')
 		{
+			info_push_back(s, create_info(s, line));
 			if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
-			{
-				free(line);
-				exit_failure(s, 0, "\nNo/invalid ant nbr");
-			}
-			info_push_back(s, create_info(line));
+				exit_failure(s, 0, "\nNo/invalid ant nbr", 1);
 		}
 		else if (str_is_numeric_no_symbol(line) && *line != '0')
 		{
@@ -137,10 +132,10 @@ void			read_ant_nb(t_lem_in *s)
 		else
 		{
 			free(line);
-			exit_failure(s, 0, "\nNo/invalid ant nbr");
+			exit_failure(s, 0, "\nNo/invalid ant nbr", 1);
 		}
 	}
-	exit_failure(s, 0, "\nNo/invalid ant nbr");
+	exit_failure(s, 0, "\nNo/invalid ant nbr", 1);
 }
 
 void			init_struct(t_lem_in *s)
@@ -163,17 +158,13 @@ int				main(void)
 	init_struct(&s);
 	read_ant_nb(&s);
 	read_link(&s, read_room(&s));
-	clear_map(&s);
 	write_room(&s);
 	write_link(&s);
-	
 
-	// print_info(&s);
-	// print_ant(s.ant);
-	// print_datatab(&s);
+	print_ant(s.ant);
+	//print_info(&s);
+	print_datatab(&s);
 	// print_map(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
-	//write_room(&s);
-	//write_link(s);
 }

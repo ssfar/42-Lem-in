@@ -16,6 +16,7 @@ start-room1
 room1-room2
 room2-room3
 room3-room4
+#NEED THE ALGO TO BE AN ERROR
 room5-room6
 room6-room7
 room7-room8

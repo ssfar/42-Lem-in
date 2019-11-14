@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 11:59:49 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/14 23:10:35 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	print_datatab(t_lem_in *s)
 	size_t i;
 	size_t	j;
 
+	ft_printf("\n##start name : |%s|\n##end name : |%s|\n", s->room_tab[s->start].name, s->room_tab[s->end].name);
 	i = 0;
 	while (i < s->nb_room)
 	{
@@ -57,7 +58,7 @@ void	print_datatab(t_lem_in *s)
 		// while (j < s->room_tab[i].nb_link && s->room_tab[i].link[j] != -1)
 		while (j < s->room_tab[i].nb_link)
 			ft_printf("|%zd|\t", s->room_tab[i].link[j++]);
-		ft_printf("\n");
+		ft_printf("[a_reset]\n");
 		i++;
 	}
 }
