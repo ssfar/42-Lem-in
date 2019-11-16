@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/14 23:10:59 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/16 15:25:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,66 +17,15 @@
 // 			-( )-		 // 
 // 			/( )\		 //
 
-void	clear_data_tab(t_lem_in *s)
-{
-	size_t i;
 
-	i = 0;
-	while (i < MAP_SIZE)
-	{
-		free(s->room_tab[i].link);
-		i++;
-	}
-	free(s->room_tab);
-}
-
-void	clear_map_room(t_lem_in *s)
-{
-	t_table *tmp;
-	size_t	i;
-
-	i = 0;
-	while (i < s->nb_room)
-	{
-		while (s->map[i] != NULL)
-		{
-			tmp = s->map[i];
-			free(tmp->room);
-			free(tmp);
-			s->map[i] = s->map[i]->t_next;
-		}
-		i++;
-	}
-}
-
-void	clear_map(t_lem_in *s)
-{
-	size_t	i;
-	t_table	*tmp;
-
-	i = 0;
-	while (i < s->nb_room)
-	{
-		while (s->map[i] != NULL)
-		{
-			tmp = s->map[i];
-			free(tmp);
-			s->map[i] = s->map[i]->t_next;
-		}
-		i++;
-	}
-}
 
 void	exit_failure(t_lem_in *s, size_t id, char *message, uint_fast8_t error)
 {
-	if (id >= 0)
-		clear_info(s->info);
+	clear_info(s->info);
 	if (id == 1)
 		clear_map_room(s);
-	if (id == 2 || id == 3)
-		clear_data_tab(s);
-	if (id == 3)
-		clear_map(s);
+	if (id == 2)
+		clear_room_tab(s);
 	ft_printf("[red]%s[a_reset]\n", message);
 	if (error)
 		ft_printf("ERROR");
@@ -158,8 +107,7 @@ int				main(void)
 	init_struct(&s);
 	read_ant_nb(&s);
 	read_link(&s, read_room(&s));
-	write_room(&s);
-	write_link(&s);
+	write_room(&s);	write_link(&s);
 
 	print_ant(s.ant);
 	//print_info(&s);

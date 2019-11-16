@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:38:07 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 21:22:06 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/16 14:38:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ uint_fast8_t	is_room(char *line)
 {
 	size_t	i;
 
-	if (!line[0] || line[0] == ' ' || line[0] == '-' || line[0] == 'L' || line[0] == '#')
+	if (!line[0] || line[0] == ' ' || line[0] == '-' || line[0] == 'L'
+		|| line[0] == '#')
 		return (0);
 	i = 1;
 	while (line[i] && line[i] != ' ')

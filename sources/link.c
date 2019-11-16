@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   link.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:40:03 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 21:27:18 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/16 14:38:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "V3_lem_in.h"
-
 
 uint_fast8_t	is_link2(t_lem_in *s, char *line)
 {

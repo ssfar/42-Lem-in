@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:01:50 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 22:52:57 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/16 15:25:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ t_room		*find_room(t_lem_in *s, char *key, size_t index)
 		tmp = tmp->t_next;
 	}
 	return (NULL);
+}
+
+void	clear_room_tab(t_lem_in *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < MAP_SIZE)
+	{
+		free(s->room_tab[i].link);
+		i++;
+	}
+	free(s->room_tab);
 }

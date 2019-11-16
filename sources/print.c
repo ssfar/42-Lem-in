@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/14 23:10:35 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/16 14:09:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			print_map(t_lem_in *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < MAP_SIZE)
@@ -24,6 +24,7 @@ void			print_map(t_lem_in *s)
 		i++;
 	}
 }
+
 void	print_info(t_lem_in *s)
 {
 	while (s->info != NULL)
@@ -43,7 +44,7 @@ void	print_ant(size_t ant)
 
 void	print_datatab(t_lem_in *s)
 {
-	size_t i;
+	size_t	i;
 	size_t	j;
 
 	ft_printf("\n##start name : |%s|\n##end name : |%s|\n", s->room_tab[s->start].name, s->room_tab[s->end].name);
