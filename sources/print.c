@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/16 14:09:12 by marvin           ###   ########.fr       */
+/*   Updated: 2019/11/19 19:39:26 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,20 @@ void	print_datatab(t_lem_in *s)
 			ft_printf("|%zd|\t", s->room_tab[i].link[j++]);
 		ft_printf("[a_reset]\n");
 		i++;
+	}
+}
+
+void	print_way(t_lem_in *s)
+{
+	size_t	i;
+
+	while (s->way != NULL)
+	{
+		i = 0;
+		ft_printf("[blue]Path : ");
+		while (i <= s->way->path_size)
+			ft_printf("%s ", s->room_tab[s->way->path[i++]].name);
+		ft_printf("\n");
+		s->way = s->way->p_next;
 	}
 }

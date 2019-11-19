@@ -1,0 +1,1622 @@
+
+ [30m  \ /
+ [38;2;242;231;191m\[38;2;150;0;0m([37m[32m'[31mU[32m'[38;2;150;0;0m)[38;2;242;231;191m/
+  -[38;2;150;0;0m( )[38;2;242;231;191m-[1m[31m = 100
+ [0m[38;2;242;231;191m/[38;2;150;0;0m([30m _ [38;2;150;0;0m)[38;2;242;231;191m\
+[0m
+##start name : |start|
+##end name : |end|
+[31mName : start	[34mIndex : 0	[32mNb_link : 1	[33mlinks : |100|	[0m
+[31mName : end	[34mIndex : 1	[32mNb_link : 1	[33mlinks : |17|	[0m
+[31mName : 0	[34mIndex : 2	[32mNb_link : 6	[33mlinks : |73|	|9|	|66|	|75|	|81|	|95|	[0m
+[31mName : 1	[34mIndex : 3	[32mNb_link : 5	[33mlinks : |49|	|18|	|27|	|25|	|66|	[0m
+[31mName : 2	[34mIndex : 4	[32mNb_link : 2	[33mlinks : |55|	|17|	[0m
+[31mName : 3	[34mIndex : 5	[32mNb_link : 2	[33mlinks : |85|	|19|	[0m
+[31mName : 4	[34mIndex : 6	[32mNb_link : 3	[33mlinks : |72|	|62|	|68|	[0m
+[31mName : 5	[34mIndex : 7	[32mNb_link : 3	[33mlinks : |62|	|84|	|86|	[0m
+[31mName : 6	[34mIndex : 8	[32mNb_link : 4	[33mlinks : |42|	|88|	|27|	|84|	[0m
+[31mName : 7	[34mIndex : 9	[32mNb_link : 6	[33mlinks : |32|	|90|	|2|	|24|	|60|	|73|	[0m
+[31mName : 8	[34mIndex : 10	[32mNb_link : 5	[33mlinks : |67|	|30|	|32|	|81|	|88|	[0m
+[31mName : 9	[34mIndex : 11	[32mNb_link : 4	[33mlinks : |97|	|12|	|21|	|28|	[0m
+[31mName : 10	[34mIndex : 12	[32mNb_link : 4	[33mlinks : |64|	|99|	|11|	|74|	[0m
+[31mName : 11	[34mIndex : 13	[32mNb_link : 3	[33mlinks : |62|	|18|	|79|	[0m
+[31mName : 12	[34mIndex : 14	[32mNb_link : 3	[33mlinks : |30|	|42|	|80|	[0m
+[31mName : 13	[34mIndex : 15	[32mNb_link : 1	[33mlinks : |36|	[0m
+[31mName : 14	[34mIndex : 16	[32mNb_link : 3	[33mlinks : |87|	|83|	|29|	[0m
+[31mName : 15	[34mIndex : 17	[32mNb_link : 3	[33mlinks : |4|	|30|	|1|	[0m
+[31mName : 16	[34mIndex : 18	[32mNb_link : 5	[33mlinks : |3|	|13|	|38|	|83|	|98|	[0m
+[31mName : 17	[34mIndex : 19	[32mNb_link : 6	[33mlinks : |5|	|85|	|38|	|69|	|51|	|76|	[0m
+[31mName : 18	[34mIndex : 20	[32mNb_link : 4	[33mlinks : |54|	|92|	|96|	|99|	[0m
+[31mName : 19	[34mIndex : 21	[32mNb_link : 3	[33mlinks : |11|	|62|	|87|	[0m
+[31mName : 20	[34mIndex : 22	[32mNb_link : 2	[33mlinks : |95|	|27|	[0m
+[31mName : 21	[34mIndex : 23	[32mNb_link : 2	[33mlinks : |101|	|39|	[0m
+[31mName : 22	[34mIndex : 24	[32mNb_link : 2	[33mlinks : |9|	|98|	[0m
+[31mName : 23	[34mIndex : 25	[32mNb_link : 4	[33mlinks : |3|	|75|	|77|	|82|	[0m
+[31mName : 24	[34mIndex : 26	[32mNb_link : 3	[33mlinks : |85|	|46|	|91|	[0m
+[31mName : 25	[34mIndex : 27	[32mNb_link : 6	[33mlinks : |3|	|8|	|89|	|22|	|63|	|93|	[0m
+[31mName : 26	[34mIndex : 28	[32mNb_link : 6	[33mlinks : |11|	|44|	|79|	|46|	|96|	|98|	[0m
+[31mName : 27	[34mIndex : 29	[32mNb_link : 2	[33mlinks : |16|	|77|	[0m
+[31mName : 28	[34mIndex : 30	[32mNb_link : 10	[33mlinks : |14|	|53|	|66|	|77|	|10|	|64|	|17|	|39|	|91|	|-1|	[0m
+[31mName : 29	[34mIndex : 31	[32mNb_link : 1	[33mlinks : |32|	[0m
+[31mName : 30	[34mIndex : 32	[32mNb_link : 6	[33mlinks : |9|	|31|	|78|	|82|	|10|	|-1|	[0m
+[31mName : 31	[34mIndex : 33	[32mNb_link : 3	[33mlinks : |80|	|83|	|68|	[0m
+[31mName : 32	[34mIndex : 34	[32mNb_link : 2	[33mlinks : |66|	|67|	[0m
+[31mName : 33	[34mIndex : 35	[32mNb_link : 3	[33mlinks : |81|	|47|	|92|	[0m
+[31mName : 34	[34mIndex : 36	[32mNb_link : 2	[33mlinks : |15|	|43|	[0m
+[31mName : 35	[34mIndex : 37	[32mNb_link : 3	[33mlinks : |66|	|51|	|63|	[0m
+[31mName : 36	[34mIndex : 38	[32mNb_link : 3	[33mlinks : |19|	|18|	|67|	[0m
+[31mName : 37	[34mIndex : 39	[32mNb_link : 3	[33mlinks : |23|	|30|	|78|	[0m
+[31mName : 38	[34mIndex : 40	[32mNb_link : 4	[33mlinks : |75|	|48|	|71|	|77|	[0m
+[31mName : 39	[34mIndex : 41	[32mNb_link : 3	[33mlinks : |88|	|69|	|-1|	[0m
+[31mName : 40	[34mIndex : 42	[32mNb_link : 4	[33mlinks : |8|	|14|	|63|	|85|	[0m
+[31mName : 41	[34mIndex : 43	[32mNb_link : 2	[33mlinks : |36|	|93|	[0m
+[31mName : 42	[34mIndex : 44	[32mNb_link : 6	[33mlinks : |28|	|45|	|67|	|52|	|66|	|72|	[0m
+[31mName : 43	[34mIndex : 45	[32mNb_link : 4	[33mlinks : |44|	|88|	|48|	|59|	[0m
+[31mName : 44	[34mIndex : 46	[32mNb_link : 2	[33mlinks : |26|	|28|	[0m
+[31mName : 45	[34mIndex : 47	[32mNb_link : 3	[33mlinks : |35|	|66|	|96|	[0m
+[31mName : 46	[34mIndex : 48	[32mNb_link : 3	[33mlinks : |82|	|40|	|45|	[0m
+[31mName : 47	[34mIndex : 49	[32mNb_link : 4	[33mlinks : |3|	|88|	|62|	|84|	[0m
+[31mName : 48	[34mIndex : 50	[32mNb_link : 1	[33mlinks : |98|	[0m
+[31mName : 49	[34mIndex : 51	[32mNb_link : 3	[33mlinks : |37|	|99|	|19|	[0m
+[31mName : 50	[34mIndex : 52	[32mNb_link : 3	[33mlinks : |44|	|65|	|66|	[0m
+[31mName : 51	[34mIndex : 53	[32mNb_link : 2	[33mlinks : |30|	|-1|	[0m
+[31mName : 52	[34mIndex : 54	[32mNb_link : 2	[33mlinks : |20|	|65|	[0m
+[31mName : 53	[34mIndex : 55	[32mNb_link : 3	[33mlinks : |4|	|86|	|70|	[0m
+[31mName : 54	[34mIndex : 56	[32mNb_link : 3	[33mlinks : |64|	|66|	|101|	[0m
+[31mName : 55	[34mIndex : 57	[32mNb_link : 1	[33mlinks : |101|	[0m
+[31mName : 56	[34mIndex : 58	[32mNb_link : 5	[33mlinks : |94|	|59|	|63|	|66|	|67|	[0m
+[31mName : 57	[34mIndex : 59	[32mNb_link : 4	[33mlinks : |45|	|75|	|58|	|87|	[0m
+[31mName : 58	[34mIndex : 60	[32mNb_link : 1	[33mlinks : |9|	[0m
+[31mName : 59	[34mIndex : 61	[32mNb_link : 3	[33mlinks : |63|	|75|	|66|	[0m
+[31mName : 60	[34mIndex : 62	[32mNb_link : 8	[33mlinks : |7|	|13|	|73|	|6|	|21|	|98|	|49|	|-1|	[0m
+[31mName : 61	[34mIndex : 63	[32mNb_link : 8	[33mlinks : |42|	|61|	|27|	|71|	|85|	|37|	|58|	|77|	[0m
+[31mName : 62	[34mIndex : 64	[32mNb_link : 4	[33mlinks : |12|	|30|	|56|	|86|	[0m
+[31mName : 63	[34mIndex : 65	[32mNb_link : 3	[33mlinks : |52|	|54|	|78|	[0m
+[31mName : 64	[34mIndex : 66	[32mNb_link : 13	[33mlinks : |30|	|34|	|37|	|44|	|58|	|61|	|93|	|2|	|47|	|56|	|3|	|52|	|77|	[0m
+[31mName : 65	[34mIndex : 67	[32mNb_link : 5	[33mlinks : |10|	|38|	|44|	|34|	|58|	[0m
+[31mName : 66	[34mIndex : 68	[32mNb_link : 2	[33mlinks : |33|	|6|	[0m
+[31mName : 67	[34mIndex : 69	[32mNb_link : 3	[33mlinks : |19|	|41|	|88|	[0m
+[31mName : 68	[34mIndex : 70	[32mNb_link : 1	[33mlinks : |55|	[0m
+[31mName : 69	[34mIndex : 71	[32mNb_link : 2	[33mlinks : |63|	|40|	[0m
+[31mName : 70	[34mIndex : 72	[32mNb_link : 5	[33mlinks : |6|	|44|	|93|	|89|	|97|	[0m
+[31mName : 71	[34mIndex : 73	[32mNb_link : 4	[33mlinks : |2|	|62|	|9|	|-1|	[0m
+[31mName : 72	[34mIndex : 74	[32mNb_link : 3	[33mlinks : |12|	|97|	|76|	[0m
+[31mName : 73	[34mIndex : 75	[32mNb_link : 8	[33mlinks : |40|	|59|	|61|	|84|	|2|	|25|	|80|	|89|	[0m
+[31mName : 74	[34mIndex : 76	[32mNb_link : 2	[33mlinks : |19|	|74|	[0m
+[31mName : 75	[34mIndex : 77	[32mNb_link : 8	[33mlinks : |29|	|30|	|66|	|40|	|63|	|25|	|92|	|94|	[0m
+[31mName : 76	[34mIndex : 78	[32mNb_link : 5	[33mlinks : |32|	|39|	|65|	|90|	|-1|	[0m
+[31mName : 77	[34mIndex : 79	[32mNb_link : 4	[33mlinks : |28|	|13|	|99|	|84|	[0m
+[31mName : 78	[34mIndex : 80	[32mNb_link : 3	[33mlinks : |33|	|75|	|14|	[0m
+[31mName : 79	[34mIndex : 81	[32mNb_link : 5	[33mlinks : |35|	|82|	|2|	|10|	|89|	[0m
+[31mName : 80	[34mIndex : 82	[32mNb_link : 4	[33mlinks : |32|	|48|	|81|	|25|	[0m
+[31mName : 81	[34mIndex : 83	[32mNb_link : 5	[33mlinks : |16|	|33|	|86|	|18|	|100|	[0m
+[31mName : 82	[34mIndex : 84	[32mNb_link : 5	[33mlinks : |7|	|75|	|8|	|49|	|79|	[0m
+[31mName : 83	[34mIndex : 85	[32mNb_link : 6	[33mlinks : |5|	|19|	|26|	|63|	|93|	|42|	[0m
+[31mName : 84	[34mIndex : 86	[32mNb_link : 4	[33mlinks : |55|	|64|	|83|	|7|	[0m
+[31mName : 85	[34mIndex : 87	[32mNb_link : 3	[33mlinks : |16|	|21|	|59|	[0m
+[31mName : 86	[34mIndex : 88	[32mNb_link : 8	[33mlinks : |8|	|41|	|45|	|49|	|101|	|69|	|10|	|-1|	[0m
+[31mName : 87	[34mIndex : 89	[32mNb_link : 4	[33mlinks : |27|	|72|	|81|	|75|	[0m
+[31mName : 88	[34mIndex : 90	[32mNb_link : 3	[33mlinks : |9|	|78|	|101|	[0m
+[31mName : 89	[34mIndex : 91	[32mNb_link : 3	[33mlinks : |96|	|26|	|30|	[0m
+[31mName : 90	[34mIndex : 92	[32mNb_link : 3	[33mlinks : |20|	|77|	|35|	[0m
+[31mName : 91	[34mIndex : 93	[32mNb_link : 5	[33mlinks : |43|	|66|	|72|	|85|	|27|	[0m
+[31mName : 92	[34mIndex : 94	[32mNb_link : 2	[33mlinks : |58|	|77|	[0m
+[31mName : 93	[34mIndex : 95	[32mNb_link : 2	[33mlinks : |22|	|2|	[0m
+[31mName : 94	[34mIndex : 96	[32mNb_link : 4	[33mlinks : |91|	|47|	|20|	|28|	[0m
+[31mName : 95	[34mIndex : 97	[32mNb_link : 3	[33mlinks : |11|	|74|	|72|	[0m
+[31mName : 96	[34mIndex : 98	[32mNb_link : 5	[33mlinks : |50|	|62|	|28|	|24|	|18|	[0m
+[31mName : 97	[34mIndex : 99	[32mNb_link : 4	[33mlinks : |12|	|51|	|79|	|20|	[0m
+[31mName : 98	[34mIndex : 100	[32mNb_link : 2	[33mlinks : |83|	|0|	[0m
+[31mName : 99	[34mIndex : 101	[32mNb_link : 5	[33mlinks : |23|	|57|	|88|	|90|	|56|	[0m
+Path : start 98 81 14 85 19 9 95 72 
+Path : start 98 81 31 78 73 38 46 80 
+Path : start 98 81 84 53 2 15 28 
+Path : start 98 81 16 1 47 86 6 
+Path : start 98 81 14 27 75 28 12 
+Path : start 98 81 31 66 4 70 42 26 
+Path : start 98 81 84 62 10 97 49 35 
+Path : start 98 81 84 5 60 11 
+Path : start 98 81 16 11 60 5 
+Path : start 98 81 16 36 17 3 83 24 44 
+Path : start 98 81 16 96 48 
+Path : start 98 81 14 85 57 43 42 26 
+Path : start 98 81 31 78 12 28 51 
+Path : start 98 81 84 53 68 
+Path : start 98 81 84 62 28 12 
+Path : start 98 81 84 62 54 64 28 
+Path : start 98 81 84 5 82 73 
+Path : start 98 81 16 1 25 6 40 
+Path : start 98 81 16 1 23 73 
+Path : start 98 81 16 1 64 28 
+Path : start 98 81 16 11 77 26 9 95 72 
+Path : start 98 81 16 36 65 8 28 
+Path : start 98 81 16 96 60 5 
+Path : start 98 81 16 96 26 9 95 72 
+Path : start 98 81 16 96 22 7 30 29 
+Path : start 98 81 14 85 19 60 5 
+Path : start 98 81 14 85 57 73 38 46 80 
+Path : start 98 81 14 85 57 56 92 75 
+Path : start 98 81 14 27 75 64 28 
+Path : start 98 81 14 27 75 38 73 
+Path : start 98 81 14 27 75 61 40 6 86 39 67 
+Path : start 98 81 14 27 75 23 1 
+Path : start 98 81 14 27 75 90 18 52 63 
+Path : start 98 81 14 27 75 92 56 
+Path : start 98 81 31 78 73 57 
+Path : start 98 81 31 78 73 59 61 
+Path : start 98 81 31 78 73 82 5 
+Path : start 98 81 31 78 73 0 71 60 
+Path : start 98 81 31 78 73 23 1 
+Path : start 98 81 31 78 73 87 25 
+Path : start 98 81 14 85 57 73 59 61 
+Path : start 98 81 14 85 57 73 82 5 
+Path : start 98 81 14 85 57 73 0 71 60 
+Path : start 98 81 14 85 57 73 23 1 
+Path : start 98 81 14 85 57 73 78 
+Path : start 98 81 14 85 57 73 87 25 
+Path : start 98 81 31 78 12 40 6 86 39 67 
+Path : start 98 81 31 66 4 60 5 
+Path : start 98 81 84 62 10 9 95 72 
+Path : start 98 81 84 62 10 72 95 9 
+Path : start 98 81 14 27 75 28 51 
+Path : start 98 81 14 27 75 28 64 32 65 
+Path : start 98 81 14 27 75 28 8 65 
+Path : start 98 81 14 27 75 28 62 
+Path : start 98 81 14 27 75 28 15 2 
+Path : start 98 81 14 27 75 28 37 21 99 
+Path : start 98 81 14 27 75 28 89 94 45 
+Path : start 98 81 31 78 12 28 64 32 65 
+Path : start 98 81 31 78 12 28 75 
+Path : start 98 81 31 78 12 28 8 65 
+Path : start 98 81 31 78 12 28 62 
+Path : start 98 81 31 78 12 28 15 2 
+Path : start 98 81 31 78 12 28 37 21 99 
+Path : start 98 81 31 78 12 28 89 94 45 
+Path : start 98 81 84 62 28 51 
+Path : start 98 81 84 62 28 64 32 65 
+Path : start 98 81 84 62 28 75 
+Path : start 98 81 84 62 28 8 65 
+Path : start 98 81 84 62 28 15 2 
+Path : start 98 81 84 62 28 37 21 99 
+Path : start 98 81 84 62 28 89 94 45 
+Path : start 98 81 84 62 54 99 21 37 
+Path : start 98 81 84 5 60 71 0 
+Path : start 98 81 84 5 60 4 
+Path : start 98 81 84 5 60 19 
+Path : start 98 81 84 5 60 96 
+Path : start 98 81 84 5 60 47 1 
+Path : start 98 81 16 11 60 71 0 
+Path : start 98 81 16 11 60 4 
+Path : start 98 81 16 11 60 19 
+Path : start 98 81 16 11 60 96 
+Path : start 98 81 16 11 60 47 1 
+Path : start 98 81 16 96 60 11 
+Path : start 98 81 16 96 60 71 0 
+Path : start 98 81 16 96 60 4 
+Path : start 98 81 16 96 60 19 
+Path : start 98 81 16 96 60 47 1 
+Path : start 98 81 14 85 19 60 11 
+Path : start 98 81 14 85 19 60 71 0 
+Path : start 98 81 14 85 19 60 4 
+Path : start 98 81 14 85 19 60 96 
+Path : start 98 81 14 85 19 60 47 1 
+Path : start 98 81 31 66 4 60 11 
+Path : start 98 81 31 66 4 60 71 0 
+Path : start 98 81 31 66 4 60 19 
+Path : start 98 81 31 66 4 60 96 
+Path : start 98 81 31 66 4 60 47 1 
+Path : start 98 81 84 5 82 6 40 
+Path : start 98 81 84 5 82 47 1 
+Path : start 98 81 84 5 82 77 26 9 95 72 
+Path : start 98 81 31 78 73 82 6 40 
+Path : start 98 81 31 78 73 82 47 1 
+Path : start 98 81 31 78 73 82 77 26 9 95 72 
+Path : start 98 81 14 85 57 73 82 6 40 
+Path : start 98 81 14 85 57 73 82 47 1 
+Path : start 98 81 14 85 57 73 82 77 26 9 95 72 
+Path : start 98 81 16 1 47 60 
+Path : start 98 81 16 1 47 82 
+Path : start 98 81 84 5 60 47 86 6 
+Path : start 98 81 84 5 60 47 82 
+Path : start 98 81 16 11 60 47 86 6 
+Path : start 98 81 16 11 60 47 82 
+Path : start 98 81 16 96 60 47 86 6 
+Path : start 98 81 16 96 60 47 82 
+Path : start 98 81 14 85 19 60 47 86 6 
+Path : start 98 81 14 85 19 60 47 82 
+Path : start 98 81 31 66 4 60 47 86 6 
+Path : start 98 81 31 66 4 60 47 82 
+Path : start 98 81 84 5 82 47 86 6 
+Path : start 98 81 84 5 82 47 60 
+Path : start 98 81 31 78 73 82 47 86 6 
+Path : start 98 81 31 78 73 82 47 60 
+Path : start 98 81 14 85 57 73 82 47 86 6 
+Path : start 98 81 14 85 57 73 82 47 60 
+Path : start 98 81 16 1 25 87 70 4 
+Path : start 98 81 16 1 25 20 93 0 
+Path : start 98 81 16 1 25 61 40 6 86 39 67 
+Path : start 98 81 16 1 25 91 41 34 13 
+Path : start 98 81 16 1 23 75 
+Path : start 98 81 16 1 23 80 30 7 
+Path : start 98 81 14 27 75 23 73 
+Path : start 98 81 14 27 75 23 80 30 7 
+Path : start 98 81 31 78 73 23 75 
+Path : start 98 81 31 78 73 23 80 30 7 
+Path : start 98 81 14 85 57 73 23 75 
+Path : start 98 81 14 85 57 73 23 80 30 7 
+Path : start 98 81 84 62 54 64 32 65 
+Path : start 98 81 84 62 54 64 35 49 97 
+Path : start 98 81 84 62 54 64 42 26 
+Path : start 98 81 84 62 54 64 56 92 75 
+Path : start 98 81 84 62 54 64 59 61 
+Path : start 98 81 84 62 54 64 91 41 34 13 
+Path : start 98 81 84 62 54 64 0 71 60 
+Path : start 98 81 84 62 54 64 45 33 79 80 
+Path : start 98 81 84 62 54 64 1 
+Path : start 98 81 84 62 54 64 50 42 
+Path : start 98 81 84 62 54 64 75 
+Path : start 98 81 16 1 64 32 65 
+Path : start 98 81 16 1 64 35 49 97 
+Path : start 98 81 16 1 64 42 26 
+Path : start 98 81 16 1 64 56 92 75 
+Path : start 98 81 16 1 64 59 61 
+Path : start 98 81 16 1 64 91 41 34 13 
+Path : start 98 81 16 1 64 0 71 60 
+Path : start 98 81 16 1 64 45 33 79 80 
+Path : start 98 81 16 1 64 54 
+Path : start 98 81 16 1 64 50 42 
+Path : start 98 81 16 1 64 75 
+Path : start 98 81 14 27 75 64 32 65 
+Path : start 98 81 14 27 75 64 35 49 97 
+Path : start 98 81 14 27 75 64 42 26 
+Path : start 98 81 14 27 75 64 56 92 
+Path : start 98 81 14 27 75 64 59 61 
+Path : start 98 81 14 27 75 64 91 41 34 13 
+Path : start 98 81 14 27 75 64 0 71 60 
+Path : start 98 81 14 27 75 64 45 33 79 80 
+Path : start 98 81 14 27 75 64 54 
+Path : start 98 81 14 27 75 64 1 
+Path : start 98 81 14 27 75 64 50 42 
+Path : start 98 81 14 27 75 28 64 35 49 97 
+Path : start 98 81 14 27 75 28 64 42 26 
+Path : start 98 81 14 27 75 28 64 56 92 
+Path : start 98 81 14 27 75 28 64 59 61 
+Path : start 98 81 14 27 75 28 64 91 41 34 13 
+Path : start 98 81 14 27 75 28 64 0 71 60 
+Path : start 98 81 14 27 75 28 64 45 33 79 80 
+Path : start 98 81 14 27 75 28 64 54 
+Path : start 98 81 14 27 75 28 64 1 
+Path : start 98 81 14 27 75 28 64 50 42 
+Path : start 98 81 31 78 12 28 64 35 49 97 
+Path : start 98 81 31 78 12 28 64 42 26 
+Path : start 98 81 31 78 12 28 64 56 92 75 
+Path : start 98 81 31 78 12 28 64 59 61 
+Path : start 98 81 31 78 12 28 64 91 41 34 13 
+Path : start 98 81 31 78 12 28 64 0 71 60 
+Path : start 98 81 31 78 12 28 64 45 33 79 80 
+Path : start 98 81 31 78 12 28 64 54 
+Path : start 98 81 31 78 12 28 64 1 
+Path : start 98 81 31 78 12 28 64 50 42 
+Path : start 98 81 31 78 12 28 64 75 
+Path : start 98 81 84 62 28 64 35 49 97 
+Path : start 98 81 84 62 28 64 42 26 
+Path : start 98 81 84 62 28 64 56 92 75 
+Path : start 98 81 84 62 28 64 59 61 
+Path : start 98 81 84 62 28 64 91 41 34 13 
+Path : start 98 81 84 62 28 64 0 71 60 
+Path : start 98 81 84 62 28 64 45 33 79 80 
+Path : start 98 81 84 62 28 64 54 
+Path : start 98 81 84 62 28 64 1 
+Path : start 98 81 84 62 28 64 50 42 
+Path : start 98 81 84 62 28 64 75 
+Path : start 98 81 16 11 77 97 10 
+Path : start 98 81 16 11 77 82 
+Path : start 98 81 84 5 82 77 11 
+Path : start 98 81 84 5 82 77 97 10 
+Path : start 98 81 31 78 73 82 77 11 
+Path : start 98 81 31 78 73 82 77 97 10 
+Path : start 98 81 14 85 57 73 82 77 11 
+Path : start 98 81 14 85 57 73 82 77 97 10 
+Path : start 98 81 16 36 17 83 3 
+Path : start 98 81 16 36 17 67 39 86 
+Path : start 98 81 16 36 17 49 35 
+Path : start 98 81 16 36 17 74 72 
+Path : start 98 81 16 36 65 42 26 
+Path : start 98 81 16 36 65 32 64 
+Path : start 98 81 16 36 65 56 92 75 
+Path : start 98 81 16 11 77 26 42 43 
+Path : start 98 81 16 11 77 26 44 24 83 
+Path : start 98 81 16 11 77 26 94 89 
+Path : start 98 81 16 11 77 26 96 
+Path : start 98 81 16 96 26 42 43 
+Path : start 98 81 16 96 26 77 
+Path : start 98 81 16 96 26 44 24 83 
+Path : start 98 81 16 96 26 94 89 
+Path : start 98 81 84 5 82 77 26 42 43 
+Path : start 98 81 84 5 82 77 26 44 24 83 
+Path : start 98 81 84 5 82 77 26 94 89 
+Path : start 98 81 84 5 82 77 26 96 
+Path : start 98 81 31 78 73 82 77 26 42 43 
+Path : start 98 81 31 78 73 82 77 26 44 24 83 
+Path : start 98 81 31 78 73 82 77 26 94 89 
+Path : start 98 81 31 78 73 82 77 26 96 
+Path : start 98 81 14 85 57 73 82 77 26 42 43 
+Path : start 98 81 14 85 57 73 82 77 26 44 24 83 
+Path : start 98 81 14 85 57 73 82 77 26 94 89 
+Path : start 98 81 14 85 57 73 82 77 26 96 
+Path : start 98 81 14 85 19 9 10 
+Path : start 98 81 14 85 19 9 26 
+Path : start 98 81 16 11 77 26 9 10 
+Path : start 98 81 16 11 77 26 9 19 
+Path : start 98 81 16 96 26 9 10 
+Path : start 98 81 16 96 26 9 19 
+Path : start 98 81 84 62 10 9 19 
+Path : start 98 81 84 62 10 9 26 
+Path : start 98 81 84 5 82 77 26 9 10 
+Path : start 98 81 84 5 82 77 26 9 19 
+Path : start 98 81 31 78 73 82 77 26 9 10 
+Path : start 98 81 31 78 73 82 77 26 9 19 
+Path : start 98 81 14 85 57 73 82 77 26 9 10 
+Path : start 98 81 14 85 57 73 82 77 26 9 19 
+Path : start 98 81 14 85 57 43 86 6 
+Path : start 98 81 14 85 57 43 46 80 
+Path : start 98 81 14 85 57 56 61 40 6 86 39 67 
+Path : start 98 81 14 85 57 56 64 
+Path : start 98 81 14 85 57 56 65 
+Path : start 98 81 84 62 54 64 56 57 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 39 67 
+Path : start 98 81 84 62 54 64 56 65 
+Path : start 98 81 16 1 64 56 57 
+Path : start 98 81 16 1 64 56 61 40 6 86 39 67 
+Path : start 98 81 16 1 64 56 65 
+Path : start 98 81 14 27 75 64 56 57 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 39 67 
+Path : start 98 81 14 27 75 64 56 65 
+Path : start 98 81 14 27 75 28 64 56 57 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 39 67 
+Path : start 98 81 14 27 75 28 64 56 65 
+Path : start 98 81 31 78 12 28 64 56 57 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 39 67 
+Path : start 98 81 31 78 12 28 64 56 65 
+Path : start 98 81 84 62 28 64 56 57 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 39 67 
+Path : start 98 81 84 62 28 64 56 65 
+Path : start 98 81 16 36 65 56 57 
+Path : start 98 81 16 36 65 56 61 40 6 86 39 67 
+Path : start 98 81 16 36 65 56 64 
+Path : start 98 81 31 78 73 38 69 61 
+Path : start 98 81 31 78 73 38 75 
+Path : start 98 81 14 85 57 73 38 69 61 
+Path : start 98 81 14 85 57 73 38 75 
+Path : start 98 81 14 27 75 38 46 80 
+Path : start 98 81 14 27 75 38 69 61 
+Path : start 98 81 14 27 75 61 59 73 
+Path : start 98 81 14 27 75 61 25 
+Path : start 98 81 14 27 75 61 69 38 
+Path : start 98 81 14 27 75 61 83 3 
+Path : start 98 81 14 27 75 61 35 64 
+Path : start 98 81 14 27 75 61 56 
+Path : start 98 81 16 1 25 61 59 73 
+Path : start 98 81 16 1 25 61 69 38 
+Path : start 98 81 16 1 25 61 83 3 
+Path : start 98 81 16 1 25 61 35 64 
+Path : start 98 81 16 1 25 61 56 
+Path : start 98 81 16 1 25 61 75 
+Path : start 98 81 14 85 57 56 61 59 73 
+Path : start 98 81 14 85 57 56 61 25 
+Path : start 98 81 14 85 57 56 61 69 38 
+Path : start 98 81 14 85 57 56 61 83 3 
+Path : start 98 81 14 85 57 56 61 35 64 
+Path : start 98 81 14 85 57 56 61 75 
+Path : start 98 81 84 62 54 64 56 61 59 73 
+Path : start 98 81 84 62 54 64 56 61 25 
+Path : start 98 81 84 62 54 64 56 61 69 38 
+Path : start 98 81 84 62 54 64 56 61 83 3 
+Path : start 98 81 84 62 54 64 56 61 35 49 97 
+Path : start 98 81 84 62 54 64 56 61 75 
+Path : start 98 81 16 1 64 56 61 59 73 
+Path : start 98 81 16 1 64 56 61 25 
+Path : start 98 81 16 1 64 56 61 69 38 
+Path : start 98 81 16 1 64 56 61 83 3 
+Path : start 98 81 16 1 64 56 61 35 49 97 
+Path : start 98 81 16 1 64 56 61 75 
+Path : start 98 81 14 27 75 64 56 61 59 73 
+Path : start 98 81 14 27 75 64 56 61 25 
+Path : start 98 81 14 27 75 64 56 61 69 38 
+Path : start 98 81 14 27 75 64 56 61 83 3 
+Path : start 98 81 14 27 75 64 56 61 35 49 97 
+Path : start 98 81 14 27 75 28 64 56 61 59 73 
+Path : start 98 81 14 27 75 28 64 56 61 25 
+Path : start 98 81 14 27 75 28 64 56 61 69 38 
+Path : start 98 81 14 27 75 28 64 56 61 83 3 
+Path : start 98 81 14 27 75 28 64 56 61 35 49 97 
+Path : start 98 81 31 78 12 28 64 56 61 59 73 
+Path : start 98 81 31 78 12 28 64 56 61 25 
+Path : start 98 81 31 78 12 28 64 56 61 69 38 
+Path : start 98 81 31 78 12 28 64 56 61 83 3 
+Path : start 98 81 31 78 12 28 64 56 61 35 49 97 
+Path : start 98 81 31 78 12 28 64 56 61 75 
+Path : start 98 81 84 62 28 64 56 61 59 73 
+Path : start 98 81 84 62 28 64 56 61 25 
+Path : start 98 81 84 62 28 64 56 61 69 38 
+Path : start 98 81 84 62 28 64 56 61 83 3 
+Path : start 98 81 84 62 28 64 56 61 35 49 97 
+Path : start 98 81 84 62 28 64 56 61 75 
+Path : start 98 81 16 36 65 56 61 59 73 
+Path : start 98 81 16 36 65 56 61 25 
+Path : start 98 81 16 36 65 56 61 69 38 
+Path : start 98 81 16 36 65 56 61 83 3 
+Path : start 98 81 16 36 65 56 61 35 64 
+Path : start 98 81 16 36 65 56 61 75 
+Path : start 98 81 14 27 75 90 33 79 80 
+Path : start 98 81 31 78 73 59 64 
+Path : start 98 81 14 85 57 73 59 64 
+Path : start 98 81 84 62 54 64 59 73 
+Path : start 98 81 16 1 64 59 73 
+Path : start 98 81 14 27 75 64 59 73 
+Path : start 98 81 14 27 75 28 64 59 73 
+Path : start 98 81 31 78 12 28 64 59 73 
+Path : start 98 81 84 62 28 64 59 73 
+Path : start 98 81 14 27 75 61 59 64 
+Path : start 98 81 16 1 25 61 59 64 
+Path : start 98 81 14 85 57 56 61 59 64 
+Path : start 98 81 16 36 65 56 61 59 64 
+Path : start 98 81 31 78 73 0 7 30 29 
+Path : start 98 81 31 78 73 0 64 
+Path : start 98 81 31 78 73 0 79 33 
+Path : start 98 81 31 78 73 0 93 20 
+Path : start 98 81 14 85 57 73 0 7 30 29 
+Path : start 98 81 14 85 57 73 0 64 
+Path : start 98 81 14 85 57 73 0 79 33 
+Path : start 98 81 14 85 57 73 0 93 20 
+Path : start 98 81 84 62 54 64 0 7 30 29 
+Path : start 98 81 84 62 54 64 0 73 
+Path : start 98 81 84 62 54 64 0 79 33 
+Path : start 98 81 84 62 54 64 0 93 20 
+Path : start 98 81 16 1 64 0 7 30 29 
+Path : start 98 81 16 1 64 0 73 
+Path : start 98 81 16 1 64 0 79 33 
+Path : start 98 81 16 1 64 0 93 20 
+Path : start 98 81 14 27 75 64 0 7 30 29 
+Path : start 98 81 14 27 75 64 0 73 
+Path : start 98 81 14 27 75 64 0 79 33 
+Path : start 98 81 14 27 75 64 0 93 20 
+Path : start 98 81 14 27 75 28 64 0 7 30 29 
+Path : start 98 81 14 27 75 28 64 0 73 
+Path : start 98 81 14 27 75 28 64 0 79 33 
+Path : start 98 81 14 27 75 28 64 0 93 20 
+Path : start 98 81 31 78 12 28 64 0 7 30 29 
+Path : start 98 81 31 78 12 28 64 0 73 
+Path : start 98 81 31 78 12 28 64 0 79 33 
+Path : start 98 81 31 78 12 28 64 0 93 20 
+Path : start 98 81 84 62 28 64 0 7 30 29 
+Path : start 98 81 84 62 28 64 0 73 
+Path : start 98 81 84 62 28 64 0 79 33 
+Path : start 98 81 84 62 28 64 0 93 20 
+Path : start 98 81 31 78 73 87 70 4 
+Path : start 98 81 31 78 73 87 79 33 
+Path : start 98 81 14 85 57 73 87 70 4 
+Path : start 98 81 14 85 57 73 87 79 33 
+Path : start 98 81 16 1 25 87 79 33 
+Path : start 98 81 16 1 25 87 73 
+Path : start 98 81 14 27 75 61 40 12 
+Path : start 98 81 14 27 75 61 40 83 3 
+Path : start 98 81 31 78 12 40 61 
+Path : start 98 81 31 78 12 40 83 3 
+Path : start 98 81 16 1 25 61 40 12 
+Path : start 98 81 16 1 25 61 40 83 3 
+Path : start 98 81 14 85 57 56 61 40 12 
+Path : start 98 81 14 85 57 56 61 40 83 3 
+Path : start 98 81 84 62 54 64 56 61 40 12 
+Path : start 98 81 84 62 54 64 56 61 40 83 3 
+Path : start 98 81 16 1 64 56 61 40 12 
+Path : start 98 81 16 1 64 56 61 40 83 3 
+Path : start 98 81 14 27 75 64 56 61 40 12 
+Path : start 98 81 14 27 75 64 56 61 40 83 3 
+Path : start 98 81 14 27 75 28 64 56 61 40 12 
+Path : start 98 81 14 27 75 28 64 56 61 40 83 3 
+Path : start 98 81 31 78 12 28 64 56 61 40 83 3 
+Path : start 98 81 84 62 28 64 56 61 40 12 
+Path : start 98 81 84 62 28 64 56 61 40 83 3 
+Path : start 98 81 16 36 65 56 61 40 12 
+Path : start 98 81 16 36 65 56 61 40 83 3 
+Path : start 98 81 31 66 4 70 91 41 34 13 
+Path : start 98 81 31 66 4 70 87 
+Path : start 98 81 31 66 4 70 95 9 
+Path : start 98 81 16 1 25 87 70 42 26 
+Path : start 98 81 16 1 25 87 70 91 41 34 13 
+Path : start 98 81 16 1 25 87 70 95 9 
+Path : start 98 81 31 78 73 87 70 42 26 
+Path : start 98 81 31 78 73 87 70 91 41 34 13 
+Path : start 98 81 31 78 73 87 70 95 9 
+Path : start 98 81 14 85 57 73 87 70 42 26 
+Path : start 98 81 14 85 57 73 87 70 91 41 34 13 
+Path : start 98 81 14 85 57 73 87 70 95 9 
+Path : start 98 81 84 53 2 15 end 
+Path : start 98 81 14 27 75 28 15 end 
+Path : start 98 81 31 78 12 28 15 end 
+Path : start 98 81 84 62 28 15 end 
+Path : start 98 81 84 62 10 97 77 
+Path : start 98 81 84 62 10 97 18 52 63 
+Path : start 98 81 16 11 77 97 49 35 
+Path : start 98 81 16 11 77 97 18 52 63 
+Path : start 98 81 84 5 82 77 97 49 35 
+Path : start 98 81 84 5 82 77 97 18 52 63 
+Path : start 98 81 31 78 73 82 77 97 49 35 
+Path : start 98 81 31 78 73 82 77 97 18 52 63 
+Path : start 98 81 14 85 57 73 82 77 97 49 35 
+Path : start 98 81 14 85 57 73 82 77 97 18 52 63 
+Path : start 98 81 84 62 10 72 74 17 
+Path : start 98 81 16 36 65 8 30 7 
+Path : start 98 81 16 36 65 8 79 33 
+Path : start 98 81 16 36 65 8 86 6 
+Path : start 98 81 14 27 75 28 8 30 7 
+Path : start 98 81 14 27 75 28 8 79 33 
+Path : start 98 81 14 27 75 28 8 86 6 
+Path : start 98 81 31 78 12 28 8 30 7 
+Path : start 98 81 31 78 12 28 8 79 33 
+Path : start 98 81 31 78 12 28 8 86 6 
+Path : start 98 81 84 62 28 8 30 7 
+Path : start 98 81 84 62 28 8 79 33 
+Path : start 98 81 84 62 28 8 86 6 
+Path : start 98 81 14 27 75 28 37 76 30 
+Path : start 98 81 31 78 12 28 37 76 30 
+Path : start 98 81 84 62 28 37 76 30 
+Path : start 98 81 14 27 75 28 89 24 83 
+Path : start 98 81 31 78 12 28 89 24 83 
+Path : start 98 81 84 62 28 89 24 83 
+Path : start 98 81 84 62 54 99 55 
+Path : start 98 81 84 62 54 99 86 6 
+Path : start 98 81 84 62 54 99 88 7 
+Path : start 98 81 31 78 73 0 71 7 30 29 
+Path : start 98 81 14 85 57 73 0 71 7 30 29 
+Path : start 98 81 84 5 60 71 7 30 29 
+Path : start 98 81 16 11 60 71 7 30 29 
+Path : start 98 81 16 96 60 71 7 30 29 
+Path : start 98 81 14 85 19 60 71 7 30 29 
+Path : start 98 81 31 66 4 60 71 7 30 29 
+Path : start 98 81 84 62 54 64 0 71 7 30 29 
+Path : start 98 81 16 1 64 0 71 7 30 29 
+Path : start 98 81 14 27 75 64 0 71 7 30 29 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 29 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 29 
+Path : start 98 81 84 62 28 64 0 71 7 30 29 
+Path : start 98 81 16 1 25 6 86 39 67 
+Path : start 98 81 16 1 25 6 82 
+Path : start 98 81 14 27 75 61 40 6 25 
+Path : start 98 81 14 27 75 61 40 6 82 
+Path : start 98 81 31 78 12 40 6 25 
+Path : start 98 81 31 78 12 40 6 82 
+Path : start 98 81 84 5 82 6 86 39 67 
+Path : start 98 81 84 5 82 6 25 
+Path : start 98 81 31 78 73 82 6 86 39 67 
+Path : start 98 81 31 78 73 82 6 25 
+Path : start 98 81 14 85 57 73 82 6 86 39 67 
+Path : start 98 81 14 85 57 73 82 6 25 
+Path : start 98 81 16 1 25 61 40 6 82 
+Path : start 98 81 14 85 57 56 61 40 6 25 
+Path : start 98 81 14 85 57 56 61 40 6 82 
+Path : start 98 81 84 62 54 64 56 61 40 6 25 
+Path : start 98 81 84 62 54 64 56 61 40 6 82 
+Path : start 98 81 16 1 64 56 61 40 6 25 
+Path : start 98 81 16 1 64 56 61 40 6 82 
+Path : start 98 81 14 27 75 64 56 61 40 6 25 
+Path : start 98 81 14 27 75 64 56 61 40 6 82 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 25 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 82 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 25 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 82 
+Path : start 98 81 84 62 28 64 56 61 40 6 25 
+Path : start 98 81 84 62 28 64 56 61 40 6 82 
+Path : start 98 81 16 36 65 56 61 40 6 25 
+Path : start 98 81 16 36 65 56 61 40 6 82 
+Path : start 98 81 16 1 47 86 39 67 
+Path : start 98 81 16 1 47 86 43 
+Path : start 98 81 16 1 47 86 99 
+Path : start 98 81 16 1 47 86 67 17 
+Path : start 98 81 16 1 47 86 8 
+Path : start 98 81 14 27 75 61 40 6 86 43 
+Path : start 98 81 14 27 75 61 40 6 86 47 
+Path : start 98 81 14 27 75 61 40 6 86 99 
+Path : start 98 81 14 27 75 61 40 6 86 67 17 
+Path : start 98 81 14 27 75 61 40 6 86 8 
+Path : start 98 81 31 78 12 40 6 86 43 
+Path : start 98 81 31 78 12 40 6 86 47 
+Path : start 98 81 31 78 12 40 6 86 99 
+Path : start 98 81 31 78 12 40 6 86 67 17 
+Path : start 98 81 31 78 12 40 6 86 8 
+Path : start 98 81 84 5 60 47 86 39 67 
+Path : start 98 81 84 5 60 47 86 43 
+Path : start 98 81 84 5 60 47 86 99 
+Path : start 98 81 84 5 60 47 86 67 17 
+Path : start 98 81 84 5 60 47 86 8 
+Path : start 98 81 16 11 60 47 86 39 67 
+Path : start 98 81 16 11 60 47 86 43 
+Path : start 98 81 16 11 60 47 86 99 
+Path : start 98 81 16 11 60 47 86 67 17 
+Path : start 98 81 16 11 60 47 86 8 
+Path : start 98 81 16 96 60 47 86 39 67 
+Path : start 98 81 16 96 60 47 86 43 
+Path : start 98 81 16 96 60 47 86 99 
+Path : start 98 81 16 96 60 47 86 67 17 
+Path : start 98 81 16 96 60 47 86 8 
+Path : start 98 81 14 85 19 60 47 86 39 67 
+Path : start 98 81 14 85 19 60 47 86 43 
+Path : start 98 81 14 85 19 60 47 86 99 
+Path : start 98 81 14 85 19 60 47 86 67 17 
+Path : start 98 81 14 85 19 60 47 86 8 
+Path : start 98 81 31 66 4 60 47 86 39 67 
+Path : start 98 81 31 66 4 60 47 86 43 
+Path : start 98 81 31 66 4 60 47 86 99 
+Path : start 98 81 31 66 4 60 47 86 67 17 
+Path : start 98 81 31 66 4 60 47 86 8 
+Path : start 98 81 84 5 82 47 86 39 67 
+Path : start 98 81 84 5 82 47 86 43 
+Path : start 98 81 84 5 82 47 86 99 
+Path : start 98 81 84 5 82 47 86 67 17 
+Path : start 98 81 84 5 82 47 86 8 
+Path : start 98 81 31 78 73 82 47 86 39 67 
+Path : start 98 81 31 78 73 82 47 86 43 
+Path : start 98 81 31 78 73 82 47 86 99 
+Path : start 98 81 31 78 73 82 47 86 67 17 
+Path : start 98 81 31 78 73 82 47 86 8 
+Path : start 98 81 14 85 57 73 82 47 86 39 67 
+Path : start 98 81 14 85 57 73 82 47 86 43 
+Path : start 98 81 14 85 57 73 82 47 86 99 
+Path : start 98 81 14 85 57 73 82 47 86 67 17 
+Path : start 98 81 14 85 57 73 82 47 86 8 
+Path : start 98 81 16 1 25 61 40 6 86 43 
+Path : start 98 81 16 1 25 61 40 6 86 47 
+Path : start 98 81 16 1 25 61 40 6 86 99 
+Path : start 98 81 16 1 25 61 40 6 86 67 17 
+Path : start 98 81 16 1 25 61 40 6 86 8 
+Path : start 98 81 14 85 57 43 86 39 67 
+Path : start 98 81 14 85 57 43 86 47 
+Path : start 98 81 14 85 57 43 86 99 
+Path : start 98 81 14 85 57 43 86 67 17 
+Path : start 98 81 14 85 57 43 86 8 
+Path : start 98 81 14 85 57 56 61 40 6 86 43 
+Path : start 98 81 14 85 57 56 61 40 6 86 47 
+Path : start 98 81 14 85 57 56 61 40 6 86 99 
+Path : start 98 81 14 85 57 56 61 40 6 86 67 17 
+Path : start 98 81 14 85 57 56 61 40 6 86 8 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 43 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 47 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 99 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 67 17 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 8 
+Path : start 98 81 16 1 64 56 61 40 6 86 43 
+Path : start 98 81 16 1 64 56 61 40 6 86 47 
+Path : start 98 81 16 1 64 56 61 40 6 86 99 
+Path : start 98 81 16 1 64 56 61 40 6 86 67 17 
+Path : start 98 81 16 1 64 56 61 40 6 86 8 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 43 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 47 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 99 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 67 17 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 8 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 43 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 47 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 99 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 67 17 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 8 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 43 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 47 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 99 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 67 17 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 8 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 43 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 47 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 99 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 67 17 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 8 
+Path : start 98 81 16 36 65 56 61 40 6 86 43 
+Path : start 98 81 16 36 65 56 61 40 6 86 47 
+Path : start 98 81 16 36 65 56 61 40 6 86 99 
+Path : start 98 81 16 36 65 56 61 40 6 86 67 17 
+Path : start 98 81 16 36 65 56 61 40 6 86 8 
+Path : start 98 81 16 36 65 8 86 39 67 
+Path : start 98 81 16 36 65 8 86 43 
+Path : start 98 81 16 36 65 8 86 47 
+Path : start 98 81 16 36 65 8 86 99 
+Path : start 98 81 16 36 65 8 86 67 17 
+Path : start 98 81 14 27 75 28 8 86 39 67 
+Path : start 98 81 14 27 75 28 8 86 43 
+Path : start 98 81 14 27 75 28 8 86 47 
+Path : start 98 81 14 27 75 28 8 86 99 
+Path : start 98 81 14 27 75 28 8 86 67 17 
+Path : start 98 81 31 78 12 28 8 86 39 67 
+Path : start 98 81 31 78 12 28 8 86 43 
+Path : start 98 81 31 78 12 28 8 86 47 
+Path : start 98 81 31 78 12 28 8 86 99 
+Path : start 98 81 31 78 12 28 8 86 67 17 
+Path : start 98 81 84 62 28 8 86 39 67 
+Path : start 98 81 84 62 28 8 86 43 
+Path : start 98 81 84 62 28 8 86 47 
+Path : start 98 81 84 62 28 8 86 99 
+Path : start 98 81 84 62 28 8 86 67 17 
+Path : start 98 81 84 62 54 99 86 39 67 
+Path : start 98 81 84 62 54 99 86 43 
+Path : start 98 81 84 62 54 99 86 47 
+Path : start 98 81 84 62 54 99 86 67 17 
+Path : start 98 81 84 62 54 99 86 8 
+Path : start 98 81 16 1 25 6 86 43 
+Path : start 98 81 16 1 25 6 86 47 
+Path : start 98 81 16 1 25 6 86 99 
+Path : start 98 81 16 1 25 6 86 67 17 
+Path : start 98 81 16 1 25 6 86 8 
+Path : start 98 81 84 5 82 6 86 43 
+Path : start 98 81 84 5 82 6 86 47 
+Path : start 98 81 84 5 82 6 86 99 
+Path : start 98 81 84 5 82 6 86 67 17 
+Path : start 98 81 84 5 82 6 86 8 
+Path : start 98 81 31 78 73 82 6 86 43 
+Path : start 98 81 31 78 73 82 6 86 47 
+Path : start 98 81 31 78 73 82 6 86 99 
+Path : start 98 81 31 78 73 82 6 86 67 17 
+Path : start 98 81 31 78 73 82 6 86 8 
+Path : start 98 81 14 85 57 73 82 6 86 43 
+Path : start 98 81 14 85 57 73 82 6 86 47 
+Path : start 98 81 14 85 57 73 82 6 86 99 
+Path : start 98 81 14 85 57 73 82 6 86 67 17 
+Path : start 98 81 14 85 57 73 82 6 86 8 
+Path : start 98 81 16 1 25 91 64 
+Path : start 98 81 16 1 25 91 70 
+Path : start 98 81 16 1 25 91 83 3 
+Path : start 98 81 84 62 54 64 91 70 
+Path : start 98 81 84 62 54 64 91 83 3 
+Path : start 98 81 84 62 54 64 91 25 
+Path : start 98 81 16 1 64 91 70 
+Path : start 98 81 16 1 64 91 83 3 
+Path : start 98 81 16 1 64 91 25 
+Path : start 98 81 14 27 75 64 91 70 
+Path : start 98 81 14 27 75 64 91 83 3 
+Path : start 98 81 14 27 75 64 91 25 
+Path : start 98 81 14 27 75 28 64 91 70 
+Path : start 98 81 14 27 75 28 64 91 83 3 
+Path : start 98 81 14 27 75 28 64 91 25 
+Path : start 98 81 31 78 12 28 64 91 70 
+Path : start 98 81 31 78 12 28 64 91 83 3 
+Path : start 98 81 31 78 12 28 64 91 25 
+Path : start 98 81 84 62 28 64 91 70 
+Path : start 98 81 84 62 28 64 91 83 3 
+Path : start 98 81 84 62 28 64 91 25 
+Path : start 98 81 31 66 4 70 91 64 
+Path : start 98 81 31 66 4 70 91 83 3 
+Path : start 98 81 31 66 4 70 91 25 
+Path : start 98 81 16 1 25 87 70 91 64 
+Path : start 98 81 16 1 25 87 70 91 83 3 
+Path : start 98 81 31 78 73 87 70 91 64 
+Path : start 98 81 31 78 73 87 70 91 83 3 
+Path : start 98 81 31 78 73 87 70 91 25 
+Path : start 98 81 14 85 57 73 87 70 91 64 
+Path : start 98 81 14 85 57 73 87 70 91 83 3 
+Path : start 98 81 14 85 57 73 87 70 91 25 
+Path : start 98 81 16 1 23 80 46 38 
+Path : start 98 81 16 1 23 80 79 33 
+Path : start 98 81 14 27 75 23 80 46 38 
+Path : start 98 81 14 27 75 23 80 79 33 
+Path : start 98 81 31 78 73 23 80 46 38 
+Path : start 98 81 31 78 73 23 80 79 33 
+Path : start 98 81 14 85 57 73 23 80 46 38 
+Path : start 98 81 14 85 57 73 23 80 79 33 
+Path : start 98 81 84 62 54 64 35 61 
+Path : start 98 81 16 1 64 35 61 
+Path : start 98 81 14 27 75 64 35 61 
+Path : start 98 81 14 27 75 28 64 35 61 
+Path : start 98 81 31 78 12 28 64 35 61 
+Path : start 98 81 84 62 28 64 35 61 
+Path : start 98 81 14 27 75 61 35 49 97 
+Path : start 98 81 16 1 25 61 35 49 97 
+Path : start 98 81 14 85 57 56 61 35 49 97 
+Path : start 98 81 16 36 65 56 61 35 49 97 
+Path : start 98 81 31 66 4 70 42 43 
+Path : start 98 81 31 66 4 70 42 65 
+Path : start 98 81 31 66 4 70 42 50 63 52 18 
+Path : start 98 81 31 66 4 70 42 64 
+Path : start 98 81 14 85 57 43 42 65 
+Path : start 98 81 14 85 57 43 42 50 63 52 18 
+Path : start 98 81 14 85 57 43 42 64 
+Path : start 98 81 14 85 57 43 42 70 
+Path : start 98 81 84 62 54 64 42 43 
+Path : start 98 81 84 62 54 64 42 65 
+Path : start 98 81 84 62 54 64 42 50 63 52 18 
+Path : start 98 81 84 62 54 64 42 70 
+Path : start 98 81 16 1 64 42 43 
+Path : start 98 81 16 1 64 42 65 
+Path : start 98 81 16 1 64 42 50 63 52 18 
+Path : start 98 81 16 1 64 42 70 
+Path : start 98 81 14 27 75 64 42 43 
+Path : start 98 81 14 27 75 64 42 65 
+Path : start 98 81 14 27 75 64 42 50 63 52 18 
+Path : start 98 81 14 27 75 64 42 70 
+Path : start 98 81 14 27 75 28 64 42 43 
+Path : start 98 81 14 27 75 28 64 42 65 
+Path : start 98 81 14 27 75 28 64 42 50 63 52 18 
+Path : start 98 81 14 27 75 28 64 42 70 
+Path : start 98 81 31 78 12 28 64 42 43 
+Path : start 98 81 31 78 12 28 64 42 65 
+Path : start 98 81 31 78 12 28 64 42 50 63 52 18 
+Path : start 98 81 31 78 12 28 64 42 70 
+Path : start 98 81 84 62 28 64 42 43 
+Path : start 98 81 84 62 28 64 42 65 
+Path : start 98 81 84 62 28 64 42 50 63 52 18 
+Path : start 98 81 84 62 28 64 42 70 
+Path : start 98 81 16 36 65 42 43 
+Path : start 98 81 16 36 65 42 50 63 52 18 
+Path : start 98 81 16 36 65 42 64 
+Path : start 98 81 16 36 65 42 70 
+Path : start 98 81 16 11 77 26 42 65 
+Path : start 98 81 16 11 77 26 42 50 63 52 18 
+Path : start 98 81 16 11 77 26 42 64 
+Path : start 98 81 16 11 77 26 42 70 
+Path : start 98 81 16 96 26 42 65 
+Path : start 98 81 16 96 26 42 50 63 52 18 
+Path : start 98 81 16 96 26 42 64 
+Path : start 98 81 16 96 26 42 70 
+Path : start 98 81 84 5 82 77 26 42 65 
+Path : start 98 81 84 5 82 77 26 42 50 63 52 18 
+Path : start 98 81 84 5 82 77 26 42 64 
+Path : start 98 81 84 5 82 77 26 42 70 
+Path : start 98 81 31 78 73 82 77 26 42 65 
+Path : start 98 81 31 78 73 82 77 26 42 50 63 52 18 
+Path : start 98 81 31 78 73 82 77 26 42 64 
+Path : start 98 81 31 78 73 82 77 26 42 70 
+Path : start 98 81 14 85 57 73 82 77 26 42 65 
+Path : start 98 81 14 85 57 73 82 77 26 42 50 63 52 18 
+Path : start 98 81 14 85 57 73 82 77 26 42 64 
+Path : start 98 81 14 85 57 73 82 77 26 42 70 
+Path : start 98 81 16 1 25 87 70 42 43 
+Path : start 98 81 16 1 25 87 70 42 65 
+Path : start 98 81 16 1 25 87 70 42 50 63 52 18 
+Path : start 98 81 16 1 25 87 70 42 64 
+Path : start 98 81 31 78 73 87 70 42 43 
+Path : start 98 81 31 78 73 87 70 42 65 
+Path : start 98 81 31 78 73 87 70 42 50 63 52 18 
+Path : start 98 81 31 78 73 87 70 42 64 
+Path : start 98 81 14 85 57 73 87 70 42 43 
+Path : start 98 81 14 85 57 73 87 70 42 65 
+Path : start 98 81 14 85 57 73 87 70 42 50 63 52 18 
+Path : start 98 81 14 85 57 73 87 70 42 64 
+Path : start 98 81 84 62 54 64 45 94 89 
+Path : start 98 81 16 1 64 45 94 89 
+Path : start 98 81 14 27 75 64 45 94 89 
+Path : start 98 81 14 27 75 28 64 45 94 89 
+Path : start 98 81 31 78 12 28 64 45 94 89 
+Path : start 98 81 84 62 28 64 45 94 89 
+Path : start 98 81 84 62 54 64 50 63 52 18 
+Path : start 98 81 16 1 64 50 63 52 18 
+Path : start 98 81 14 27 75 64 50 63 52 18 
+Path : start 98 81 14 27 75 28 64 50 63 52 18 
+Path : start 98 81 31 78 12 28 64 50 63 52 18 
+Path : start 98 81 84 62 28 64 50 63 52 18 
+Path : start 98 81 31 66 4 70 42 50 64 
+Path : start 98 81 14 85 57 43 42 50 64 
+Path : start 98 81 16 36 65 42 50 64 
+Path : start 98 81 16 11 77 26 42 50 64 
+Path : start 98 81 16 96 26 42 50 64 
+Path : start 98 81 84 5 82 77 26 42 50 64 
+Path : start 98 81 31 78 73 82 77 26 42 50 64 
+Path : start 98 81 14 85 57 73 82 77 26 42 50 64 
+Path : start 98 81 16 1 25 87 70 42 50 64 
+Path : start 98 81 31 78 73 87 70 42 50 64 
+Path : start 98 81 14 85 57 73 87 70 42 50 64 
+Path : start 98 81 16 36 17 3 83 61 
+Path : start 98 81 16 36 17 3 83 91 
+Path : start 98 81 16 36 17 3 83 40 
+Path : start 98 81 16 36 17 83 24 44 
+Path : start 98 81 16 36 17 83 61 
+Path : start 98 81 16 36 17 83 91 
+Path : start 98 81 16 36 17 83 40 
+Path : start 98 81 14 27 75 61 83 17 
+Path : start 98 81 14 27 75 61 83 24 44 
+Path : start 98 81 14 27 75 61 83 91 
+Path : start 98 81 14 27 75 61 83 40 
+Path : start 98 81 16 1 25 61 83 17 
+Path : start 98 81 16 1 25 61 83 24 44 
+Path : start 98 81 16 1 25 61 83 91 
+Path : start 98 81 16 1 25 61 83 40 
+Path : start 98 81 14 85 57 56 61 83 17 
+Path : start 98 81 14 85 57 56 61 83 24 44 
+Path : start 98 81 14 85 57 56 61 83 91 
+Path : start 98 81 14 85 57 56 61 83 40 
+Path : start 98 81 84 62 54 64 56 61 83 17 
+Path : start 98 81 84 62 54 64 56 61 83 24 44 
+Path : start 98 81 84 62 54 64 56 61 83 91 
+Path : start 98 81 84 62 54 64 56 61 83 40 
+Path : start 98 81 16 1 64 56 61 83 17 
+Path : start 98 81 16 1 64 56 61 83 24 44 
+Path : start 98 81 16 1 64 56 61 83 91 
+Path : start 98 81 16 1 64 56 61 83 40 
+Path : start 98 81 14 27 75 64 56 61 83 17 
+Path : start 98 81 14 27 75 64 56 61 83 24 44 
+Path : start 98 81 14 27 75 64 56 61 83 91 
+Path : start 98 81 14 27 75 64 56 61 83 40 
+Path : start 98 81 14 27 75 28 64 56 61 83 17 
+Path : start 98 81 14 27 75 28 64 56 61 83 24 44 
+Path : start 98 81 14 27 75 28 64 56 61 83 91 
+Path : start 98 81 14 27 75 28 64 56 61 83 40 
+Path : start 98 81 31 78 12 28 64 56 61 83 17 
+Path : start 98 81 31 78 12 28 64 56 61 83 24 44 
+Path : start 98 81 31 78 12 28 64 56 61 83 91 
+Path : start 98 81 31 78 12 28 64 56 61 83 40 
+Path : start 98 81 84 62 28 64 56 61 83 17 
+Path : start 98 81 84 62 28 64 56 61 83 24 44 
+Path : start 98 81 84 62 28 64 56 61 83 91 
+Path : start 98 81 84 62 28 64 56 61 83 40 
+Path : start 98 81 16 36 65 56 61 83 17 
+Path : start 98 81 16 36 65 56 61 83 24 44 
+Path : start 98 81 16 36 65 56 61 83 91 
+Path : start 98 81 16 36 65 56 61 83 40 
+Path : start 98 81 14 27 75 61 40 83 17 
+Path : start 98 81 14 27 75 61 40 83 24 44 
+Path : start 98 81 14 27 75 61 40 83 91 
+Path : start 98 81 31 78 12 40 83 17 
+Path : start 98 81 31 78 12 40 83 24 44 
+Path : start 98 81 31 78 12 40 83 61 
+Path : start 98 81 31 78 12 40 83 91 
+Path : start 98 81 16 1 25 61 40 83 17 
+Path : start 98 81 16 1 25 61 40 83 24 44 
+Path : start 98 81 16 1 25 61 40 83 91 
+Path : start 98 81 14 85 57 56 61 40 83 17 
+Path : start 98 81 14 85 57 56 61 40 83 24 44 
+Path : start 98 81 14 85 57 56 61 40 83 91 
+Path : start 98 81 84 62 54 64 56 61 40 83 17 
+Path : start 98 81 84 62 54 64 56 61 40 83 24 44 
+Path : start 98 81 84 62 54 64 56 61 40 83 91 
+Path : start 98 81 16 1 64 56 61 40 83 17 
+Path : start 98 81 16 1 64 56 61 40 83 24 44 
+Path : start 98 81 16 1 64 56 61 40 83 91 
+Path : start 98 81 14 27 75 64 56 61 40 83 17 
+Path : start 98 81 14 27 75 64 56 61 40 83 24 44 
+Path : start 98 81 14 27 75 64 56 61 40 83 91 
+Path : start 98 81 14 27 75 28 64 56 61 40 83 17 
+Path : start 98 81 14 27 75 28 64 56 61 40 83 24 44 
+Path : start 98 81 14 27 75 28 64 56 61 40 83 91 
+Path : start 98 81 31 78 12 28 64 56 61 40 83 17 
+Path : start 98 81 31 78 12 28 64 56 61 40 83 24 44 
+Path : start 98 81 31 78 12 28 64 56 61 40 83 91 
+Path : start 98 81 84 62 28 64 56 61 40 83 17 
+Path : start 98 81 84 62 28 64 56 61 40 83 24 44 
+Path : start 98 81 84 62 28 64 56 61 40 83 91 
+Path : start 98 81 16 36 65 56 61 40 83 17 
+Path : start 98 81 16 36 65 56 61 40 83 24 44 
+Path : start 98 81 16 36 65 56 61 40 83 91 
+Path : start 98 81 16 1 25 91 83 17 
+Path : start 98 81 16 1 25 91 83 24 44 
+Path : start 98 81 16 1 25 91 83 61 
+Path : start 98 81 16 1 25 91 83 40 
+Path : start 98 81 84 62 54 64 91 83 17 
+Path : start 98 81 84 62 54 64 91 83 24 44 
+Path : start 98 81 84 62 54 64 91 83 61 
+Path : start 98 81 84 62 54 64 91 83 40 
+Path : start 98 81 16 1 64 91 83 17 
+Path : start 98 81 16 1 64 91 83 24 44 
+Path : start 98 81 16 1 64 91 83 61 
+Path : start 98 81 16 1 64 91 83 40 
+Path : start 98 81 14 27 75 64 91 83 17 
+Path : start 98 81 14 27 75 64 91 83 24 44 
+Path : start 98 81 14 27 75 64 91 83 61 
+Path : start 98 81 14 27 75 64 91 83 40 
+Path : start 98 81 14 27 75 28 64 91 83 17 
+Path : start 98 81 14 27 75 28 64 91 83 24 44 
+Path : start 98 81 14 27 75 28 64 91 83 61 
+Path : start 98 81 14 27 75 28 64 91 83 40 
+Path : start 98 81 31 78 12 28 64 91 83 17 
+Path : start 98 81 31 78 12 28 64 91 83 24 44 
+Path : start 98 81 31 78 12 28 64 91 83 61 
+Path : start 98 81 31 78 12 28 64 91 83 40 
+Path : start 98 81 84 62 28 64 91 83 17 
+Path : start 98 81 84 62 28 64 91 83 24 44 
+Path : start 98 81 84 62 28 64 91 83 61 
+Path : start 98 81 84 62 28 64 91 83 40 
+Path : start 98 81 31 66 4 70 91 83 17 
+Path : start 98 81 31 66 4 70 91 83 24 44 
+Path : start 98 81 31 66 4 70 91 83 61 
+Path : start 98 81 31 66 4 70 91 83 40 
+Path : start 98 81 16 1 25 87 70 91 83 17 
+Path : start 98 81 16 1 25 87 70 91 83 24 44 
+Path : start 98 81 16 1 25 87 70 91 83 61 
+Path : start 98 81 16 1 25 87 70 91 83 40 
+Path : start 98 81 31 78 73 87 70 91 83 17 
+Path : start 98 81 31 78 73 87 70 91 83 24 44 
+Path : start 98 81 31 78 73 87 70 91 83 61 
+Path : start 98 81 31 78 73 87 70 91 83 40 
+Path : start 98 81 14 85 57 73 87 70 91 83 17 
+Path : start 98 81 14 85 57 73 87 70 91 83 24 44 
+Path : start 98 81 14 85 57 73 87 70 91 83 61 
+Path : start 98 81 14 85 57 73 87 70 91 83 40 
+Path : start 98 81 16 36 17 67 86 
+Path : start 98 81 16 1 47 86 67 39 
+Path : start 98 81 14 27 75 61 40 6 86 67 39 
+Path : start 98 81 31 78 12 40 6 86 67 39 
+Path : start 98 81 84 5 60 47 86 67 39 
+Path : start 98 81 16 11 60 47 86 67 39 
+Path : start 98 81 16 96 60 47 86 67 39 
+Path : start 98 81 14 85 19 60 47 86 67 39 
+Path : start 98 81 31 66 4 60 47 86 67 39 
+Path : start 98 81 84 5 82 47 86 67 39 
+Path : start 98 81 31 78 73 82 47 86 67 39 
+Path : start 98 81 14 85 57 73 82 47 86 67 39 
+Path : start 98 81 16 1 25 61 40 6 86 67 39 
+Path : start 98 81 14 85 57 43 86 67 39 
+Path : start 98 81 14 85 57 56 61 40 6 86 67 39 
+Path : start 98 81 84 62 54 64 56 61 40 6 86 67 39 
+Path : start 98 81 16 1 64 56 61 40 6 86 67 39 
+Path : start 98 81 14 27 75 64 56 61 40 6 86 67 39 
+Path : start 98 81 14 27 75 28 64 56 61 40 6 86 67 39 
+Path : start 98 81 31 78 12 28 64 56 61 40 6 86 67 39 
+Path : start 98 81 84 62 28 64 56 61 40 6 86 67 39 
+Path : start 98 81 16 36 65 56 61 40 6 86 67 39 
+Path : start 98 81 16 36 65 8 86 67 39 
+Path : start 98 81 14 27 75 28 8 86 67 39 
+Path : start 98 81 31 78 12 28 8 86 67 39 
+Path : start 98 81 84 62 28 8 86 67 39 
+Path : start 98 81 84 62 54 99 86 67 39 
+Path : start 98 81 16 1 25 6 86 67 39 
+Path : start 98 81 84 5 82 6 86 67 39 
+Path : start 98 81 31 78 73 82 6 86 67 39 
+Path : start 98 81 14 85 57 73 82 6 86 67 39 
+Path : start 98 81 84 62 10 97 49 17 
+Path : start 98 81 84 62 54 64 35 49 17 
+Path : start 98 81 16 1 64 35 49 17 
+Path : start 98 81 14 27 75 64 35 49 17 
+Path : start 98 81 14 27 75 28 64 35 49 17 
+Path : start 98 81 31 78 12 28 64 35 49 17 
+Path : start 98 81 84 62 28 64 35 49 17 
+Path : start 98 81 16 36 17 49 97 
+Path : start 98 81 84 62 54 64 56 61 35 49 17 
+Path : start 98 81 16 1 64 56 61 35 49 17 
+Path : start 98 81 14 27 75 64 56 61 35 49 17 
+Path : start 98 81 14 27 75 28 64 56 61 35 49 17 
+Path : start 98 81 31 78 12 28 64 56 61 35 49 17 
+Path : start 98 81 84 62 28 64 56 61 35 49 17 
+Path : start 98 81 16 11 77 97 49 17 
+Path : start 98 81 84 5 82 77 97 49 17 
+Path : start 98 81 31 78 73 82 77 97 49 17 
+Path : start 98 81 14 85 57 73 82 77 97 49 17 
+Path : start 98 81 14 27 75 61 35 49 17 
+Path : start 98 81 16 1 25 61 35 49 17 
+Path : start 98 81 14 85 57 56 61 35 49 17 
+Path : start 98 81 16 36 65 56 61 35 49 17 
+Path : start 98 81 14 27 75 28 89 94 18 52 63 
+Path : start 98 81 14 27 75 28 89 94 26 
+Path : start 98 81 31 78 12 28 89 94 18 52 63 
+Path : start 98 81 31 78 12 28 89 94 26 
+Path : start 98 81 84 62 28 89 94 18 52 63 
+Path : start 98 81 84 62 28 89 94 26 
+Path : start 98 81 16 11 77 26 94 45 
+Path : start 98 81 16 11 77 26 94 18 52 63 
+Path : start 98 81 16 96 26 94 45 
+Path : start 98 81 16 96 26 94 18 52 63 
+Path : start 98 81 84 5 82 77 26 94 45 
+Path : start 98 81 84 5 82 77 26 94 18 52 63 
+Path : start 98 81 31 78 73 82 77 26 94 45 
+Path : start 98 81 31 78 73 82 77 26 94 18 52 63 
+Path : start 98 81 14 85 57 73 82 77 26 94 45 
+Path : start 98 81 14 85 57 73 82 77 26 94 18 52 63 
+Path : start 98 81 84 62 54 64 45 94 18 52 63 
+Path : start 98 81 84 62 54 64 45 94 26 
+Path : start 98 81 16 1 64 45 94 18 52 63 
+Path : start 98 81 16 1 64 45 94 26 
+Path : start 98 81 14 27 75 64 45 94 18 52 63 
+Path : start 98 81 14 27 75 64 45 94 26 
+Path : start 98 81 14 27 75 28 64 45 94 18 52 63 
+Path : start 98 81 14 27 75 28 64 45 94 26 
+Path : start 98 81 31 78 12 28 64 45 94 18 52 63 
+Path : start 98 81 31 78 12 28 64 45 94 26 
+Path : start 98 81 84 62 28 64 45 94 18 52 63 
+Path : start 98 81 84 62 28 64 45 94 26 
+Path : start 98 81 16 96 22 7 88 76 
+Path : start 98 81 16 96 22 7 0 
+Path : start 98 81 16 96 22 7 58 
+Path : start 98 81 16 96 22 7 71 
+Path : start 98 81 31 78 73 0 7 88 76 
+Path : start 98 81 31 78 73 0 7 22 
+Path : start 98 81 31 78 73 0 7 58 
+Path : start 98 81 31 78 73 0 7 71 
+Path : start 98 81 14 85 57 73 0 7 88 76 
+Path : start 98 81 14 85 57 73 0 7 22 
+Path : start 98 81 14 85 57 73 0 7 58 
+Path : start 98 81 14 85 57 73 0 7 71 
+Path : start 98 81 84 62 54 64 0 7 88 76 
+Path : start 98 81 84 62 54 64 0 7 22 
+Path : start 98 81 84 62 54 64 0 7 58 
+Path : start 98 81 84 62 54 64 0 7 71 
+Path : start 98 81 16 1 64 0 7 88 76 
+Path : start 98 81 16 1 64 0 7 22 
+Path : start 98 81 16 1 64 0 7 58 
+Path : start 98 81 16 1 64 0 7 71 
+Path : start 98 81 14 27 75 64 0 7 88 76 
+Path : start 98 81 14 27 75 64 0 7 22 
+Path : start 98 81 14 27 75 64 0 7 58 
+Path : start 98 81 14 27 75 64 0 7 71 
+Path : start 98 81 14 27 75 28 64 0 7 88 76 
+Path : start 98 81 14 27 75 28 64 0 7 22 
+Path : start 98 81 14 27 75 28 64 0 7 58 
+Path : start 98 81 14 27 75 28 64 0 7 71 
+Path : start 98 81 31 78 12 28 64 0 7 88 76 
+Path : start 98 81 31 78 12 28 64 0 7 22 
+Path : start 98 81 31 78 12 28 64 0 7 58 
+Path : start 98 81 31 78 12 28 64 0 7 71 
+Path : start 98 81 84 62 28 64 0 7 88 76 
+Path : start 98 81 84 62 28 64 0 7 22 
+Path : start 98 81 84 62 28 64 0 7 58 
+Path : start 98 81 84 62 28 64 0 7 71 
+Path : start 98 81 31 78 73 0 71 7 88 76 
+Path : start 98 81 31 78 73 0 71 7 22 
+Path : start 98 81 31 78 73 0 71 7 58 
+Path : start 98 81 14 85 57 73 0 71 7 88 76 
+Path : start 98 81 14 85 57 73 0 71 7 22 
+Path : start 98 81 14 85 57 73 0 71 7 58 
+Path : start 98 81 84 5 60 71 7 88 76 
+Path : start 98 81 84 5 60 71 7 0 
+Path : start 98 81 84 5 60 71 7 22 
+Path : start 98 81 84 5 60 71 7 58 
+Path : start 98 81 16 11 60 71 7 88 76 
+Path : start 98 81 16 11 60 71 7 0 
+Path : start 98 81 16 11 60 71 7 22 
+Path : start 98 81 16 11 60 71 7 58 
+Path : start 98 81 16 96 60 71 7 88 76 
+Path : start 98 81 16 96 60 71 7 0 
+Path : start 98 81 16 96 60 71 7 22 
+Path : start 98 81 16 96 60 71 7 58 
+Path : start 98 81 14 85 19 60 71 7 88 76 
+Path : start 98 81 14 85 19 60 71 7 0 
+Path : start 98 81 14 85 19 60 71 7 22 
+Path : start 98 81 14 85 19 60 71 7 58 
+Path : start 98 81 31 66 4 60 71 7 88 76 
+Path : start 98 81 31 66 4 60 71 7 0 
+Path : start 98 81 31 66 4 60 71 7 22 
+Path : start 98 81 31 66 4 60 71 7 58 
+Path : start 98 81 84 62 54 64 0 71 7 88 76 
+Path : start 98 81 84 62 54 64 0 71 7 22 
+Path : start 98 81 84 62 54 64 0 71 7 58 
+Path : start 98 81 16 1 64 0 71 7 88 76 
+Path : start 98 81 16 1 64 0 71 7 22 
+Path : start 98 81 16 1 64 0 71 7 58 
+Path : start 98 81 14 27 75 64 0 71 7 88 76 
+Path : start 98 81 14 27 75 64 0 71 7 22 
+Path : start 98 81 14 27 75 64 0 71 7 58 
+Path : start 98 81 14 27 75 28 64 0 71 7 88 76 
+Path : start 98 81 14 27 75 28 64 0 71 7 22 
+Path : start 98 81 14 27 75 28 64 0 71 7 58 
+Path : start 98 81 31 78 12 28 64 0 71 7 88 76 
+Path : start 98 81 31 78 12 28 64 0 71 7 22 
+Path : start 98 81 31 78 12 28 64 0 71 7 58 
+Path : start 98 81 84 62 28 64 0 71 7 88 76 
+Path : start 98 81 84 62 28 64 0 71 7 22 
+Path : start 98 81 84 62 28 64 0 71 7 58 
+Path : start 98 81 14 85 19 9 95 70 
+Path : start 98 81 16 11 77 26 9 95 70 
+Path : start 98 81 16 96 26 9 95 70 
+Path : start 98 81 84 62 10 9 95 70 
+Path : start 98 81 84 62 10 72 95 70 
+Path : start 98 81 84 5 82 77 26 9 95 70 
+Path : start 98 81 31 78 73 82 77 26 9 95 70 
+Path : start 98 81 14 85 57 73 82 77 26 9 95 70 
+Path : start 98 81 31 66 4 70 95 72 
+Path : start 98 81 16 1 25 87 70 95 72 
+Path : start 98 81 31 78 73 87 70 95 72 
+Path : start 98 81 14 85 57 73 87 70 95 72 
+Path : start 98 81 31 78 73 38 46 43 
+Path : start 98 81 14 85 57 73 38 46 43 
+Path : start 98 81 14 85 57 43 46 38 
+Path : start 98 81 14 27 75 38 46 43 
+Path : start 98 81 16 1 23 80 46 43 
+Path : start 98 81 14 27 75 23 80 46 43 
+Path : start 98 81 31 78 73 23 80 46 43 
+Path : start 98 81 14 85 57 73 23 80 46 43 
+Path : start 98 81 14 27 75 90 18 94 
+Path : start 98 81 14 27 75 90 18 97 
+Path : start 98 81 84 62 10 97 18 90 
+Path : start 98 81 84 62 10 97 18 94 
+Path : start 98 81 16 11 77 97 18 90 
+Path : start 98 81 16 11 77 97 18 94 
+Path : start 98 81 84 5 82 77 97 18 90 
+Path : start 98 81 84 5 82 77 97 18 94 
+Path : start 98 81 31 78 73 82 77 97 18 90 
+Path : start 98 81 31 78 73 82 77 97 18 94 
+Path : start 98 81 14 85 57 73 82 77 97 18 90 
+Path : start 98 81 14 85 57 73 82 77 97 18 94 
+Path : start 98 81 14 27 75 28 89 94 18 90 
+Path : start 98 81 14 27 75 28 89 94 18 97 
+Path : start 98 81 31 78 12 28 89 94 18 90 
+Path : start 98 81 31 78 12 28 89 94 18 97 
+Path : start 98 81 84 62 28 89 94 18 90 
+Path : start 98 81 84 62 28 89 94 18 97 
+Path : start 98 81 16 11 77 26 94 18 90 
+Path : start 98 81 16 11 77 26 94 18 97 
+Path : start 98 81 16 96 26 94 18 90 
+Path : start 98 81 16 96 26 94 18 97 
+Path : start 98 81 84 5 82 77 26 94 18 90 
+Path : start 98 81 84 5 82 77 26 94 18 97 
+Path : start 98 81 31 78 73 82 77 26 94 18 90 
+Path : start 98 81 31 78 73 82 77 26 94 18 97 
+Path : start 98 81 14 85 57 73 82 77 26 94 18 90 
+Path : start 98 81 14 85 57 73 82 77 26 94 18 97 
+Path : start 98 81 84 62 54 64 45 94 18 90 
+Path : start 98 81 84 62 54 64 45 94 18 97 
+Path : start 98 81 16 1 64 45 94 18 90 
+Path : start 98 81 16 1 64 45 94 18 97 
+Path : start 98 81 14 27 75 64 45 94 18 90 
+Path : start 98 81 14 27 75 64 45 94 18 97 
+Path : start 98 81 14 27 75 28 64 45 94 18 90 
+Path : start 98 81 14 27 75 28 64 45 94 18 97 
+Path : start 98 81 31 78 12 28 64 45 94 18 90 
+Path : start 98 81 31 78 12 28 64 45 94 18 97 
+Path : start 98 81 84 62 28 64 45 94 18 90 
+Path : start 98 81 84 62 28 64 45 94 18 97 
+Path : start 98 81 84 62 54 64 45 33 90 
+Path : start 98 81 16 1 64 45 33 90 
+Path : start 98 81 14 27 75 64 45 33 90 
+Path : start 98 81 14 27 75 28 64 45 33 90 
+Path : start 98 81 31 78 12 28 64 45 33 90 
+Path : start 98 81 84 62 28 64 45 33 90 
+Path : start 98 81 14 27 75 90 33 45 
+Path : start 98 81 84 62 54 64 45 33 79 0 
+Path : start 98 81 84 62 54 64 45 33 79 8 
+Path : start 98 81 84 62 54 64 45 33 79 87 
+Path : start 98 81 16 1 64 45 33 79 0 
+Path : start 98 81 16 1 64 45 33 79 8 
+Path : start 98 81 16 1 64 45 33 79 87 
+Path : start 98 81 14 27 75 64 45 33 79 0 
+Path : start 98 81 14 27 75 64 45 33 79 8 
+Path : start 98 81 14 27 75 64 45 33 79 87 
+Path : start 98 81 14 27 75 28 64 45 33 79 0 
+Path : start 98 81 14 27 75 28 64 45 33 79 8 
+Path : start 98 81 14 27 75 28 64 45 33 79 87 
+Path : start 98 81 31 78 12 28 64 45 33 79 0 
+Path : start 98 81 31 78 12 28 64 45 33 79 8 
+Path : start 98 81 31 78 12 28 64 45 33 79 87 
+Path : start 98 81 84 62 28 64 45 33 79 0 
+Path : start 98 81 84 62 28 64 45 33 79 8 
+Path : start 98 81 84 62 28 64 45 33 79 87 
+Path : start 98 81 14 27 75 90 33 79 0 
+Path : start 98 81 14 27 75 90 33 79 8 
+Path : start 98 81 14 27 75 90 33 79 87 
+Path : start 98 81 31 78 73 0 79 80 
+Path : start 98 81 31 78 73 0 79 8 
+Path : start 98 81 31 78 73 0 79 87 
+Path : start 98 81 14 85 57 73 0 79 80 
+Path : start 98 81 14 85 57 73 0 79 8 
+Path : start 98 81 14 85 57 73 0 79 87 
+Path : start 98 81 84 62 54 64 0 79 80 
+Path : start 98 81 84 62 54 64 0 79 8 
+Path : start 98 81 84 62 54 64 0 79 87 
+Path : start 98 81 16 1 64 0 79 80 
+Path : start 98 81 16 1 64 0 79 8 
+Path : start 98 81 16 1 64 0 79 87 
+Path : start 98 81 14 27 75 64 0 79 80 
+Path : start 98 81 14 27 75 64 0 79 8 
+Path : start 98 81 14 27 75 64 0 79 87 
+Path : start 98 81 14 27 75 28 64 0 79 80 
+Path : start 98 81 14 27 75 28 64 0 79 8 
+Path : start 98 81 14 27 75 28 64 0 79 87 
+Path : start 98 81 31 78 12 28 64 0 79 80 
+Path : start 98 81 31 78 12 28 64 0 79 8 
+Path : start 98 81 31 78 12 28 64 0 79 87 
+Path : start 98 81 84 62 28 64 0 79 80 
+Path : start 98 81 84 62 28 64 0 79 8 
+Path : start 98 81 84 62 28 64 0 79 87 
+Path : start 98 81 31 78 73 87 79 80 
+Path : start 98 81 31 78 73 87 79 0 
+Path : start 98 81 31 78 73 87 79 8 
+Path : start 98 81 14 85 57 73 87 79 80 
+Path : start 98 81 14 85 57 73 87 79 0 
+Path : start 98 81 14 85 57 73 87 79 8 
+Path : start 98 81 16 1 25 87 79 80 
+Path : start 98 81 16 1 25 87 79 0 
+Path : start 98 81 16 1 25 87 79 8 
+Path : start 98 81 16 36 65 8 79 80 
+Path : start 98 81 16 36 65 8 79 0 
+Path : start 98 81 16 36 65 8 79 87 
+Path : start 98 81 14 27 75 28 8 79 80 
+Path : start 98 81 14 27 75 28 8 79 0 
+Path : start 98 81 14 27 75 28 8 79 87 
+Path : start 98 81 31 78 12 28 8 79 80 
+Path : start 98 81 31 78 12 28 8 79 0 
+Path : start 98 81 31 78 12 28 8 79 87 
+Path : start 98 81 84 62 28 8 79 80 
+Path : start 98 81 84 62 28 8 79 0 
+Path : start 98 81 84 62 28 8 79 87 
+Path : start 98 81 16 1 23 80 79 0 
+Path : start 98 81 16 1 23 80 79 8 
+Path : start 98 81 16 1 23 80 79 87 
+Path : start 98 81 14 27 75 23 80 79 0 
+Path : start 98 81 14 27 75 23 80 79 8 
+Path : start 98 81 14 27 75 23 80 79 87 
+Path : start 98 81 31 78 73 23 80 79 0 
+Path : start 98 81 31 78 73 23 80 79 8 
+Path : start 98 81 31 78 73 23 80 79 87 
+Path : start 98 81 14 85 57 73 23 80 79 0 
+Path : start 98 81 14 85 57 73 23 80 79 8 
+Path : start 98 81 14 85 57 73 23 80 79 87 
+Path : start 98 81 16 96 22 7 30 76 37 
+Path : start 98 81 16 96 22 7 30 80 
+Path : start 98 81 16 96 22 7 30 8 
+Path : start 98 81 16 1 23 80 30 29 
+Path : start 98 81 16 1 23 80 30 76 37 
+Path : start 98 81 16 1 23 80 30 8 
+Path : start 98 81 14 27 75 23 80 30 29 
+Path : start 98 81 14 27 75 23 80 30 76 37 
+Path : start 98 81 14 27 75 23 80 30 8 
+Path : start 98 81 31 78 73 23 80 30 29 
+Path : start 98 81 31 78 73 23 80 30 76 37 
+Path : start 98 81 31 78 73 23 80 30 8 
+Path : start 98 81 14 85 57 73 23 80 30 29 
+Path : start 98 81 14 85 57 73 23 80 30 76 37 
+Path : start 98 81 14 85 57 73 23 80 30 8 
+Path : start 98 81 31 78 73 0 7 30 76 37 
+Path : start 98 81 31 78 73 0 7 30 80 
+Path : start 98 81 31 78 73 0 7 30 8 
+Path : start 98 81 14 85 57 73 0 7 30 76 37 
+Path : start 98 81 14 85 57 73 0 7 30 80 
+Path : start 98 81 14 85 57 73 0 7 30 8 
+Path : start 98 81 84 62 54 64 0 7 30 76 37 
+Path : start 98 81 84 62 54 64 0 7 30 80 
+Path : start 98 81 84 62 54 64 0 7 30 8 
+Path : start 98 81 16 1 64 0 7 30 76 37 
+Path : start 98 81 16 1 64 0 7 30 80 
+Path : start 98 81 16 1 64 0 7 30 8 
+Path : start 98 81 14 27 75 64 0 7 30 76 37 
+Path : start 98 81 14 27 75 64 0 7 30 80 
+Path : start 98 81 14 27 75 64 0 7 30 8 
+Path : start 98 81 14 27 75 28 64 0 7 30 76 37 
+Path : start 98 81 14 27 75 28 64 0 7 30 80 
+Path : start 98 81 14 27 75 28 64 0 7 30 8 
+Path : start 98 81 31 78 12 28 64 0 7 30 76 37 
+Path : start 98 81 31 78 12 28 64 0 7 30 80 
+Path : start 98 81 31 78 12 28 64 0 7 30 8 
+Path : start 98 81 84 62 28 64 0 7 30 76 37 
+Path : start 98 81 84 62 28 64 0 7 30 80 
+Path : start 98 81 84 62 28 64 0 7 30 8 
+Path : start 98 81 16 36 65 8 30 29 
+Path : start 98 81 16 36 65 8 30 76 37 
+Path : start 98 81 16 36 65 8 30 80 
+Path : start 98 81 14 27 75 28 8 30 29 
+Path : start 98 81 14 27 75 28 8 30 76 37 
+Path : start 98 81 14 27 75 28 8 30 80 
+Path : start 98 81 31 78 12 28 8 30 29 
+Path : start 98 81 31 78 12 28 8 30 76 37 
+Path : start 98 81 31 78 12 28 8 30 80 
+Path : start 98 81 84 62 28 8 30 29 
+Path : start 98 81 84 62 28 8 30 76 37 
+Path : start 98 81 84 62 28 8 30 80 
+Path : start 98 81 31 78 73 0 71 7 30 76 37 
+Path : start 98 81 31 78 73 0 71 7 30 80 
+Path : start 98 81 31 78 73 0 71 7 30 8 
+Path : start 98 81 14 85 57 73 0 71 7 30 76 37 
+Path : start 98 81 14 85 57 73 0 71 7 30 80 
+Path : start 98 81 14 85 57 73 0 71 7 30 8 
+Path : start 98 81 84 5 60 71 7 30 76 37 
+Path : start 98 81 84 5 60 71 7 30 80 
+Path : start 98 81 84 5 60 71 7 30 8 
+Path : start 98 81 16 11 60 71 7 30 76 37 
+Path : start 98 81 16 11 60 71 7 30 80 
+Path : start 98 81 16 11 60 71 7 30 8 
+Path : start 98 81 16 96 60 71 7 30 76 37 
+Path : start 98 81 16 96 60 71 7 30 80 
+Path : start 98 81 16 96 60 71 7 30 8 
+Path : start 98 81 14 85 19 60 71 7 30 76 37 
+Path : start 98 81 14 85 19 60 71 7 30 80 
+Path : start 98 81 14 85 19 60 71 7 30 8 
+Path : start 98 81 31 66 4 60 71 7 30 76 37 
+Path : start 98 81 31 66 4 60 71 7 30 80 
+Path : start 98 81 31 66 4 60 71 7 30 8 
+Path : start 98 81 84 62 54 64 0 71 7 30 76 37 
+Path : start 98 81 84 62 54 64 0 71 7 30 80 
+Path : start 98 81 84 62 54 64 0 71 7 30 8 
+Path : start 98 81 16 1 64 0 71 7 30 76 37 
+Path : start 98 81 16 1 64 0 71 7 30 80 
+Path : start 98 81 16 1 64 0 71 7 30 8 
+Path : start 98 81 14 27 75 64 0 71 7 30 76 37 
+Path : start 98 81 14 27 75 64 0 71 7 30 80 
+Path : start 98 81 14 27 75 64 0 71 7 30 8 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 76 37 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 80 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 8 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 76 37 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 80 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 8 
+Path : start 98 81 84 62 28 64 0 71 7 30 76 37 
+Path : start 98 81 84 62 28 64 0 71 7 30 80 
+Path : start 98 81 84 62 28 64 0 71 7 30 8 
+Path : start 98 81 14 27 75 28 37 76 63 50 
+Path : start 98 81 14 27 75 28 37 76 88 7 
+Path : start 98 81 31 78 12 28 37 76 63 50 
+Path : start 98 81 31 78 12 28 37 76 88 7 
+Path : start 98 81 84 62 28 37 76 63 50 
+Path : start 98 81 84 62 28 37 76 88 7 
+Path : start 98 81 16 96 22 7 30 76 63 50 
+Path : start 98 81 16 96 22 7 30 76 88 99 
+Path : start 98 81 16 1 23 80 30 76 63 50 
+Path : start 98 81 16 1 23 80 30 76 88 7 
+Path : start 98 81 14 27 75 23 80 30 76 63 50 
+Path : start 98 81 14 27 75 23 80 30 76 88 7 
+Path : start 98 81 31 78 73 23 80 30 76 63 50 
+Path : start 98 81 31 78 73 23 80 30 76 88 7 
+Path : start 98 81 14 85 57 73 23 80 30 76 63 50 
+Path : start 98 81 14 85 57 73 23 80 30 76 88 7 
+Path : start 98 81 31 78 73 0 7 30 76 63 50 
+Path : start 98 81 31 78 73 0 7 30 76 88 99 
+Path : start 98 81 14 85 57 73 0 7 30 76 63 50 
+Path : start 98 81 14 85 57 73 0 7 30 76 88 99 
+Path : start 98 81 84 62 54 64 0 7 30 76 63 50 
+Path : start 98 81 84 62 54 64 0 7 30 76 88 99 
+Path : start 98 81 16 1 64 0 7 30 76 63 50 
+Path : start 98 81 16 1 64 0 7 30 76 88 99 
+Path : start 98 81 14 27 75 64 0 7 30 76 63 50 
+Path : start 98 81 14 27 75 64 0 7 30 76 88 99 
+Path : start 98 81 14 27 75 28 64 0 7 30 76 63 50 
+Path : start 98 81 14 27 75 28 64 0 7 30 76 88 99 
+Path : start 98 81 31 78 12 28 64 0 7 30 76 63 50 
+Path : start 98 81 31 78 12 28 64 0 7 30 76 88 99 
+Path : start 98 81 84 62 28 64 0 7 30 76 63 50 
+Path : start 98 81 84 62 28 64 0 7 30 76 88 99 
+Path : start 98 81 16 36 65 8 30 76 63 50 
+Path : start 98 81 16 36 65 8 30 76 88 7 
+Path : start 98 81 14 27 75 28 8 30 76 63 50 
+Path : start 98 81 14 27 75 28 8 30 76 88 7 
+Path : start 98 81 31 78 12 28 8 30 76 63 50 
+Path : start 98 81 31 78 12 28 8 30 76 88 7 
+Path : start 98 81 84 62 28 8 30 76 63 50 
+Path : start 98 81 84 62 28 8 30 76 88 7 
+Path : start 98 81 31 78 73 0 71 7 30 76 63 50 
+Path : start 98 81 31 78 73 0 71 7 30 76 88 99 
+Path : start 98 81 14 85 57 73 0 71 7 30 76 63 50 
+Path : start 98 81 14 85 57 73 0 71 7 30 76 88 99 
+Path : start 98 81 84 5 60 71 7 30 76 63 50 
+Path : start 98 81 84 5 60 71 7 30 76 88 99 
+Path : start 98 81 16 11 60 71 7 30 76 63 50 
+Path : start 98 81 16 11 60 71 7 30 76 88 99 
+Path : start 98 81 16 96 60 71 7 30 76 63 50 
+Path : start 98 81 16 96 60 71 7 30 76 88 99 
+Path : start 98 81 14 85 19 60 71 7 30 76 63 50 
+Path : start 98 81 14 85 19 60 71 7 30 76 88 99 
+Path : start 98 81 31 66 4 60 71 7 30 76 63 50 
+Path : start 98 81 31 66 4 60 71 7 30 76 88 99 
+Path : start 98 81 84 62 54 64 0 71 7 30 76 63 50 
+Path : start 98 81 84 62 54 64 0 71 7 30 76 88 99 
+Path : start 98 81 16 1 64 0 71 7 30 76 63 50 
+Path : start 98 81 16 1 64 0 71 7 30 76 88 99 
+Path : start 98 81 14 27 75 64 0 71 7 30 76 63 50 
+Path : start 98 81 14 27 75 64 0 71 7 30 76 88 99 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 76 63 50 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 76 88 99 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 76 63 50 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 76 88 99 
+Path : start 98 81 84 62 28 64 0 71 7 30 76 63 50 
+Path : start 98 81 84 62 28 64 0 71 7 30 76 88 99 
+Path : start 98 81 16 36 17 3 83 24 89 
+Path : start 98 81 16 11 77 26 44 24 89 
+Path : start 98 81 16 96 26 44 24 89 
+Path : start 98 81 84 5 82 77 26 44 24 89 
+Path : start 98 81 31 78 73 82 77 26 44 24 89 
+Path : start 98 81 14 85 57 73 82 77 26 44 24 89 
+Path : start 98 81 14 27 75 28 89 24 44 
+Path : start 98 81 31 78 12 28 89 24 44 
+Path : start 98 81 84 62 28 89 24 44 
+Path : start 98 81 16 36 17 83 24 89 
+Path : start 98 81 14 27 75 61 83 24 89 
+Path : start 98 81 16 1 25 61 83 24 89 
+Path : start 98 81 14 85 57 56 61 83 24 89 
+Path : start 98 81 84 62 54 64 56 61 83 24 89 
+Path : start 98 81 16 1 64 56 61 83 24 89 
+Path : start 98 81 14 27 75 64 56 61 83 24 89 
+Path : start 98 81 14 27 75 28 64 56 61 83 24 89 
+Path : start 98 81 31 78 12 28 64 56 61 83 24 89 
+Path : start 98 81 84 62 28 64 56 61 83 24 89 
+Path : start 98 81 16 36 65 56 61 83 24 89 
+Path : start 98 81 14 27 75 61 40 83 24 89 
+Path : start 98 81 31 78 12 40 83 24 89 
+Path : start 98 81 16 1 25 61 40 83 24 89 
+Path : start 98 81 14 85 57 56 61 40 83 24 89 
+Path : start 98 81 84 62 54 64 56 61 40 83 24 89 
+Path : start 98 81 16 1 64 56 61 40 83 24 89 
+Path : start 98 81 14 27 75 64 56 61 40 83 24 89 
+Path : start 98 81 14 27 75 28 64 56 61 40 83 24 89 
+Path : start 98 81 31 78 12 28 64 56 61 40 83 24 89 
+Path : start 98 81 84 62 28 64 56 61 40 83 24 89 
+Path : start 98 81 16 36 65 56 61 40 83 24 89 
+Path : start 98 81 16 1 25 91 83 24 89 
+Path : start 98 81 84 62 54 64 91 83 24 89 
+Path : start 98 81 16 1 64 91 83 24 89 
+Path : start 98 81 14 27 75 64 91 83 24 89 
+Path : start 98 81 14 27 75 28 64 91 83 24 89 
+Path : start 98 81 31 78 12 28 64 91 83 24 89 
+Path : start 98 81 84 62 28 64 91 83 24 89 
+Path : start 98 81 31 66 4 70 91 83 24 89 
+Path : start 98 81 16 1 25 87 70 91 83 24 89 
+Path : start 98 81 31 78 73 87 70 91 83 24 89 
+Path : start 98 81 14 85 57 73 87 70 91 83 24 89 
+Path : start 98 81 84 62 54 99 88 76 
+Path : start 98 81 16 96 22 7 88 99 
+Path : start 98 81 31 78 73 0 7 88 99 
+Path : start 98 81 14 85 57 73 0 7 88 99 
+Path : start 98 81 84 62 54 64 0 7 88 99 
+Path : start 98 81 16 1 64 0 7 88 99 
+Path : start 98 81 14 27 75 64 0 7 88 99 
+Path : start 98 81 14 27 75 28 64 0 7 88 99 
+Path : start 98 81 31 78 12 28 64 0 7 88 99 
+Path : start 98 81 84 62 28 64 0 7 88 99 
+Path : start 98 81 31 78 73 0 71 7 88 99 
+Path : start 98 81 14 85 57 73 0 71 7 88 99 
+Path : start 98 81 84 5 60 71 7 88 99 
+Path : start 98 81 16 11 60 71 7 88 99 
+Path : start 98 81 16 96 60 71 7 88 99 
+Path : start 98 81 14 85 19 60 71 7 88 99 
+Path : start 98 81 31 66 4 60 71 7 88 99 
+Path : start 98 81 84 62 54 64 0 71 7 88 99 
+Path : start 98 81 16 1 64 0 71 7 88 99 
+Path : start 98 81 14 27 75 64 0 71 7 88 99 
+Path : start 98 81 14 27 75 28 64 0 71 7 88 99 
+Path : start 98 81 31 78 12 28 64 0 71 7 88 99 
+Path : start 98 81 84 62 28 64 0 71 7 88 99 
+Path : start 98 81 14 27 75 28 37 76 88 99 
+Path : start 98 81 31 78 12 28 37 76 88 99 
+Path : start 98 81 84 62 28 37 76 88 99 
+Path : start 98 81 16 1 23 80 30 76 88 99 
+Path : start 98 81 14 27 75 23 80 30 76 88 99 
+Path : start 98 81 31 78 73 23 80 30 76 88 99 
+Path : start 98 81 14 85 57 73 23 80 30 76 88 99 
+Path : start 98 81 16 36 65 8 30 76 88 99 
+Path : start 98 81 14 27 75 28 8 30 76 88 99 
+Path : start 98 81 31 78 12 28 8 30 76 88 99 
+Path : start 98 81 84 62 28 8 30 76 88 99 
+Path : start 98 81 31 66 4 70 42 50 63 76 
+Path : start 98 81 14 85 57 43 42 50 63 76 
+Path : start 98 81 84 62 54 64 42 50 63 76 
+Path : start 98 81 16 1 64 42 50 63 76 
+Path : start 98 81 14 27 75 64 42 50 63 76 
+Path : start 98 81 14 27 75 28 64 42 50 63 76 
+Path : start 98 81 31 78 12 28 64 42 50 63 76 
+Path : start 98 81 84 62 28 64 42 50 63 76 
+Path : start 98 81 16 36 65 42 50 63 76 
+Path : start 98 81 16 11 77 26 42 50 63 76 
+Path : start 98 81 16 96 26 42 50 63 76 
+Path : start 98 81 84 5 82 77 26 42 50 63 76 
+Path : start 98 81 31 78 73 82 77 26 42 50 63 76 
+Path : start 98 81 14 85 57 73 82 77 26 42 50 63 76 
+Path : start 98 81 16 1 25 87 70 42 50 63 76 
+Path : start 98 81 31 78 73 87 70 42 50 63 76 
+Path : start 98 81 14 85 57 73 87 70 42 50 63 76 
+Path : start 98 81 84 62 54 64 50 63 76 
+Path : start 98 81 16 1 64 50 63 76 
+Path : start 98 81 14 27 75 64 50 63 76 
+Path : start 98 81 14 27 75 28 64 50 63 76 
+Path : start 98 81 31 78 12 28 64 50 63 76 
+Path : start 98 81 84 62 28 64 50 63 76 
+Path : start 98 81 14 27 75 28 37 76 63 52 18 
+Path : start 98 81 31 78 12 28 37 76 63 52 18 
+Path : start 98 81 84 62 28 37 76 63 52 18 
+Path : start 98 81 16 96 22 7 30 76 63 52 18 
+Path : start 98 81 16 1 23 80 30 76 63 52 18 
+Path : start 98 81 14 27 75 23 80 30 76 63 52 18 
+Path : start 98 81 31 78 73 23 80 30 76 63 52 18 
+Path : start 98 81 14 85 57 73 23 80 30 76 63 52 18 
+Path : start 98 81 31 78 73 0 7 30 76 63 52 18 
+Path : start 98 81 14 85 57 73 0 7 30 76 63 52 18 
+Path : start 98 81 84 62 54 64 0 7 30 76 63 52 18 
+Path : start 98 81 16 1 64 0 7 30 76 63 52 18 
+Path : start 98 81 14 27 75 64 0 7 30 76 63 52 18 
+Path : start 98 81 14 27 75 28 64 0 7 30 76 63 52 18 
+Path : start 98 81 31 78 12 28 64 0 7 30 76 63 52 18 
+Path : start 98 81 84 62 28 64 0 7 30 76 63 52 18 
+Path : start 98 81 16 36 65 8 30 76 63 52 18 
+Path : start 98 81 14 27 75 28 8 30 76 63 52 18 
+Path : start 98 81 31 78 12 28 8 30 76 63 52 18 
+Path : start 98 81 84 62 28 8 30 76 63 52 18 
+Path : start 98 81 31 78 73 0 71 7 30 76 63 52 18 
+Path : start 98 81 14 85 57 73 0 71 7 30 76 63 52 18 
+Path : start 98 81 84 5 60 71 7 30 76 63 52 18 
+Path : start 98 81 16 11 60 71 7 30 76 63 52 18 
+Path : start 98 81 16 96 60 71 7 30 76 63 52 18 
+Path : start 98 81 14 85 19 60 71 7 30 76 63 52 18 
+Path : start 98 81 31 66 4 60 71 7 30 76 63 52 18 
+Path : start 98 81 84 62 54 64 0 71 7 30 76 63 52 18 
+Path : start 98 81 16 1 64 0 71 7 30 76 63 52 18 
+Path : start 98 81 14 27 75 64 0 71 7 30 76 63 52 18 
+Path : start 98 81 14 27 75 28 64 0 71 7 30 76 63 52 18 
+Path : start 98 81 31 78 12 28 64 0 71 7 30 76 63 52 18 
+Path : start 98 81 84 62 28 64 0 71 7 30 76 63 52 18 

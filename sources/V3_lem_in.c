@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/16 15:25:47 by marvin           ###   ########.fr       */
+/*   Updated: 2019/11/19 19:33:19 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,12 @@ int				main(void)
 	read_link(&s, read_room(&s));
 	write_room(&s);	write_link(&s);
 
-	print_ant(s.ant);
+	// print_ant(s.ant);
 	//print_info(&s);
-	print_datatab(&s);
+	// print_datatab(&s);
+	algo(&s);
 	// print_map(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
+	print_way(&s);
 }

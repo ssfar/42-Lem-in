@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/16 14:39:00 by marvin           ###   ########.fr        #
+#    Updated: 2019/11/19 19:39:21 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = lem-in
 
 CC = gcc
-CFLAGS = -o -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
+CFLAGS = -Ofast -o -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 
 INC_DIR = includes
@@ -31,6 +31,7 @@ SRC_NAME =	V3_lem_in.c \
 			print.c \
 			write_room_link.c \
 			clear_unlinked.c \
+			algo.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_NAME:.c=.o))

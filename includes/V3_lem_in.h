@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/16 15:25:48 by marvin           ###   ########.fr       */
+/*   Updated: 2019/11/19 18:15:33 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 typedef	struct s_path
 {
-	size_t			*tab;
-	size_t			tab_size;
+	size_t			*path;
+	size_t			path_size;
 	struct s_path	*p_next;
 }				t_path;
 
@@ -30,6 +30,9 @@ typedef	struct	s_table
 
 typedef struct	s_lem_in
 {
+	size_t			*queu;
+	size_t			cur;
+	size_t			q_size;
 	ssize_t			ant;
 	struct	s_info	*info;
 	struct	s_info	*i_current;
@@ -39,7 +42,8 @@ typedef struct	s_lem_in
 	struct	s_room	*room_tab;
 	size_t			nb_room;
 	struct	s_table	*map[MAP_SIZE];
-	struct	s_path	*path;
+	struct	s_path	*way;
+	struct	s_path	*l_way;
 }				t_lem_in;
 
 	
@@ -75,6 +79,7 @@ uint_fast8_t	is_room2(char *line);
 uint_fast8_t	is_room(char *line);
 void			clear_room_tab(t_lem_in *s);
 void			clear_map(t_lem_in *s);
+void			clear_map_room(t_lem_in *s);
 char			*read_room(t_lem_in *s);
 uint_fast8_t	is_link2(t_lem_in *s, char *line);
 uint_fast8_t	is_link(t_lem_in *s, char *line);
@@ -88,6 +93,9 @@ void			print_map(t_lem_in *s);
 void			print_datatab(t_lem_in *s);
 void			print_info(t_lem_in *s);
 void			print_ant(size_t ant);
+void			print_way(t_lem_in *s);
 void			write_room(t_lem_in *s);
 void			write_link(t_lem_in *s);
 void			write_room2(t_lem_in *s, t_table *tmp, size_t i);
+void			algo(t_lem_in *s);
+uint_fast8_t	is_duplicate(size_t *tab, size_t tab_size, size_t to_add);
