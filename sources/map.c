@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 15:40:16 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/19 18:15:32 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/20 16:59:18 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,19 @@ void			init_map(t_lem_in *s)
 void	clear_map_room(t_lem_in *s)
 {
 	t_table	*tmp;
+	t_table	*tmp1;
 	size_t	i;
 
 	i = 0;
-	while (i < s->nb_room)
+	while (i < MAP_SIZE)
 	{
-		while (s->map[i] != NULL)
+		tmp = s->map[i];
+		while (tmp)
 		{
-			tmp = s->map[i];
+			tmp1 = tmp->t_next;
 			free(tmp->room);
 			free(tmp);
-			s->map[i] = s->map[i]->t_next;
+			tmp = tmp1;
 		}
 		i++;
 	}
@@ -47,16 +49,18 @@ void	clear_map(t_lem_in *s)
 {
 	size_t	i;
 	t_table	*tmp;
+	t_table	*tmp1;
 
 	i = 0;
-	while (i < s->nb_room)
+	while (i < MAP_SIZE)
 	{
 		tmp = s->map[i];
-		while (tmp != NULL)
+		while (tmp)
 		{
-			tmp = s->map[i]->t_next;
-			free(s->map[i]);
+			tmp1 = tmp->t_next;
+			free(tmp);
+			tmp = tmp1;
 		}
 		i++;
-	} 
+	}
 }

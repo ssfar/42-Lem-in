@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/19 18:15:33 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/20 17:13:09 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef	struct s_path
 {
+	uint_fast8_t	*on_p;
 	size_t			*path;
 	size_t			path_size;
 	struct s_path	*p_next;
@@ -33,6 +34,7 @@ typedef struct	s_lem_in
 	size_t			*queu;
 	size_t			cur;
 	size_t			q_size;
+	uint_fast8_t	*on_q;
 	ssize_t			ant;
 	struct	s_info	*info;
 	struct	s_info	*i_current;
@@ -46,7 +48,6 @@ typedef struct	s_lem_in
 	struct	s_path	*l_way;
 }				t_lem_in;
 
-	
 typedef	struct	s_info
 {
 	char			*str;
@@ -98,4 +99,6 @@ void			write_room(t_lem_in *s);
 void			write_link(t_lem_in *s);
 void			write_room2(t_lem_in *s, t_table *tmp, size_t i);
 void			algo(t_lem_in *s);
-uint_fast8_t	is_duplicate(size_t *tab, size_t tab_size, size_t to_add);
+void			print_tab(size_t *tab, size_t size, char *msg);
+void			print_stab(ssize_t *tab, size_t size, char *msg);
+void			print_max_way(t_lem_in *s);

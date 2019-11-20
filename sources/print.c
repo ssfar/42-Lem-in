@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/19 19:39:26 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/20 17:19:04 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_datatab(t_lem_in *s)
 	size_t	i;
 	size_t	j;
 
-	ft_printf("\n##start name : |%s|\n##end name : |%s|\n", s->room_tab[s->start].name, s->room_tab[s->end].name);
+	ft_printf("\n##start\tname : |%s|\n##end\tname : |%s|\n", s->room_tab[s->start].name, s->room_tab[s->end].name);
 	i = 0;
 	while (i < s->nb_room)
 	{
@@ -64,6 +64,20 @@ void	print_datatab(t_lem_in *s)
 	}
 }
 
+void	print_max_way(t_lem_in *s)
+{
+	size_t i;
+
+	i = 0;
+	while (s->way != NULL)
+	{
+		if (s->way->path_size > i)
+			i = s->way->path_size;
+		s->way = s->way->p_next; 
+	}
+	ft_printf("Size max : %d\n", i);
+}
+
 void	print_way(t_lem_in *s)
 {
 	size_t	i;
@@ -71,10 +85,32 @@ void	print_way(t_lem_in *s)
 	while (s->way != NULL)
 	{
 		i = 0;
-		ft_printf("[blue]Path : ");
+		ft_printf("[blue]Path -%d: ");
 		while (i <= s->way->path_size)
 			ft_printf("%s ", s->room_tab[s->way->path[i++]].name);
 		ft_printf("\n");
 		s->way = s->way->p_next;
 	}
+}
+
+void		print_tab(size_t *tab, size_t size, char *msg)
+{
+	size_t i;
+
+	i = 0;
+	ft_printf("%s\n", msg);
+	while (i < size)
+		ft_printf("%d ", tab[i++]);
+	ft_printf("\n");	
+}
+
+void		print_stab(ssize_t *tab, size_t size, char *msg)
+{
+	size_t i;
+
+	i = 0;
+	ft_printf("%s\n", msg);
+	while (i < size)
+		ft_printf("%d ", tab[i++]);
+	ft_printf("\n");	
 }

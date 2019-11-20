@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/19 19:33:19 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/20 17:18:09 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 
 void	exit_failure(t_lem_in *s, size_t id, char *message, uint_fast8_t error)
 {
+	ft_printf("[red]%s[a_reset]\n", message);
 	clear_info(s->info);
 	if (id == 1)
 		clear_map_room(s);
 	if (id == 2)
 		clear_room_tab(s);
-	ft_printf("[red]%s[a_reset]\n", message);
 	if (error)
 		ft_printf("ERROR");
 	exit(EXIT_FAILURE);
@@ -101,20 +101,21 @@ void			init_struct(t_lem_in *s)
 int				main(void)
 {
 	t_lem_in	s;
+	char		*line;
 
 	if (MAP_SIZE < 1)
 		return (EXIT_FAILURE);
 	init_struct(&s);
 	read_ant_nb(&s);
-	read_link(&s, read_room(&s));
+	line = read_room(&s);
+	read_link(&s, line);
 	write_room(&s);	write_link(&s);
-
 	// print_ant(s.ant);
-	//print_info(&s);
+	// print_info(&s);
 	// print_datatab(&s);
-	algo(&s);
 	// print_map(&s);
+	algo(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
-	print_way(&s);
+	print_max_way(&s);
 }

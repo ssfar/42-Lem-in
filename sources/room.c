@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:38:07 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/16 14:38:43 by marvin           ###   ########.fr       */
+/*   Updated: 2019/11/20 16:44:43 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ uint_fast8_t	is_room2(char *line)
 char			*read_room(t_lem_in *s)
 {
 	char	*line;
-
+	
 	while (get_next_line(0, &line) > 0)
 	{
 		if ('#' == *line)
