@@ -6,7 +6,7 @@
 #    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/20 17:03:16 by vrobin           ###   ########.fr        #
+#    Updated: 2019/11/21 17:40:44 by vrobin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = lem-in
 
 CC = gcc
-CFLAGS = -Ofast -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
+CFLAGS = -g3 -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 INC_DIR = includes
 SRC_DIR = sources

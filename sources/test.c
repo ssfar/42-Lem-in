@@ -31,9 +31,9 @@ unsigned int	hash_to_int(const char *key)
 }
 
 
+
+
 int main(int ac, char **av)
 {
-	char a[2147483647];
-	a[2147483646] = 'b';
-	printf("%c",a[2147483646]);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/20 17:13:09 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/21 16:40:37 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # define MAP_SIZE	100000
+# define PATH_SIZE	2
 
 typedef	struct s_path
 {
-	uint_fast8_t	*on_p;
+	uint8_t			*on_p;
 	size_t			*path;
 	size_t			path_size;
 	struct s_path	*p_next;
@@ -34,7 +35,7 @@ typedef struct	s_lem_in
 	size_t			*queu;
 	size_t			cur;
 	size_t			q_size;
-	uint_fast8_t	*on_q;
+	uint8_t			*on_q;
 	ssize_t			ant;
 	struct	s_info	*info;
 	struct	s_info	*i_current;
@@ -53,7 +54,6 @@ typedef	struct	s_info
 	char			*str;
 	struct	s_info	*i_next;
 }				t_info;
-
 
 typedef	struct	s_room
 {
