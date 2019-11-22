@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/21 17:40:44 by vrobin           ###   ########.fr        #
+#    Updated: 2019/11/22 13:51:26 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = lem-in
 
 CC = gcc
-CFLAGS = -g3 -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
+CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 INC_DIR = includes
 SRC_DIR = sources

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/21 16:40:37 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/22 12:52:27 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # define MAP_SIZE	100000
-# define PATH_SIZE	2
+# define PATH_SIZE	25
 
 typedef	struct s_path
 {
