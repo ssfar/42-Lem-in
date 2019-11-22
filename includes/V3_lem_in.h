@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:52:28 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/22 12:52:27 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/22 16:10:00 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef	struct	s_table
 typedef struct	s_lem_in
 {
 	size_t			*queu;
-	size_t			cur;
+	// size_t			cur;
 	size_t			q_size;
 	uint8_t			*on_q;
 	ssize_t			ant;
@@ -44,6 +44,7 @@ typedef struct	s_lem_in
 	ssize_t			end;
 	struct	s_room	*room_tab;
 	size_t			nb_room;
+	size_t			on_size;
 	struct	s_table	*map[MAP_SIZE];
 	struct	s_path	*way;
 	struct	s_path	*l_way;

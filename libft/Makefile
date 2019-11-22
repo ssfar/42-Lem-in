@@ -6,7 +6,7 @@
 #    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/22 13:51:32 by ssfar            ###   ########.fr        #
+#    Updated: 2019/11/22 16:10:36 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
+CFLAGS = -O3 -g -Wall -Wextra -Werror -I $(INC_DIR)
 
 
 INC_DIR = includes

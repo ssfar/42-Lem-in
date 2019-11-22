@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/21 17:38:32 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/22 15:26:42 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,10 @@ void	print_max_way(t_lem_in *s)
 	i = 0;
 	while (s->way != NULL)
 	{
-		if (s->way->path_size > i)
-			i = s->way->path_size;
+		i++;
 		s->way = s->way->p_next; 
 	}
-	ft_printf("Size max : %d\n", i);
+	ft_printf("nbr path : %d\n", i);
 }
 
 void	print_way(t_lem_in *s)
