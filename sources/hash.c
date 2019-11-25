@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:01:50 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/16 15:25:46 by marvin           ###   ########.fr       */
+/*   Updated: 2019/11/25 15:42:55 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			hash_data(void *dest, const size_t size, const char *key)
 	unsigned char	*d;
 
 	j = 0;
-	d = bzero(dest, size);
+	d = ft_bzero(dest, size);
 	while (*key)
 	{
 		if (j == size)

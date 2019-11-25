@@ -126,7 +126,7 @@ void		copy_path(t_lem_in *s, size_t to_add, t_path *tmp,
 		{
 			if (tmp->path_size + 1 >= *malloc_size)
 			{
-				*malloc_size = tmp->path_size * tmp->path_size + 1;
+				*malloc_size = tmp->path_size * tmp->path_size + 2;
 				realloc_path(s, tmp, *malloc_size);
 			}
 			tmp->path_size++;

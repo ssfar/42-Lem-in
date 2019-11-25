@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/22 15:35:07 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/25 15:44:46 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int				main(void)
 {
 	t_lem_in	s;
 
-	if (MAP_SIZE < 1 || PATH_SIZE < 2)
+	if (MAP_SIZE < 1 || PATH_SIZE < 1)
 		return (EXIT_FAILURE);
 	init_struct(&s);
 	read_ant_nb(&s);
@@ -116,6 +116,6 @@ int				main(void)
 	algo(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
-	// print_way(&s);
+	 print_way(&s);
 	print_max_way(&s);
 }

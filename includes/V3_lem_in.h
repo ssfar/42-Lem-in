@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -14,7 +15,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # define MAP_SIZE	100000
-# define PATH_SIZE	25
+# define PATH_SIZE	1
 
 typedef	struct s_path
 {
