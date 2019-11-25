@@ -70,6 +70,7 @@ t_path		*create_path(t_lem_in *s, size_t malloc_size)
 		exit_failure(s, 2, "can't malloc path tab", 0);
 	if (!(new->on_p = malloc(sizeof(uint8_t) * s->on_size)))
 		exit_failure(s, 123, "can't malloc on_queu", 0);
+	new->max_pos = malloc_size - 1;
 	return (new);
 }
 
@@ -81,24 +82,24 @@ void	realloc_path(t_lem_in *s, t_path *path, size_t malloc_size)
 	if (!(new = malloc(sizeof(size_t) * malloc_size)))
 		exit_failure(s, 2, "can't malloc path tab", 0);
 	i = 0;
-	while (i <= path->path_size)
+	while (i <= path->last_node)
 	{
 		new[i] = path->path[i];
 		i++;
 	}
 	free(path->path);
 	path->path = new;
+	path->max_pos = malloc_size - 1;
 }
 
-void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp, 
-	size_t malloc_size)
+void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
 {
 	size_t	i;
 
-	s->l_way->p_next = create_path(s, malloc_size);
+	s->l_way->p_next = create_path(s, tmp->max_pos + 1);
 	s->l_way = s->l_way->p_next;
 	i = 0;
-	while (i < tmp->path_size)
+	while (i < tmp->last_node)
 	{
 		s->l_way->path[i] = tmp->path[i];
 		if (i < s->on_size)
@@ -111,29 +112,25 @@ void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp,
 		s->l_way->on_p[i] = tmp->on_p[i];
 		i++;
 	}
-	remove_on(s->l_way->on_p, tmp->path[tmp->path_size]);
-	//s->l_way->on_p[tmp->path[tmp->path_size]] = 0;
+	remove_on(s->l_way->on_p, tmp->path[tmp->last_node]);
+	//s->l_way->on_p[tmp->path[tmp->last_node]] = 0;
 	// s->l_way->on_p[to_add] = 1;
-	s->l_way->path_size = tmp->path_size;
+	s->l_way->last_node = tmp->last_node;
 }
 
-void		copy_path(t_lem_in *s, size_t to_add, t_path *tmp,
-	size_t *malloc_size, size_t cur)
+void		copy_path(t_lem_in *s, size_t to_add, t_path *tmp, size_t cur)
 {
 	if (add_on(tmp->on_p, to_add))
 	{
-		if (s->queu[cur] == tmp->path[tmp->path_size])
+		if (s->queu[cur] == tmp->path[tmp->last_node])
 		{
-			if (tmp->path_size + 1 >= *malloc_size)
-			{
-				*malloc_size = tmp->path_size * tmp->path_size + 2;
-				realloc_path(s, tmp, *malloc_size);
-			}
-			tmp->path_size++;
-			tmp->path[tmp->path_size] = to_add;
+			if (tmp->last_node == tmp->max_pos)
+				realloc_path(s, tmp, tmp->max_pos * 2 + 2);
+			tmp->last_node++;
+			tmp->path[tmp->last_node] = to_add;
 		}
 		else
-			duplicate_path(s, to_add, tmp, *malloc_size);
+			duplicate_path(s, to_add, tmp);
 	}
 }
 
@@ -143,7 +140,7 @@ void		init_algo(t_lem_in *s)
 	s->way = create_path(s, PATH_SIZE);
 	ft_bzero(s->way->on_p, s->on_size);
 	s->l_way = s->way;
-	s->way->path_size = 0;
+	s->way->last_node = 0;
 	s->way->path[0] = s->start;
 	s->way->on_p[s->start] = 1;
 	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room)))
@@ -162,18 +159,16 @@ void		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, size_t cur)
 {
 	size_t	i;
 	t_path	*tmp;
-	size_t	malloc_size;
 
 	tmp = s->way;
 	while (tmp)
 	{
-		if (tmp->path[tmp->path_size] == s->queu[cur])
+		if (tmp->path[tmp->last_node] == s->queu[cur])
 		{
-			malloc_size = PATH_SIZE;
 			i = 0;
 			while (i < nb_link && link[i] != -1)
 			{
-				copy_path(s, link[i], tmp, &malloc_size, cur);
+				copy_path(s, link[i], tmp, cur);
 				i++;
 			}
 		}

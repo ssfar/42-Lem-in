@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/22 15:26:42 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/25 16:04:09 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	print_way(t_lem_in *s)
 	{
 		i = 0;
 		ft_printf("[blue]Path : ");
-		while (i <= s->way->path_size)
+		while (i <= s->way->last_node)
 			ft_printf("%s ", s->room_tab[s->way->path[i++]].name);
 		ft_printf("\n");
 		s->way = s->way->p_next;

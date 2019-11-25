@@ -15,13 +15,14 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # define MAP_SIZE	100000
-# define PATH_SIZE	1
+# define PATH_SIZE	2
 
 typedef	struct s_path
 {
 	uint8_t			*on_p;
 	size_t			*path;
-	size_t			path_size;
+	size_t			last_node;
+	size_t			max_pos;
 	struct s_path	*p_next;
 }				t_path;
 
@@ -37,7 +38,7 @@ typedef struct	s_lem_in
 	// size_t			cur;
 	size_t			q_size;
 	uint8_t			*on_q;
-	ssize_t			ant;
+	size_t			ant;
 	struct	s_info	*info;
 	struct	s_info	*i_current;
 	struct	s_info	*pipe;
