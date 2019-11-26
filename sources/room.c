@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:38:07 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/20 17:47:15 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/26 18:01:49 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ char			*read_room(t_lem_in *s)
 			info_push_back(s, create_info(s, line));
 			place_room(s, line, hash_to_int(line));
 			s->nb_room++;
+			if (s->nb_room < 1)
+				exit_failure(s, 123, "Too many rooms", 0);
 		}
 		else
 			return (line);

@@ -20,9 +20,9 @@
 typedef	struct s_path
 {
 	uint8_t			*on_p;
-	size_t			*path;
-	size_t			last_node;
-	size_t			max_pos;
+	ssize_t			*path;
+	ssize_t			last_node;
+	ssize_t			max_pos;
 	struct s_path	*p_next;
 }				t_path;
 
@@ -34,9 +34,8 @@ typedef	struct	s_table
 
 typedef struct	s_lem_in
 {
-	size_t			*queu;
-	// size_t			cur;
-	size_t			q_size;
+	ssize_t			*queu;
+	ssize_t			q_last;
 	uint8_t			*on_q;
 	size_t			ant;
 	struct	s_info	*info;
@@ -45,7 +44,7 @@ typedef struct	s_lem_in
 	ssize_t			start;
 	ssize_t			end;
 	struct	s_room	*room_tab;
-	size_t			nb_room;
+	ssize_t			nb_room;
 	size_t			on_size;
 	struct	s_table	*map[MAP_SIZE];
 	struct	s_path	*way;
@@ -60,9 +59,10 @@ typedef	struct	s_info
 
 typedef	struct	s_room
 {
-	size_t	index;
+	ssize_t	index;
 	char	*name;
 	size_t	nb_link;
+	size_t	link_rm;
 	ssize_t	*link;
 }				t_room;
 
@@ -85,14 +85,14 @@ void			clear_room_tab(t_lem_in *s);
 void			clear_map(t_lem_in *s);
 void			clear_map_room(t_lem_in *s);
 char			*read_room(t_lem_in *s);
-uint_fast8_t	is_link2(t_lem_in *s, char *line);
+uint_fast8_t	is_link2(t_lem_in *s, char *line, t_room *tmp2);
 uint_fast8_t	is_link(t_lem_in *s, char *line);
 void			read_link(t_lem_in *s, char *line);
 t_room			*place_room(t_lem_in *s, char *key, size_t index);
 t_room			*find_room(t_lem_in *s, char *key, size_t index);
 void			read_tip(t_lem_in *s, ssize_t *tip);
 t_room			*place_room(t_lem_in *s, char *key, size_t index);
-void			exit_failure(t_lem_in *s, size_t id, char *message, uint_fast8_t error);
+void			exit_failure(t_lem_in *s, uint_fast8_t id, char *message, uint_fast8_t error);
 void			print_map(t_lem_in *s);
 void			print_datatab(t_lem_in *s);
 void			print_info(t_lem_in *s);
@@ -105,3 +105,4 @@ void			algo(t_lem_in *s);
 void			print_tab(size_t *tab, size_t size, char *msg);
 void			print_stab(ssize_t *tab, size_t size, char *msg);
 void			print_max_way(t_lem_in *s);
+void			update_link(t_lem_in *s, ssize_t i);

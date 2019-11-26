@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:58:16 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/20 17:47:07 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/26 18:01:47 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ void			add_link(t_lem_in *s, ssize_t index1, ssize_t index2)
 	while (s->room_tab[index1].link[i] != -1)
 	{
 		if (s->room_tab[index1].link[i] == index2)
+		{
+			s->room_tab[index1].nb_link--;
+			s->room_tab[index2].nb_link--;
 			return ;
+		}
 		i++;
 	}
+	s->room_tab[index1].link_rm = s->room_tab[index1].nb_link;
+	s->room_tab[index2].link_rm = s->room_tab[index2].nb_link;
 	s->room_tab[index1].link[i] = index2;
 	i = 0;
 	while (s->room_tab[index2].link[i] != -1)
@@ -73,7 +79,7 @@ void			write_link(t_lem_in *s)
 
 void	write_room2(t_lem_in *s, t_table *tmp, size_t i)
 {
-	size_t	j;
+	ssize_t	j;
 	size_t	k;
 
 	while (tmp)

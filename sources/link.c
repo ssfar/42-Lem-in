@@ -6,15 +6,15 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:40:03 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/20 17:47:12 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/26 13:44:18 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "V3_lem_in.h"
 
-uint_fast8_t	is_link2(t_lem_in *s, char *line)
+uint_fast8_t	is_link2(t_lem_in *s, char *line, t_room *tmp1)
 {
-	t_room	*tmp;
+	t_room	*tmp2;
 	size_t	i;
 
 	if (!line[0])
@@ -24,16 +24,19 @@ uint_fast8_t	is_link2(t_lem_in *s, char *line)
 		i++;
 	if (line[i] != '\0')
 		return (0);
-	if (!(tmp = find_room(s, line, hash_to_int(line))))
+	if (!(tmp2 = find_room(s, line, hash_to_int(line))))
 		return (0);
-	tmp->nb_link++;
+	if (tmp1->index == tmp2->index)
+		return (1);
+	tmp1->nb_link++;
+	tmp2->nb_link++;
 	return (1);
 }
 
 uint_fast8_t	is_link(t_lem_in *s, char *line)
 {
 	size_t	i;
-	t_room	*tmp;
+	t_room	*tmp1;
 
 	if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
 		return (0);
@@ -47,10 +50,9 @@ uint_fast8_t	is_link(t_lem_in *s, char *line)
 		if (line[i] != '-')
 			return (0);
 		line[i] = '\0';
-		if (!(tmp = find_room(s, line, hash_to_int(line))))
+		if (!(tmp1 = find_room(s, line, hash_to_int(line))))
 			return (0);
-		tmp->nb_link++;
-		if (!is_link2(s, &line[i + 1]))
+		if (!is_link2(s, &line[i + 1], tmp1))
 			return (0);
 	}
 	info_push_back(s, create_info(s, line));

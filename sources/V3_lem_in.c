@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   V3_lem_in.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/25 15:52:30 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/11/26 17:37:19 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 
 
-void	exit_failure(t_lem_in *s, size_t id, char *message, uint_fast8_t error)
+void	exit_failure(t_lem_in *s, uint_fast8_t id, char *message, uint_fast8_t error)
 {
 	ft_printf("[red]%s[a_reset]\n", message);
 	clear_info(s->info);
@@ -51,6 +51,8 @@ void			read_tip(t_lem_in *s, ssize_t *tip)
 			info_push_back(s, create_info(s, line));
 			place_room(s, line, hash_to_int(line));
 			*tip = s->nb_room++;
+			if (s->nb_room < 1)
+				exit_failure(s, 123, "Too many rooms", 0);
 			break;
 		}
 		else
@@ -116,6 +118,6 @@ int				main(void)
 	algo(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
-	//print_way(&s);
-	//print_max_way(&s);
+	// print_way(&s);
+	print_max_way(&s);
 }
