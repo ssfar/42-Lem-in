@@ -6,44 +6,45 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 10:33:11 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/26 18:03:21 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/27 16:48:41 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "V3_lem_in.h"
 
-void	suppr_other_side(t_room *room, ssize_t to_suppr)
+void	suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i)
 {
-	size_t	i;
+	ssize_t	j;
+	ssize_t	k;
 
-	i = 0;
-	while (room->link[i] != to_suppr)
-		i++;
-	room->link[i] = -2;
+	room_tab[i].link_rm = 0;
+	j = 0;
+	while (link[j] == -2)
+		j++;
+	j = link[j];
+	room_tab[j].link_rm--;	
+	if (room_tab[j].link_rm > 0)
+	{
+		k = 0;
+		while (room_tab[j].link[k] != i)
+			k++;
+		room_tab[j].link[k] = -2;
+		if (room_tab[j].link_rm == 1 && j != s->start && j != s->end)
+			return (suppr_node_link(s, room_tab, room_tab[j].link, j));
+	}
 }
 
-void	update_link(t_lem_in *s, ssize_t i)
+void	update_link(t_lem_in *s, ssize_t start, ssize_t end, t_room *room_tab)
 {
-	size_t	j;
-	ssize_t	to_suppr;
+	ssize_t	i;
+	ssize_t	nb_room;
 
 	i = 0;
-	j = 0;
-	while (i < s->nb_room)
+	nb_room = s->nb_room;
+	while (i < nb_room)
 	{
-		if (s->room_tab[i].link_rm == 1 && i != s->start && i != s->end)
-		{
-			j = 0;
-			while (s->room_tab[i].link[j] == -2)
-				j++;
-			to_suppr = s->room_tab[i].link[j];
-			suppr_other_side(&s->room_tab[to_suppr], i);
-			s->room_tab[i].link[j] = -2;
-			s->room_tab[i].link_rm--;
-			s->room_tab[to_suppr].link_rm--;
-			if (s->room_tab[to_suppr].link_rm == 1)
-				update_link(s, to_suppr);
-		}
+		if (room_tab[i].link_rm == 1 && i != start && i != end)
+			suppr_node_link(s, room_tab, room_tab[i].link, i);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 #    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2019/11/26 18:03:31 by vrobin           ###   ########.fr        #
+#    Updated: 2019/11/27 17:24:03 by vrobin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME = lem-in
 
 CC = gcc
-CFLAGS = -Ofast -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
+CFLAGS = -Ofast -g -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 INC_DIR = includes
 SRC_DIR = sources
@@ -30,7 +30,7 @@ SRC_NAME =	V3_lem_in.c \
 			print.c \
 			write_room_link.c \
 			clear_unlinked.c \
-			algo.c \
+			p_t_algo.c \
 			update_link.c \
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))

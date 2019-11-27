@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/26 18:03:29 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/27 16:49:56 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,37 +65,37 @@ void	print_datatab(t_lem_in *s)
 	}
 }
 
-void	print_max_way(t_lem_in *s)
-{
-	size_t i;
+// void	print_max_way(t_lem_in *s)
+// {
+// 	size_t i;
 
-	i = 0;
-	while (s->way != NULL)
-	{
-		i++;
-		s->way = s->way->p_next; 
-	}
-	ft_printf("nbr path : %d\n", i);
-}
+// 	i = 0;
+// 	while (s->way != NULL)
+// 	{
+// 		i++;
+// 		s->way = s->way->p_next; 
+// 	}
+// 	ft_printf("nbr path : %d\n", i);
+// }
 
-void	print_way(t_lem_in *s)
-{
-	size_t	i;
-	size_t	total;
+// void	print_way(t_lem_in *s)
+// {
+// 	ssize_t	i;
+// 	size_t	total;
 
-	total = 0;
-	while (s->way != NULL)
-	{
-		i = 0;
-		ft_printf("[blue]Path : ");
-		while (i <= s->way->last_node)
-			ft_printf("%s ", s->room_tab[s->way->path[i++]].name);
-		total++;
-		ft_printf("\n");
-		s->way = s->way->p_next;
-	}
-	ft_printf("Total way = %d\n", total);
-}
+// 	total = 0;
+// 	while (s->way != NULL)
+// 	{
+// 		i = 0;
+// 		ft_printf("[blue]Path : ");
+// 		while (i <= s->way->last_node)
+// 			ft_printf("%s ", s->room_tab[s->way->path[i++]].name);
+// 		total++;
+// 		ft_printf("\n");
+// 		s->way = s->way->p_next;
+// 	}
+// 	ft_printf("Total way = %d\n", total);
+// }
 
 void		print_tab(size_t *tab, size_t size, char *msg)
 {

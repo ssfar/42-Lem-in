@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:58:16 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/26 18:03:23 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/11/27 16:48:42 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,6 @@ void			write_link(t_lem_in *s)
 	}
 }
 
-// void	init_room_tab(t_lem_in *s)
-// {
-// 	size_t i;
-
-// 	i = 0;
-// 	if (!(s->room_tab = malloc(sizeof(t_room) * s->nb_room)))
-// 		exit_failure(s, 1, "Malloc error room_tab", 0);
-// 	while (i < s->nb_room)
-// 		s->room_tab[i++].link = NULL;
-// }
-
 void	write_room2(t_lem_in *s, t_table *tmp, size_t i)
 {
 	ssize_t	j;
@@ -114,36 +103,3 @@ void	write_room(t_lem_in *s)
 		i++;
 	}
 }
-
-// void	write_room(t_lem_in *s)
-// {
-// 	size_t	i;
-// 	size_t	j;
-// 	size_t	k;
-// 	t_table	*tmp;
-
-// 	if (!(s->room_tab = malloc(sizeof(t_room) * s->nb_room)))
-// 		exit_failure(s, 1, "Malloc error room_tab", 0);
-// 	i = 0;
-// 	while (i < MAP_SIZE)
-// 	{
-// 		tmp = s->map[i];
-// 		while (tmp)
-// 		{
-// 			j = tmp->room->index;
-// 			s->room_tab[j] = *(tmp->room);
-// 			free(tmp->room);
-// 			if (s->room_tab[j].nb_link > 0)
-// 			{
-// 				if (!(s->room_tab[j].link = malloc(sizeof(ssize_t) * s->room_tab[j].nb_link)))
-// 					clear_the_mess(s, i, tmp);
-// 				k = 0;
-// 				while (k < s->room_tab[j].nb_link)
-// 					s->room_tab[j].link[k++] = -1;
-// 			}
-// 			tmp->room = &s->room_tab[j];
-// 			tmp = tmp->t_next;
-// 		}
-// 		i++;
-// 	}
-// }
