@@ -77,7 +77,7 @@ void	realloc_path(t_lem_in *s, t_path *path, size_t malloc_size)
 	ssize_t	*new;
 	ssize_t	i;
 
-	if (!(new = malloc(sizeof(size_t) * malloc_size)))
+	if (!(new = malloc(sizeof(ssize_t) * malloc_size)))
 		exit_failure(s, 2, "can't malloc path tab", 0);
 	i = 0;
 	while (i <= path->last_node)

@@ -23,7 +23,6 @@ typedef	struct s_path
 	ssize_t			*path;
 	ssize_t			last_node;
 	ssize_t			max_pos;
-	// struct s_path	*p_next;
 }				t_path;
 
 typedef	struct	s_table
