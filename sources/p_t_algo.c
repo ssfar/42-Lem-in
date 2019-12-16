@@ -125,6 +125,7 @@ void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
 		i++;
 	}
 	remove_on(s->way[s->p_last].on_p, tmp->path[tmp->last_node]);
+	remove_on(tmp->on_p, to_add);
 	s->way[s->p_last].last_node = tmp->last_node;
 }
 
@@ -222,6 +223,7 @@ void		algo(t_lem_in *s)
 	cur = 0;
 	data_tab = s->room_tab;
 	init_algo(s);
+	//print_way_plus_bit(s);
 	//ft_printf("sizeof path_tab : %d, path_last : %d\n", s->p_size, s->p_last);
 	while (cur <= s->q_last)
 	{
@@ -229,4 +231,5 @@ void		algo(t_lem_in *s)
 		find_path(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link, cur);	
 		cur++;
 	}
+	//print_way(s);
 }

@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 17:35:12 by ssfar             #+#    #+#             */
-/*   Updated: 2019/10/19 19:31:09 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/12/11 13:09:29 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	get_unsigned(int_fast8_t type, t_flag *f, size_t unb)
 {
 	if (type == 'u')
 		put_u(f, unb, utoa_base(unb, "0123456789"));
-	else if (type == 'B')
+	else if (type == 'b')
 		put_b(f, unb, utoa_base(unb, "01"));
 	else if (type == 'o')
 		put_o(f, unb, utoa_base(unb, "01234567"));

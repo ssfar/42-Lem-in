@@ -31,7 +31,6 @@ typedef	struct	s_table
 	struct s_table	*t_next;
 }				t_table;
 
-
 typedef struct	s_lem_in
 {
 	ssize_t			*queu;
@@ -107,3 +106,4 @@ void			print_stab(ssize_t *tab, size_t size, char *msg);
 void			print_max_way(t_lem_in *s);
 void	update_link(t_lem_in *s, ssize_t start, ssize_t end, t_room *room_tab);
 void	suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i);
+void	print_way_plus_bit(t_lem_in *s);
