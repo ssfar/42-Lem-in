@@ -1,27 +1,16 @@
-	size_t	i;
-	size_t	j;
-	size_t	start;
-	size_t	end;
-	size_t	to_suppr;
+[34mPath : 1 I G F 
+[34mPath : 1 F G I 
+[34mPath : 1 F G J 2 
+[34mPath : 1 I G J 2 
+[34mPath : 1 F G H 2 
+[34mPath : 1 I G H 2 
+[34mPath : 1 A B C D H 
+[34mPath : 1 F G H D C 
+[34mPath : 1 I G H D C 
+[34mPath : 1 F G H E 2 
+[34mPath : 1 I G H E 2 
+Total way = 11
+ret
 
-	start = s->start;
-	end = s->end;
-	i = 0;
-	j = 0;
-	while (i < s->nb_room)
-	{
-		if (s->room_tab[i].nb_link == 1 && i != start && i != end)
-		{
-			j = 0;
-			while (s->room_tab[i].link[j] == -2)
-				j++;
-			to_suppr = s->room_tab[i].link[j];
-			ft_printf("here : %d\n", to_suppr);
-			suppr_other_side(&s->room_tab[to_suppr], i);
-			s->room_tab[i].link[j] = -2;
-			s->room_tab[i].nb_link--;
-			s->room_tab[to_suppr].nb_link--;
-			update_link(s);
-		}
-		i++;
-	}
+-1 -1 -1 
+52
