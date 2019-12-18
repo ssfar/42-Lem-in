@@ -69,6 +69,27 @@ uint_fast8_t	add_on(unsigned char *on, size_t to_add)
 	return (1);
 }
 
+uint_fast8_t	is_on_path(t_lem_in *s, unsigned char *on, t_path to_add)
+{
+	ssize_t	index;
+	size_t	on_index;
+	size_t	compare;
+
+	index = 0;
+	while (index <= to_add.last_node)
+	{
+	if (to_add.path[index] != s->start && to_add.path[index] != s->end)
+	{
+	on_index = to_add.path[index] / 8;
+	compare = binary_pow_2(to_add.path[index] % 8);
+	if (compare & on[on_index])
+	return (1);
+	}
+	index++;
+	}
+	return (0);
+}
+
 void		create_path(t_lem_in *s, t_path *new, size_t malloc_size)
 {
 	if (!(new->on_p = malloc(sizeof(uint8_t) * s->on_size)))
@@ -330,7 +351,8 @@ void		algo(t_lem_in *s)
 	if (!valid_path(s->way, s->p_last, s->end))
 		exit_failure(s, 123, "No path from start to end", 1);
 	complete_path(s, s->way, s->p_last, s->end);
-	sort_way(s, s->way, s->p_last);
+	// sort_way(s, s->way, s->p_last);
 	ft_printf("\nafter completion \n\n");
-	 print_way(s);
+	print_way(s);
+	// get_way(s);
 }
