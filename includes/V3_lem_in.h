@@ -109,3 +109,4 @@ void			suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i);
 void			print_way_plus_bit(t_lem_in *s);
 void			sort_way(t_lem_in *s);
 ssize_t			*get_way(t_lem_in *s);
+uint_fast8_t	is_on(t_lem_in *s, unsigned char *on1, t_path to_add);

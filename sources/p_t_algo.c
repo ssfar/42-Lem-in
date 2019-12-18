@@ -57,6 +57,27 @@ uint_fast8_t	add_on(unsigned char *on, size_t to_add)
 	return (1);
 }
 
+uint_fast8_t	is_on(t_lem_in *s, unsigned char *on, t_path to_add)
+{
+	ssize_t			index;
+	size_t			on_index;
+	size_t			compare;
+
+	index = 0;
+	while (index <= to_add.last_node)
+	{
+		if (to_add.path[index] != s->start && to_add.path[index] != s->end)
+		{
+			on_index = to_add.path[index] / 8;
+			compare = binary_pow_2(to_add.path[index] % 8);
+			if (compare & on[on_index])
+				return (1);
+		}
+		index++;
+	}
+	return (0);
+}
+
 void		create_path(t_lem_in *s, t_path *new, size_t malloc_size)
 {
 	if (!(new->on_p = malloc(sizeof(uint8_t) * s->on_size)))
