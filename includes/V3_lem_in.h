@@ -48,7 +48,7 @@ typedef struct	s_lem_in
 	struct	s_table	*map[MAP_SIZE];
 	struct	s_path	*way;
 	size_t			p_last;
-	size_t			p_size;	
+	size_t			p_size;
 }				t_lem_in;
 
 typedef	struct	s_info
@@ -104,9 +104,6 @@ void			algo(t_lem_in *s);
 void			print_tab(size_t *tab, size_t size, char *msg);
 void			print_stab(ssize_t *tab, size_t size, char *msg);
 void			print_max_way(t_lem_in *s);
-void			update_link(t_lem_in *s, ssize_t start, ssize_t end, t_room *room_tab);
-void			suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i);
-void			print_way_plus_bit(t_lem_in *s);
-void			sort_way(t_lem_in *s);
-ssize_t			*get_way(t_lem_in *s);
-uint_fast8_t	is_on(t_lem_in *s, unsigned char *on1, t_path to_add);
+void	update_link(t_lem_in *s, ssize_t start, ssize_t end, t_room *room_tab);
+void	suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i);
+void	print_way_plus_bit(t_lem_in *s);

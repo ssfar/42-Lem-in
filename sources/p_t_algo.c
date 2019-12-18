@@ -44,6 +44,18 @@ uint_fast8_t	remove_on(unsigned char *on, size_t to_add)
 	return (1);
 }
 
+uint_fast8_t	is_on(unsigned char *on, size_t to_check)
+{
+	size_t			on_index;
+	unsigned char	compare;
+
+	on_index = to_check / 8;
+	compare = binary_pow_2(to_check % 8);
+	if (compare & on[on_index])
+		return (1);
+	return (0);
+}
+
 uint_fast8_t	add_on(unsigned char *on, size_t to_add)
 {
 	size_t			on_index;
@@ -55,27 +67,6 @@ uint_fast8_t	add_on(unsigned char *on, size_t to_add)
 		return (0);
 	on[on_index] += compare;
 	return (1);
-}
-
-uint_fast8_t	is_on(t_lem_in *s, unsigned char *on, t_path to_add)
-{
-	ssize_t			index;
-	size_t			on_index;
-	size_t			compare;
-
-	index = 0;
-	while (index <= to_add.last_node)
-	{
-		if (to_add.path[index] != s->start && to_add.path[index] != s->end)
-		{
-			on_index = to_add.path[index] / 8;
-			compare = binary_pow_2(to_add.path[index] % 8);
-			if (compare & on[on_index])
-				return (1);
-		}
-		index++;
-	}
-	return (0);
 }
 
 void		create_path(t_lem_in *s, t_path *new, size_t malloc_size)
@@ -236,10 +227,93 @@ void		add_queu(t_lem_in *s, ssize_t *link, size_t nb_link)
 	}
 }
 
+uint_fast8_t	valid_path(t_path *way, size_t p_last, ssize_t end)
+{
+	size_t	i;
+
+	i = 0;
+	while (i <= p_last)
+	{
+		if (way[i].path[way[i].last_node] == end)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	duply(t_lem_in *s, ssize_t i_last, t_path *way_i, t_path *way_j)
+{
+	size_t	k;
+	size_t	l;
+	size_t	pos;
+
+	k = 0;
+	while (way_j->path[k] != i_last)
+		k++;
+	k++;
+	pos = k;
+	while (k < (size_t)way_j->last_node)
+	{
+		if (is_on(way_i->on_p, way_j->path[k]))
+			return ;
+		k++;
+	}
+	s->p_last++;
+	if (s->p_last >= s->p_size)
+		realloc_path_tab(s, s->way, s->p_size * s->p_size + 2);
+	create_path(s, &s->way[s->p_last], way_i->last_node + 1 + k + 1 - pos);
+	k = 0;
+	while (k <= (size_t)way_i->last_node)
+	{
+		s->way[s->p_last].path[k] = way_i->path[k];
+		if (k < s->on_size)
+			s->way[s->p_last].on_p[k] = way_i->on_p[k];
+		k++;
+	}
+	l = k;
+	while (k < s->on_size)
+	{
+		s->way[s->p_last].on_p[k] = way_i->on_p[k];
+		k++;
+	}
+	while (pos <= (size_t)way_j->last_node)
+	{
+		s->way[s->p_last].path[l++] = way_j->path[pos];
+		add_on(s->way[s->p_last].on_p, way_j->path[pos++]);
+	}
+	s->way[s->p_last].last_node = l - 1;
+}
+
+void	complete_path(t_lem_in *s, t_path *way, size_t p_last, ssize_t end)
+{
+	size_t	i;
+	size_t	j;
+	ssize_t	i_last;
+
+	i = 0;
+	while (i <= p_last)
+	{
+		if (way[i].path[way[i].last_node] != end)
+		{
+			i_last = way[i].path[way[i].last_node];
+			j = 0;
+			while (j <= p_last)
+			{
+				if (way[j].path[way[j].last_node] == end && is_on(way[j].on_p, i_last))
+					duply(s, i_last, &way[i], &way[j]);
+				j++;
+			}
+		}
+		i++;
+	}
+}
+
 void		algo(t_lem_in *s)
 {
 	t_room	*data_tab;
 	ssize_t	cur;
+	
+
 
 	cur = 0;
 	data_tab = s->room_tab;
@@ -253,4 +327,10 @@ void		algo(t_lem_in *s)
 		cur++;
 	}
 	//print_way(s);
+	if (!valid_path(s->way, s->p_last, s->end))
+		exit_failure(s, 123, "No path from start to end", 1);
+	complete_path(s, s->way, s->p_last, s->end);
+	sort_way(s, s->way, s->p_last);
+	ft_printf("\nafter completion \n\n");
+	 print_way(s);
 }
