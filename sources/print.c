@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/11 14:24:13 by ssfar            ###   ########.fr       */
+/*   Updated: 2019/12/18 16:26:56 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,28 @@ void	print_way(t_lem_in *s)
 	while (j <= s->p_last)
 	{
 		i = 0;
-		ft_printf("[blue]Path : ");
+		ft_printf("[blue]Paths : ");
 		while (i <= s->way[j].last_node)
 			ft_printf("%s ", s->room_tab[s->way[j].path[i++]].name);
 		total++;
 		ft_printf("\n");
 		j++;
 	}
-	ft_printf("Total way = %d\n", total);
+	ft_printf("Total way = %d[a_reset]\n", total);
+}
+
+void	print_path(t_lem_in *s, ssize_t *path, size_t path_size, char *msg)
+{
+	size_t i;
+
+	i = 0;
+	ft_printf("[yellow]%s : \n", msg);
+	while (i <= path_size)
+	{
+		ft_printf("%s ", s->room_tab[path[i]].name);
+		i++;
+	}
+	ft_printf("[a_reset]\n");
 }
 
 void	print_way_plus_bit(t_lem_in *s)

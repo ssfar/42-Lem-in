@@ -14,3 +14,29 @@ ret
 
 -1 -1 -1 
 52
+
+Paths : 1 A B C D H 
+Paths : 1 F G H D C 
+Paths : 1 I G F 
+Paths : 1 F G J 2 
+Paths : 1 F G I 
+Paths : 1 I G H D C 
+Paths : 1 I G J 2 
+Paths : 1 F G H 2 
+Paths : 1 F G H E 2 
+Paths : 1 I G H 2 
+Paths : 1 I G H E 2 
+Paths : 1 A B C D H 2 
+Paths : 1 A B C D H E 2 
+Paths : 1 A B C D H 2 
+Paths : 1 A B C D H E 2 
+
+Paths : 1 A B C D H E 2 
+Paths : 1 A B C D H 2 
+Paths : 1 A B C D H E 2 
+Paths : 1 A B C D H 2 
+Paths : 1 I G H E 2 
+Paths : 1 I G H 2 
+Paths : 1 F G H E 2 
+Paths : 1 F G H 2 
+Paths : 1 I G J 2 

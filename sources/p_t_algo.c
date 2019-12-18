@@ -329,10 +329,41 @@ void	complete_path(t_lem_in *s, t_path *way, size_t p_last, ssize_t end)
 	}
 }
 
+	
+uint_fast8_t	sort_way(t_lem_in *s, t_path *way, size_t path_size)
+{
+	size_t i;
+	t_path tmp;
+
+	i = 0;
+	while (i <= path_size)
+	{
+		if (way[i].path[way[i].last_node] != s->end)
+		{
+			tmp = s->way[i];
+			s->way[i] = s->way[path_size];
+			s->way[path_size] = tmp;
+			path_size--;
+		}
+		if (way[i].path[s->way[i].last_node] == s->end && way[i + 1].path[s->way[i + 1].last_node] == s->end 
+			&& way[i].last_node > way[i + 1].last_node)
+		{
+			tmp = s->way[i];
+			s->way[i] = s->way[i + 1];
+			s->way[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	return (path_size);
+}
+
 void		algo(t_lem_in *s)
 {
 	t_room	*data_tab;
 	ssize_t	cur;
+	size_t	new_p_last;
 	
 
 
@@ -351,8 +382,8 @@ void		algo(t_lem_in *s)
 	if (!valid_path(s->way, s->p_last, s->end))
 		exit_failure(s, 123, "No path from start to end", 1);
 	complete_path(s, s->way, s->p_last, s->end);
-	// sort_way(s, s->way, s->p_last);
+	new_p_last = sort_way(s, s->way, s->p_last);
 	ft_printf("\nafter completion \n\n");
 	print_way(s);
-	// get_way(s);
+	get_way(s, new_p_last);
 }
