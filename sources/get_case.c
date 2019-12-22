@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:20:38 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/22 18:28:35 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/12/22 18:45:47 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 		return (NULL);
 	i = 0;
 	new_case = 0;
-	while (i < path_size && new_case < best_case)
+	while (i < path_size && new_case <= best_case)
 	{
 		new_case = calculate_best_case(s->way[i].last_node, s->ant, s->max_path);
 		if ((new_case = get_new_case(s, i, s->max_path, path_size)) < best_case)
@@ -174,7 +174,9 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 		ft_printf("\n[blue]best_case = %d | [red]new_case = %d\n[a_reset]\n", best_case, new_case);
 		i++;
 	}
-	if (new_case == 0)
+	if (i == 0)
+		write_case(s, i, final);
+	else if (new_case == 0)
 		write_case(s, i - 1, final);
 	else
 		write_case(s, i - 2, final);
@@ -186,5 +188,6 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 		i++;
 	}
 	// ft_printf("%d | %d\n", i, s->p_last);
+	print_way(s);
 	return (final);
 }

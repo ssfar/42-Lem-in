@@ -32,11 +32,33 @@ Paths : 1 A B C D H 2
 Paths : 1 A B C D H E 2 
 
 Paths : 1 A B C D H E 2 
-Paths : 1 A B C D H 2 
 Paths : 1 A B C D H E 2 
 Paths : 1 A B C D H 2 
 Paths : 1 I G H E 2 
 Paths : 1 I G H 2 
 Paths : 1 F G H E 2 
 Paths : 1 F G H 2 
+
+
+Paths : 1 A B C D H 2 
 Paths : 1 I G J 2 
+  
+  0    1
+0 L11 L2I 
+1 L1A L2G l31 L4I
+2 L5
+...
+
+
+0 1
+1 1
+2 0
+3 0
+
+
+4 1
+5 1
+6 0
+7 0
+8 0
+9 0
