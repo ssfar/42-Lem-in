@@ -49,6 +49,7 @@ typedef struct	s_lem_in
 	struct	s_path	*way;
 	size_t			p_last;
 	size_t			p_size;
+	size_t			max_path;
 }				t_lem_in;
 
 typedef	struct	s_info
@@ -110,3 +111,4 @@ void			suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i);
 void			print_way_plus_bit(t_lem_in *s);
 uint_fast8_t	is_on_path(t_lem_in *s, unsigned char *on, t_path to_add);
 ssize_t			*get_way(t_lem_in *s, size_t new_p_last);
+void		sort_path(t_lem_in *s, size_t path_size);

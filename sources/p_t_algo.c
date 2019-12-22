@@ -141,8 +141,8 @@ void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
 
 	s->p_last++;
 	if (s->p_last >= s->p_size)
-		realloc_path_tab(s, s->way, s->p_size * s->p_size + 2);
-	create_path(s, &s->way[s->p_last], tmp->max_pos + 1);
+		realloc_path_tab(s, s->way, s->p_last * s->p_last + 2);
+	create_path(s, &s->way[s->p_last], tmp->max_pos + 2);
 	i = 0;
 	while (i < tmp->last_node)
 	{
@@ -251,7 +251,6 @@ void		add_queu(t_lem_in *s, ssize_t *link, size_t nb_link)
 uint_fast8_t	valid_path(t_path *way, size_t p_last, ssize_t end)
 {
 	size_t	i;
-
 	i = 0;
 	while (i <= p_last)
 	{
@@ -261,15 +260,13 @@ uint_fast8_t	valid_path(t_path *way, size_t p_last, ssize_t end)
 	}
 	return (0);
 }
-
-void	duply(t_lem_in *s, ssize_t i_last, t_path *way_i, t_path *way_j)
+void	duply(t_lem_in *s, size_t tmp_path_last, t_path *way_i, t_path *way_j)
 {
 	size_t	k;
 	size_t	l;
 	size_t	pos;
-
 	k = 0;
-	while (way_j->path[k] != i_last)
+	while (way_j->path[k] != way_i->path[way_i->last_node])
 		k++;
 	k++;
 	pos = k;
@@ -279,10 +276,23 @@ void	duply(t_lem_in *s, ssize_t i_last, t_path *way_i, t_path *way_j)
 			return ;
 		k++;
 	}
+	while (tmp_path_last <= s->p_last)
+	{
+		k = pos;
+		l = way_i->last_node + 1;
+		while (l < (size_t)s->way[tmp_path_last].last_node && way_j->path[k] == s->way[tmp_path_last].path[l])
+		{
+			k++;
+			l++;
+		}
+		if (way_j->path[k] == s->way[tmp_path_last].path[l])
+			return ;
+		tmp_path_last++;
+	}
 	s->p_last++;
 	if (s->p_last >= s->p_size)
 		realloc_path_tab(s, s->way, s->p_size * s->p_size + 2);
-	create_path(s, &s->way[s->p_last], way_i->last_node + 1 + k + 1 - pos);
+	create_path(s, &s->way[s->p_last], way_i->last_node + 1 + way_j->last_node - pos + 1);
 	k = 0;
 	while (k <= (size_t)way_i->last_node)
 	{
@@ -304,13 +314,12 @@ void	duply(t_lem_in *s, ssize_t i_last, t_path *way_i, t_path *way_j)
 	}
 	s->way[s->p_last].last_node = l - 1;
 }
-
 void	complete_path(t_lem_in *s, t_path *way, size_t p_last, ssize_t end)
 {
 	size_t	i;
 	size_t	j;
 	ssize_t	i_last;
-
+	size_t tmp_last_path;
 	i = 0;
 	while (i <= p_last)
 	{
@@ -318,17 +327,17 @@ void	complete_path(t_lem_in *s, t_path *way, size_t p_last, ssize_t end)
 		{
 			i_last = way[i].path[way[i].last_node];
 			j = 0;
+			tmp_last_path = s->p_last;
 			while (j <= p_last)
 			{
 				if (way[j].path[way[j].last_node] == end && is_on(way[j].on_p, i_last))
-					duply(s, i_last, &way[i], &way[j]);
+					duply(s, tmp_last_path, &way[i], &way[j]);
 				j++;
 			}
 		}
 		i++;
 	}
 }
-
 	
 uint_fast8_t	sort_way(t_lem_in *s, t_path *way, size_t path_size)
 {
@@ -344,14 +353,6 @@ uint_fast8_t	sort_way(t_lem_in *s, t_path *way, size_t path_size)
 			s->way[i] = s->way[path_size];
 			s->way[path_size] = tmp;
 			path_size--;
-		}
-		if (way[i].path[s->way[i].last_node] == s->end && way[i + 1].path[s->way[i + 1].last_node] == s->end 
-			&& way[i].last_node > way[i + 1].last_node)
-		{
-			tmp = s->way[i];
-			s->way[i] = s->way[i + 1];
-			s->way[i + 1] = tmp;
-			i = 0;
 		}
 		else
 			i++;
@@ -378,11 +379,12 @@ void		algo(t_lem_in *s)
 		find_path(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link, cur);	
 		cur++;
 	}
-	//print_way(s);
+	// print_way(s);
 	if (!valid_path(s->way, s->p_last, s->end))
 		exit_failure(s, 123, "No path from start to end", 1);
 	complete_path(s, s->way, s->p_last, s->end);
 	new_p_last = sort_way(s, s->way, s->p_last);
+	sort_path(s, new_p_last);
 	ft_printf("\nafter completion \n\n");
 	print_way(s);
 	get_way(s, new_p_last);

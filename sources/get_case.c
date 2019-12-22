@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:20:38 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/18 16:29:03 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/12/22 18:28:35 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,25 @@ size_t calculate_case(size_t path_size1, size_t path_size2, size_t ant, size_t n
 	return (path_size2 + ((ant + path_size1 - 1 - path_size2) / nb_path) - 1);
 }
 
-// void		sort_way(t_lem_in *s)
-// {
-// 	size_t	i;
-// 	t_path	tmp;
+void		sort_path(t_lem_in *s, size_t path_size)
+{
+	size_t	i;
+	t_path	tmp;
 
-// 	i = 0;
-// 	while (i < path_size)
-// 	{
-// 		if (s->way[i].last_node > s->way[i + 1].last_node)
-// 		{
-// 			tmp = s->way[i];
-// 			s->way[i] = s->way[i + 1];
-// 			s->way[i + 1] = tmp;
-// 			i = 0;
-// 		}
-// 		else
-// 			i++;
-// 	}
-// }
+	i = 0;
+	while (i < path_size)
+	{
+		if (s->way[i].last_node > s->way[i + 1].last_node)
+		{
+			tmp = s->way[i];
+			s->way[i] = s->way[i + 1];
+			s->way[i + 1] = tmp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
 
 /*
 recup link to start et end
@@ -123,29 +123,50 @@ size_t		get_new_case(t_lem_in *s, size_t i, size_t max_path, size_t path_size)
 	return (calculate_case(s->way[1].last_node, s->way[new_current[k]].last_node, s->ant, k + 1));
 }
 
+void		write_case(t_lem_in *s, size_t i, ssize_t *final)
+{
+	size_t	j;
+	size_t	k;
+
+	k = 0;
+	j = i + 1;
+	final[k] = i;
+	k++;
+	while (k < s->max_path)
+		final[k++] = -1;
+	k = 1;
+	while (j <= s->p_last && k < s->max_path)
+	{
+		if (is_collision(s, final, j, k) == 0)
+		{
+			final[k] = j;
+			k++;
+		}
+		j++;
+	}
+}
+
 ssize_t		*get_way(t_lem_in *s, size_t path_size)
 {
 	size_t	i;
-	ssize_t *current;
-	size_t	max_path;
+	ssize_t	*final;
 	size_t	best_case;
 	size_t	new_case;
 		
 	i = 0;
+	final = NULL;
 	best_case = s->way[0].last_node + s->ant - 1;
-	max_path = s->room_tab[s->start].link_rm > s->room_tab[s->end].link_rm ? s->room_tab[s->end].link_rm : s->room_tab[s->start].link_rm;
-	ft_printf("\n[yellow]max path usable : %d\n", max_path);
+	s->max_path = s->room_tab[s->start].link_rm > s->room_tab[s->end].link_rm ? s->room_tab[s->end].link_rm : s->room_tab[s->start].link_rm;
+	ft_printf("\n[yellow]max path usable : %d\n", s->max_path);
 	ft_printf("best case : %d\n\n[a_reset]", best_case);
-	if (!(current = malloc(sizeof(size_t) * max_path + 1)))
+	if (!(final = malloc(sizeof(size_t) * s->max_path + 1)))
 		return (NULL);
-	while (i < max_path)
-		current[i++] = -1;
 	i = 0;
 	new_case = 0;
 	while (i < path_size && new_case < best_case)
 	{
-		new_case = calculate_best_case(s->way[i].last_node, s->ant, max_path);
-		if ((new_case = get_new_case(s, i, max_path, path_size)) < best_case)
+		new_case = calculate_best_case(s->way[i].last_node, s->ant, s->max_path);
+		if ((new_case = get_new_case(s, i, s->max_path, path_size)) < best_case)
 		{
 			best_case = new_case;
 			new_case = 0;
@@ -153,6 +174,17 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 		ft_printf("\n[blue]best_case = %d | [red]new_case = %d\n[a_reset]\n", best_case, new_case);
 		i++;
 	}
-	// write_case()
-	return (NULL);
+	if (new_case == 0)
+		write_case(s, i - 1, final);
+	else
+		write_case(s, i - 2, final);
+	i = 0;
+	ft_printf("Best case found is :\n");
+	while (i < s->max_path)
+	{
+		ft_printf("current[i] = %d\n", final[i]);
+		i++;
+	}
+	// ft_printf("%d | %d\n", i, s->p_last);
+	return (final);
 }
