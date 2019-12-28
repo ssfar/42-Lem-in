@@ -363,8 +363,9 @@ uint_fast8_t	sort_way(t_lem_in *s, t_path *way, size_t path_size)
 void		algo(t_lem_in *s)
 {
 	t_room	*data_tab;
+	size_t **ant_tab;
 	ssize_t	cur;
-	size_t	new_p_last;
+	size_t	old_p_last;
 	
 
 
@@ -382,9 +383,11 @@ void		algo(t_lem_in *s)
 	if (!valid_path(s->way, s->p_last, s->end))
 		exit_failure(s, 123, "No path from start to end", 1);
 	complete_path(s, s->way, s->p_last, s->end);
-	new_p_last = sort_way(s, s->way, s->p_last);
-	sort_path(s, new_p_last);
+	// new_p_last = sort_way(s, s->way, s->p_last);
+	old_p_last = s->p_last;
+	s->p_last = sort_way(s, s->way, s->p_last);
+	sort_path(s, s->p_last);
 	print_way(s);
-	ft_printf("\nafter completion \n\n");
-	get_way(s, new_p_last);
+	// ft_printf("\nafter completion \n\n");
+	ant_tab = throw_ant(s, get_way(s, s->p_last));
 }

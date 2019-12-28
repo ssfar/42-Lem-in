@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:20:38 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/22 18:45:47 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/12/28 19:20:48 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ uint_fast8_t	is_collision(t_lem_in *s, ssize_t *new_current,
 
 size_t calculate_best_case(size_t path_size, size_t ant, size_t nb_path)
 {
-	ft_printf("size %d, ant %d, nb_path %d\n", path_size, ant, nb_path);
 	return (path_size + ((ant - 1) / nb_path) - 1);
 }
 
 size_t calculate_case(size_t path_size1, size_t path_size2, size_t ant, size_t nb_path)
 {
-	ft_printf("path_size1 %d, path_size2 %d, ant %d, nb_path %d\n", path_size1, path_size2, ant, nb_path);
+	// ft_printf("pt1 %d | pt2 %d | ant %d | nb_path %d\n", path_size1, path_size2, ant, nb_path);
 	return (path_size2 + ((ant + path_size1 - 1 - path_size2) / nb_path) - 1);
 }
 
@@ -119,8 +118,10 @@ size_t		get_new_case(t_lem_in *s, size_t i, size_t max_path, size_t path_size)
 	k = 0;
 	while (k < max_path - 2 && new_current[k + 1] != -1)
 		k++;
-	print_stab(new_current, max_path, "new found");
-	return (calculate_case(s->way[1].last_node, s->way[new_current[k]].last_node, s->ant, k + 1));
+	j = 0;
+	while (new_current[j] != -1 && j < max_path)
+		j++;
+	return (calculate_case(s->way[1].last_node, s->way[new_current[k]].last_node, s->ant, j));
 }
 
 void		write_case(t_lem_in *s, size_t i, ssize_t *final)
@@ -163,31 +164,46 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 		return (NULL);
 	i = 0;
 	new_case = 0;
+	if (s->max_path == 1)
+	{
+		write_case(s, 0, final);
+		while (i < s->max_path)
+		{
+			ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
+			i++;
+		}
+		return(final);
+	}
 	while (i < path_size && new_case <= best_case)
 	{
 		new_case = calculate_best_case(s->way[i].last_node, s->ant, s->max_path);
-		if ((new_case = get_new_case(s, i, s->max_path, path_size)) < best_case)
+		if ((new_case = get_new_case(s, i, s->max_path, path_size)) <= best_case)
 		{
 			best_case = new_case;
 			new_case = 0;
 		}
-		ft_printf("\n[blue]best_case = %d | [red]new_case = %d\n[a_reset]\n", best_case, new_case);
+		else
+			break;
 		i++;
 	}
 	if (i == 0)
 		write_case(s, i, final);
-	else if (new_case == 0)
-		write_case(s, i - 1, final);
 	else
-		write_case(s, i - 2, final);
+		write_case(s, i - 1, final);
+	// if (i == 0)
+	// 	write_case(s, i, final);
+	// else
+	// 	write_case(s, i - 1, final);
 	i = 0;
-	ft_printf("Best case found is :\n");
-	while (i < s->max_path)
+	ft_printf("\n");
+	while (i < s->max_path && final[i] != -1)
 	{
-		ft_printf("current[i] = %d\n", final[i]);
+		ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
 		i++;
 	}
+	ft_printf("\n");
+	s->max_path = i;
 	// ft_printf("%d | %d\n", i, s->p_last);
-	print_way(s);
+	// print_way(s);
 	return (final);
 }

@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:38:07 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/26 18:03:26 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/12/28 15:51:03 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,12 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 uint_fast8_t	is_room(char *line)
 {
 	size_t	i;
-
-	if (!line[0] || line[0] == ' ' || line[0] == '-' || line[0] == 'L'
-		|| line[0] == '#')
+	if (line[0] == ' ' || line[0] == 'L' || line[0] == '#')
 		return (0);
-	i = 1;
-	while (line[i] && line[i] != ' ')
-	{
-		if (line[i] == '-')
-			return (0);
+	i = 0;
+	while (line[i] != ' ' && line[i] != '-' && line[i] > 32 && line[i] < 127)
 		i++;
-	}
-	if (i == 0 || line[i] != ' ')
+	if (line[i] != ' ')
 		return (0);
 	if (is_room2(&line[i + 1]))
 	{

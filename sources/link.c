@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:40:03 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/26 13:44:18 by vrobin           ###   ########.fr       */
+/*   Updated: 2019/12/28 19:20:51 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ uint_fast8_t	is_link(t_lem_in *s, char *line)
 		return (0);
 	if (line[0] != '#')
 	{
-		if (!line[0] || line[0] == 'L' || line[0] == ' ' || line[0] == '-')
+		if (line[0] == 'L' || line[0] == '-')
 			return (0);
-		i = 1;
-		while (line[i] && line[i] != ' ' && line[i] != '-')
+		i = 0;
+		while (line[i] != ' ' && line[i] != '-' && line[i] > 32 && line[i] < 127)
 			i++;
 		if (line[i] != '-')
 			return (0);
@@ -67,7 +67,7 @@ void			read_link(t_lem_in *s, char *line)
 		exit_failure(s, 1, "Not enought viable info", 1);
 	}
 	s->pipe = s->i_current;
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &line) > 0)
 	{
 		if (is_link(s, line) == 0)
 		{
