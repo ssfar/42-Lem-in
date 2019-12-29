@@ -1,64 +1,657 @@
-[34mPath : 1 I G F 
-[34mPath : 1 F G I 
-[34mPath : 1 F G J 2 
-[34mPath : 1 I G J 2 
-[34mPath : 1 F G H 2 
-[34mPath : 1 I G H 2 
-[34mPath : 1 A B C D H 
-[34mPath : 1 F G H D C 
-[34mPath : 1 I G H D C 
-[34mPath : 1 F G H E 2 
-[34mPath : 1 I G H E 2 
-Total way = 11
-ret
+[34mpath[0] = 1 F G J 2 
+[34mpath[1] = 1 I G H 2 
+[34mpath[2] = 1 I G J 2 
+[34mpath[3] = 1 F G H 2 
+[34mpath[4] = 1 I G H E 2 
+[34mpath[5] = 1 F G H E 2 
+[34mpath[6] = 1 A B C D H 2 
+[34mpath[7] = 1 A B C D H E 2 
+Total way = 8[0m
 
--1 -1 -1 
-52
+[33mmax path usable : 3
+best case : 13
 
-Paths : 1 A B C D H 
-Paths : 1 F G H D C 
-Paths : 1 I G F 
-Paths : 1 F G J 2 
-Paths : 1 F G I 
-Paths : 1 I G H D C 
-Paths : 1 I G J 2 
-Paths : 1 F G H 2 
-Paths : 1 F G H E 2 
-Paths : 1 I G H 2 
-Paths : 1 I G H E 2 
-Paths : 1 A B C D H 2 
-Paths : 1 A B C D H E 2 
-Paths : 1 A B C D H 2 
-Paths : 1 A B C D H E 2 
+[0m
+[31mfinal[0] = 0[0m
+[31mfinal[1] = 6[0m
 
-Paths : 1 A B C D H E 2 
-Paths : 1 A B C D H E 2 
-Paths : 1 A B C D H 2 
-Paths : 1 I G H E 2 
-Paths : 1 I G H 2 
-Paths : 1 F G H E 2 
-Paths : 1 F G H 2 
+before
 
+Path [0]
+-1
+-1
+-1
+-1
 
-Paths : 1 A B C D H 2 
-Paths : 1 I G J 2 
-  
-  0    1
-0 L11 L2I 
-1 L1A L2G l31 L4I
-2 L5
-...
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
 
+After
 
-0 3
-1 3
-2 3
-3 3
+Path [0]
+1
+-1
+-1
+-1
 
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
 
-4 1
-5 0
-6 0
-7 0
-8 0
-9 0
+before
+
+Path [0]
+1
+-1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+1
+-1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+1
+-1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+3
+1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+3
+1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+3
+1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+3
+1
+-1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+5
+3
+1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+5
+3
+1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+5
+3
+1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+5
+3
+1
+-1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+7
+5
+3
+1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+7
+5
+3
+1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+7
+5
+3
+1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+7
+5
+3
+1
+
+Path [1]
+-1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+9
+7
+5
+3
+
+Path [1]
+1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+9
+7
+5
+3
+
+Path [1]
+1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+9
+7
+5
+3
+
+Path [1]
+1
+-1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+9
+7
+5
+3
+
+Path [1]
+1
+-1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+11
+9
+7
+5
+
+Path [1]
+3
+1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+11
+9
+7
+5
+
+Path [1]
+3
+1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+11
+9
+7
+5
+
+Path [1]
+3
+1
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+11
+9
+7
+5
+
+Path [1]
+3
+1
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+13
+11
+9
+7
+
+Path [1]
+5
+3
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+13
+11
+9
+7
+
+Path [1]
+5
+3
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+13
+11
+9
+7
+
+Path [1]
+5
+3
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+13
+11
+9
+7
+
+Path [1]
+5
+3
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+15
+13
+11
+9
+
+Path [1]
+7
+5
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+15
+13
+11
+9
+
+Path [1]
+7
+5
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+15
+13
+11
+9
+
+Path [1]
+7
+5
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+15
+13
+11
+9
+
+Path [1]
+7
+5
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+17
+15
+13
+11
+
+Path [1]
+9
+7
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+17
+15
+13
+11
+
+Path [1]
+9
+7
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+17
+15
+13
+11
+
+Path [1]
+9
+7
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+17
+15
+13
+11
+
+Path [1]
+9
+7
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+19
+17
+15
+13
+
+Path [1]
+11
+9
+-1
+-1
+-1
+-1
+
+before
+
+Path [0]
+19
+17
+15
+13
+
+Path [1]
+11
+9
+-1
+-1
+-1
+-1
+
+After
+
+Path [0]
+19
+17
+15
+13
+
+Path [1]
+11
+9
+-1
+-1
+-1
+-1
+
