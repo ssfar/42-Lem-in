@@ -114,21 +114,3 @@ ssize_t			*get_way(t_lem_in *s, size_t new_p_last);
 void			sort_path(t_lem_in *s, size_t path_size);
 void			throw_ant(t_lem_in *s, ssize_t *final);
 size_t			calculate_best_case(size_t path_size, size_t ant, size_t nb_path);
-
-
-[0]		[1]
-
-10
-4
-[1]	nb_ant, path0, 0, nb_path -> 0 2 4 6
-
-1eme dimension = tour
-2 eme dimension = path
-3 eme dimension = numero de la fourmis + index = room
-
-0-I 
-0-G 2-I
-L0-J L2-G L4-I
-L0-2 L2-J L4-G L6-I
-L2-2 L4-J L6-G L8-I
-[2] nb_ant, path1, 1, nb -> 	1 3 5 7 8

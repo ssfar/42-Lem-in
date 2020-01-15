@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:20:38 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/28 19:20:48 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/01/15 20:05:24 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,8 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 	final = NULL;
 	best_case = s->way[0].last_node + s->ant - 1;
 	s->max_path = s->room_tab[s->start].link_rm > s->room_tab[s->end].link_rm ? s->room_tab[s->end].link_rm : s->room_tab[s->start].link_rm;
-	ft_printf("\n[yellow]max path usable : %d\n", s->max_path);
-	ft_printf("best case : %d\n\n[a_reset]", best_case);
+	// ft_printf("\n[yellow]max path usable : %d\n", s->max_path);
+	// ft_printf("best case : %d\n\n[a_reset]", best_case);
 	if (!(final = malloc(sizeof(size_t) * s->max_path + 1)))
 		return (NULL);
 	i = 0;
@@ -169,7 +169,7 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 		write_case(s, 0, final);
 		while (i < s->max_path)
 		{
-			ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
+			// ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
 			i++;
 		}
 		return(final);
@@ -195,13 +195,13 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 	// else
 	// 	write_case(s, i - 1, final);
 	i = 0;
-	ft_printf("\n");
+	// ft_printf("\n");
 	while (i < s->max_path && final[i] != -1)
 	{
-		ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
+		// ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
 		i++;
 	}
-	ft_printf("\n");
+	// ft_printf("\n");
 	s->max_path = i;
 	// ft_printf("%d | %d\n", i, s->p_last);
 	// print_way(s);
