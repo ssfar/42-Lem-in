@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/22 18:45:01 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:35:33 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,46 @@ void			print_map(t_lem_in *s)
 
 void	print_info(t_lem_in *s)
 {
+	size_t i;
+	size_t pipe;
+
+	pipe = 0;
+	i = 0;
+	ft_printf("%d\n", s->ant);
 	while (s->info != NULL)
 	{
-		ft_printf("[a_reset]%s\n", s->info->str);
+		i = 0;
+		if (!ft_strcmp(s->info->str, s->pipe->str) && !ft_strcmp(s->info->str + ft_strlen(s->info->str) + 1, (s->pipe->str + ft_strlen(s->pipe->str) + 1)))
+			pipe = 1;
+		if (s->info->str[0] != '#')
+		{
+			if (pipe == 0)
+			{
+				ft_printf("[a_reset]%s", s->info->str);
+				i = ft_strlen(s->info->str) + 1;
+				ft_printf(" [a_reset]%s\n", s->info->str + i);
+			}
+			else
+			{
+				ft_printf("[a_reset]%s", s->info->str);
+				i = ft_strlen(s->info->str) + 1;
+				ft_printf("-[a_reset]%s\n", s->info->str + i);
+			}
+		}
+		else
+			ft_printf("[a_reset]%s\n", s->info->str);
 		s->info = s->info->i_next;
 	}
+	ft_printf("\n");
 }
 
 void	print_ant(size_t ant)
 {
-	ft_printf("\n [black]  \\ /\n");//
-	ft_printf(" [242;231;191]\\[150;0;0]([white]\[green]'[red]U[green]'[150;0;0])[242;231;191]/\n");//
-	ft_printf("  -[150;0;0]( )[242;231;191]-[a_bold][red] = %zd\n", ant);//
-	ft_printf(" [a_reset][242;231;191]/[150;0;0]([black] _ [150;0;0])[242;231;191]\\\n[a_reset]");//
+	ft_printf("%d\n", ant);
+	// ft_printf("\n [black]  \\ /\n");//
+	// ft_printf(" [242;231;191]\\[150;0;0]([white]\[green]'[red]U[green]'[150;0;0])[242;231;191]/\n");//
+	// ft_printf("  -[150;0;0]( )[242;231;191]-[a_bold][red] = %zd\n", ant);//
+	// ft_printf(" [a_reset][242;231;191]/[150;0;0]([black] _ [150;0;0])[242;231;191]\\\n[a_reset]");//
 }
 
 void	print_datatab(t_lem_in *s)

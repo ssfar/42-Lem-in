@@ -381,6 +381,7 @@ void		algo(t_lem_in *s)
 	}
 	if (!valid_path(s->way, s->p_last, s->end))
 		exit_failure(s, 123, "No path from start to end", 1);
+	print_info(s);
 	complete_path(s, s->way, s->p_last, s->end);
 	// new_p_last = sort_way(s, s->way, s->p_last);
 	old_p_last = s->p_last;

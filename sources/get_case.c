@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 15:20:38 by vrobin            #+#    #+#             */
-/*   Updated: 2020/01/15 20:05:24 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/01/21 17:56:58 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ ssize_t		*get_way(t_lem_in *s, size_t path_size)
 	// ft_printf("\n");
 	while (i < s->max_path && final[i] != -1)
 	{
-		// ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
+		ft_printf("[red]final[%d] = %d[a_reset]\n", i, final[i]);
 		i++;
 	}
 	// ft_printf("\n");

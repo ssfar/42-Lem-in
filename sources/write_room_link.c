@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:58:16 by vrobin            #+#    #+#             */
-/*   Updated: 2019/11/27 16:48:42 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/01/21 13:32:18 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void			write_link(t_lem_in *s)
 	ssize_t	index1;
 	ssize_t	index2;
 	size_t	i;
+	t_info *save_pipe;
 	t_room	*tmp;
 
+	save_pipe = s->pipe;
 	while (s->pipe != NULL)
 	{
 		i = 0;
@@ -64,6 +66,7 @@ void			write_link(t_lem_in *s)
 		add_link(s, index1, index2);
 		s->pipe = s->pipe->i_next;
 	}
+	s->pipe = save_pipe;
 }
 
 void	write_room2(t_lem_in *s, t_table *tmp, size_t i)

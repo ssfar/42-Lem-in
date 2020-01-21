@@ -114,3 +114,4 @@ ssize_t			*get_way(t_lem_in *s, size_t new_p_last);
 void			sort_path(t_lem_in *s, size_t path_size);
 void			throw_ant(t_lem_in *s, ssize_t *final);
 size_t			calculate_best_case(size_t path_size, size_t ant, size_t nb_path);
+size_t			calculate_case(size_t path_size1, size_t path_size2, size_t ant, size_t nb_path);

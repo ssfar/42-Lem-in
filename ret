@@ -1,21 +1,59 @@
-L0-I L1-A
-L0-G L1-B L2-I L3-A
-L0-J L1-C L2-G L3-B L4-I L5-A
-L0-2 L1-D L2-J L3-C L4-G L5-B L6-I L7-A
-L1-H L2-2 L3-D L4-J L5-C L6-G L7-B L8-I L9-A
-L1-2 L3-H L4-2 L5-D L6-J L7-C L8-G L9-B
-L3-2 L5-H L6-2 L7-D L8-J L9-C
-L5-2 L7-H L8-2 L9-D
-L7-2 L9-H
-L9-2
+10
+[0m##start
+[0m1 [0m0 1
+[0mA [0m0 2
+[0mB [0m0 2
+[0mC [0m0 3
+[0mD [0m0 0
+[0mE [0m0 0
+[0mF [0m0 0
+[0mG [0m0 0
+[0mH [0m0 0
+[0mI [0m0 0
+[0mJ [0m0 0
+[0m##end
+[0m2 [0m0 0
+[0m1-[0mA
+[0m1-[0mF
+[0m1-[0mI
+[0mA-[0mB
+[0mB-[0mC
+[0mC-[0mD
+[0mD-[0mH
+[0mF-[0mG
+[0mG-[0mH
+[0mG-[0mJ
+[0mI-[0mG
+[0mJ-[0m2
+[0mH-[0m2
+[0mH-[0mE
+[0mE-[0m2
 
-L0-F L1-A 
-L0-G L1-B L2-F L3-A 
-L0-J L1-C L2-G L3-B L4-F L5-A 
-L0-2 L1-D L2-J L3-C L4-G L5-B L6-F L7-A 
-L1-H L2-2 L3-D L4-J L5-C L6-G L7-B L8-F L9-A 
-L1-2 L3-H L4-2 L5-D L6-J L7-C L8-G L9-B 
-L3-2 L5-H L6-2 L7-D L8-J L9-C 
-L5-2 L7-H L8-2 L9-D 
-L7-2 L9-H 
-L9-2
+ant_tab
+0 0 0 0 0 0 0 0 0 0 
+ant_path
+7 3 
+L0-A L1-F 
+ant_path
+7 3 
+L0-B L1-G L2-A L3-F 
+ant_path
+7 3 
+L0-C L1-J L2-B L3-G L4-A L5-F 
+ant_path
+7 3 
+L0-D L1-2 L2-C L3-J L4-B L5-G L6-A L7-F ant 1 on path 0 has arrived !
+ant_path
+6 3 
+L0-H L2-D L3-2 L4-C L5-J L6-B L7-G L8-A L9-F ant 3 on path 0 has arrived !
+ant_path
+4 3 
+L0-2 L2-H L4-D L5-2 L6-C L7-J L8-B L9-G ant 0 on path 1 has arrived !ant 5 on path 0 has arrived !
+ant_path
+1 2 
+L2-2 L4-H L6-D L7-2 L8-C L9-J ant 2 on path 1 has arrived !ant 7 on path 0 has arrived !
+ant_path
+-3 0 
+L4-2 L6-H L8-D L9-2 ant 4 on path 1 has arrived !ant 9 on path 0 has arrived !
+ant_path
+-7 -3 

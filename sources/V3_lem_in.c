@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2020/01/15 19:56:00 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/01/21 17:57:45 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,11 @@ int				main(void)
 	write_room(&s);	
 	write_link(&s);
 	// print_ant(s.ant);
-	// print_info(&s);
 	// print_datatab(&s);
+	// print_way(&s);
 	// print_map(&s);
 	algo(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
-	//print_way(&s);
 	// print_max_way(&s);
 }
