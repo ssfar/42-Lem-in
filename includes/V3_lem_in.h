@@ -50,7 +50,15 @@ typedef struct	s_lem_in
 	size_t			p_last;
 	size_t			p_size;
 	size_t			max_path;
+	struct	s_throw	*res;
 }				t_lem_in;
+
+typedef	struct	s_throw
+{
+	ssize_t	*ant_tab;
+	ssize_t	*ant_path;
+	ssize_t	*ant_start;
+}				t_throw;
 
 typedef	struct	s_info
 {
@@ -66,6 +74,7 @@ typedef	struct	s_room
 	size_t	link_rm;
 	ssize_t	*link;
 }				t_room;
+
 
 void			hash_data(void *dest, const size_t size, const char *key);
 unsigned int	hash_to_int(const char *key);

@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2020/01/21 17:57:45 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/01/28 11:30:48 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void			init_struct(t_lem_in *s)
 	s->end = -1;
 	s->nb_room = 0;
 	s->room_tab = NULL;
+	s->res = NULL;
 	init_map(s);
 }
 
