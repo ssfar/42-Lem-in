@@ -371,7 +371,7 @@ void		algo(t_lem_in *s)
 	cur = 0;
 	data_tab = s->room_tab;
 	init_algo(s);
-	//print_way_plus_bit(s);
+	// print_way_plus_bit(s);
 	//ft_printf("sizeof path_tab : %d, path_last : %d\n", s->p_size, s->p_last);
 	while (cur <= s->q_last)
 	{
@@ -382,12 +382,13 @@ void		algo(t_lem_in *s)
 	if (!valid_path(s->way, s->p_last, s->end))
 		exit_failure(s, 123, "No path from start to end", 1);
 	print_info(s);
+	print_way(s);
 	complete_path(s, s->way, s->p_last, s->end);
 	// new_p_last = sort_way(s, s->way, s->p_last);
 	old_p_last = s->p_last;
 	s->p_last = sort_way(s, s->way, s->p_last);
 	sort_path(s, s->p_last);
-	// print_way(s);
 	// ft_printf("\nafter completion \n\n");
+	// get_way(s, s->p_last);
 	throw_ant(s, get_way(s, s->p_last));
 }

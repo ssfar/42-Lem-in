@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/28 18:45:47 by vrobin            #+#    #+#             */
-/*   Updated: 2020/01/28 17:20:23 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/02/04 15:59:54 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ void	init_ant_tab(t_lem_in *s)
 		s->res->ant_tab[i] = 0;
 		i++;
 	}
-	i = 0;
-	if (!(s->res->ant_start = malloc(sizeof(ssize_t) * s->max_path)))
-		exit_failure(s, 123, "malloc res", 0);
-	while (i < s->max_path - 1)
-	{
-		s->res->ant_start[i] = 0;
-		i++;
-	}
 }
 
 void	init_ant_path(t_lem_in *s, ssize_t * final)
@@ -45,8 +37,11 @@ void	init_ant_path(t_lem_in *s, ssize_t * final)
 	path = s->max_path;
 	if (!(s->res->ant_path = malloc(sizeof(ssize_t) * s->max_path)))
 		exit_failure(s, 123, "malloc s->res->ant_path", 0);
+	if (!(s->res->ant_start = malloc(sizeof(ssize_t) * s->max_path)))
+		exit_failure(s, 123, "malloc res", 0);
 	while (i < s->max_path && ant > 0)
 	{
+		s->res->ant_start[i] = 0;
 		if (i < s->max_path - 1)
 			s->res->ant_path[i] = calculate_case(s->way[final[0]].last_node, s->way[final[i]].last_node, ant, path);
 		else
@@ -101,31 +96,34 @@ size_t	print_turn(t_lem_in *s, ssize_t *final)
 {
 	size_t	i;
 	size_t	act_path;
+	size_t	new_max_path;
 
 	i = 0;
 	act_path = 0;
+	new_max_path = s->max_path;
 	while (i < s->ant)
 	{
 		if (s->res->ant_tab[i] == 0)
 			break;
 		if (i != 0)
-			act_path = act_path < s->max_path - 1 ? act_path + 1 : 0;
-		if ((ssize_t)(i / s->max_path) >= s->res->ant_path[s->max_path - 1])
-			act_path = 0;
+			act_path = act_path < new_max_path - 1 ? act_path + 1 : 0;
 		if (s->res->ant_tab[i] < s->way[final[act_path]].last_node + 1)
 			ft_printf("L%d-%s ", i, s->room_tab[s->way[final[act_path]].path[s->res->ant_tab[i]]].name);
+		if (new_max_path > 1 && (ssize_t)((i + 1) / new_max_path) == s->res->ant_path[new_max_path - 1])
+			new_max_path -= 1;
 		i++;
 	}
 	i = 0;
 	act_path = 0;
+	new_max_path = s->max_path;
 	while (i < s->ant)
 	{
+		if (new_max_path > 1 && (ssize_t)((i + 1) / new_max_path) == s->res->ant_path[new_max_path - 1])
+			new_max_path -= 1;
 		if (i != 0)
-			act_path = act_path < s->max_path - 1 ? act_path + 1 : 0;
+			act_path = act_path < new_max_path - 1 ? act_path + 1 : 0;
 		if (s->res->ant_tab[i] == s->way[final[act_path]].last_node)
-		{
 			s->res->ant_tab[i]++;
-		}
 		i++;
 	}
 	ft_printf("\n");
@@ -137,12 +135,11 @@ void		throw_ant(t_lem_in *s, ssize_t *final)
 	size_t	i;
 	size_t	to_throw;
 	size_t	act_path;
-	ssize_t	up;
-	size_t	new_max_path;
 	ssize_t	turn;
-	ssize_t	max;
+	size_t	new_max_path;
+	size_t	max;
+	size_t	up;
 
-	new_max_path = s->max_path;
 	if (!(s->res = (t_throw*)malloc(sizeof(t_throw))))
 		exit_failure(s, 123, "malloc res", 0);
 	init_ant_tab(s);
@@ -153,32 +150,35 @@ void		throw_ant(t_lem_in *s, ssize_t *final)
 	to_throw = 0;
 	act_path = 0;
 	turn = 0;
-	i = 0;
-	while (s->res->ant_tab[s->ant - 1] < s->way[final[0]].last_node + 1)
+	new_max_path = s->max_path;
+	while (s->res->ant_tab[s->ant - 1] < s->way[final[new_max_path - 1]].last_node + 1)
 	{
-		to_throw++;
 		up = 0;
-		i = last_ant_arrived(s, final);
-		act_path = i % new_max_path;
-		 if (turn < s->res->ant_path[s->max_path - 1])
+		act_path = 0;
+		to_throw++;
+		if (s->res->ant_start[new_max_path - 1] == 1)
+			max = max + new_max_path;
+		else
 			max = to_throw * new_max_path;
-		//  if (turn == s->res->ant_path[s->max_path - 1])
-		//  	max++;
-		// ft_printf("max vaut %d\n", max);
-		// ft_printf("turn vaut %d\n", turn);
+		new_max_path = s->max_path;
+		i = 0;
 		while (up < max && i < s->ant)
 		{
-			if (i != last_ant_arrived(s, final))
-				act_path = act_path < s->max_path - 1 ? act_path + 1 : 0;
-			if (s->res->ant_tab[i] < s->way[final[act_path]].last_node)
+			if (i != 0)
+				act_path = act_path < new_max_path - 1 ? act_path + 1 : 0;
+			if (s->res->ant_tab[i] != s->way[final[act_path]].last_node + 1)
 			{
-				if (s->res->ant_tab[i] == 0)
-					s->res->ant_start[act_path]++;
 				s->res->ant_tab[i]++;
-				up++;
 			}
+			if (new_max_path > 1 && (ssize_t)((i + 1) / new_max_path) == s->res->ant_path[new_max_path - 1])
+			{
+				new_max_path--;
+				s->res->ant_start[new_max_path - 1] = 1;
+			}
+			up++;
 			i++;
 		}
 		turn += print_turn(s, final);
 	}
+	ft_printf("turn vaut : %d\n", turn);
 }

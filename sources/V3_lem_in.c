@@ -114,9 +114,9 @@ int				main(void)
 	write_link(&s);
 	// print_ant(s.ant);
 	// print_datatab(&s);
-	// print_way(&s);
 	// print_map(&s);
 	algo(&s);
+	print_way(&s);
 	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
 	//	return (EXIT_FAILURE);
 	// print_max_way(&s);
