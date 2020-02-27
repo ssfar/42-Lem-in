@@ -15,18 +15,17 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # define MAP_SIZE	100000
-# define PATH_SIZE	2
-# define PATH_FOUNDED -1
 # define DEL -2
 # define LOCK -1
+# define PRIO 1
 # define ALL 0
 
 typedef	struct s_path
 {
 	uint8_t			*on_p;
-	ssize_t			*path;
-	ssize_t			last_node;
-	ssize_t			max_pos;
+	ssize_t			*node;
+	ssize_t			n_last;
+	ssize_t			n_size;
 }				t_path;
 
 typedef	struct	s_table
@@ -54,15 +53,7 @@ typedef struct	s_lem_in
 	size_t			p_last;
 	size_t			p_size;
 	size_t			max_path;
-	struct	s_throw	*res;
 }				t_lem_in;
-
-typedef	struct	s_throw
-{
-	ssize_t	*ant_tab;
-	ssize_t	*ant_path;
-	ssize_t	*ant_start;
-}				t_throw;
 
 typedef	struct	s_info
 {
@@ -74,12 +65,14 @@ typedef	struct	s_room
 {
 	ssize_t	index;
 	char	*name;
+	ssize_t	*link;
 	size_t	nb_link;
 	size_t	link_rm;
-	size_t	cost;
-	size_t	ascend;
-	ssize_t	*link;
-	ssize_t	*prio;
+
+	size_t	cost;	// distance de start  
+	ssize_t	*prio;	// priorite des links
+	size_t	ascend;	// remonte ? (0 / 1)
+	size_t	prev; 	// introduced by
 }				t_room;
 
 
@@ -126,8 +119,3 @@ void			update_link(t_lem_in *s, ssize_t start, ssize_t end, t_room *room_tab);
 void			suppr_node_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i);
 void			print_way_plus_bit(t_lem_in *s);
 uint_fast8_t	is_on_path(t_lem_in *s, unsigned char *on, t_path to_add);
-ssize_t			*get_way(t_lem_in *s, size_t new_p_last);
-void			sort_path(t_lem_in *s, size_t path_size);
-void			throw_ant(t_lem_in *s, ssize_t *final);
-size_t			calculate_best_case(size_t path_size, size_t ant, size_t nb_path);
-size_t			calculate_case(size_t path_size1, size_t path_size2, size_t ant, size_t nb_path);
