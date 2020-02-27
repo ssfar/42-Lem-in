@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2020/02/04 18:07:17 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:12:14 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,28 @@ void	print_info(t_lem_in *s)
 	while (s->info != NULL)
 	{
 		i = 0;
-		if (!ft_strcmp(s->info->str, s->pipe->str) && !ft_strcmp(s->info->str + ft_strlen(s->info->str) + 1, (s->pipe->str + ft_strlen(s->pipe->str) + 1)))
-			pipe = 1;
 		if (s->info->str[0] != '#')
 		{
-			if (pipe == 0)
+			if (!ft_strcmp(s->info->str, s->pipe->str))
 			{
-				ft_printf("[a_reset]%s", s->info->str);
+				pipe++;
+			}
+			if (pipe < 2)
+			{
+				ft_printf("%s", s->info->str);
 				i = ft_strlen(s->info->str) + 1;
-				ft_printf(" [a_reset]%s\n", s->info->str + i);
+				// ft_printf("-");
+				ft_printf(" %s\n", s->info->str + i);
 			}
 			else
 			{
-				ft_printf("[a_reset]%s", s->info->str);
+				ft_printf("%s-", s->info->str);
 				i = ft_strlen(s->info->str) + 1;
-				ft_printf("-[a_reset]%s\n", s->info->str + i);
+				ft_printf("%s\n", s->info->str + i);
 			}
 		}
 		else
-			ft_printf("[a_reset]%s\n", s->info->str);
+			ft_printf("%s\n", s->info->str);
 		s->info = s->info->i_next;
 	}
 	ft_printf("\n");
@@ -82,12 +85,24 @@ void	print_datatab(t_lem_in *s)
 		ft_printf("[blue]Index : %d\t", s->room_tab[i].index);
 		ft_printf("[green]Nb_link : %d\t", s->room_tab[i].nb_link);
 		ft_printf("[green]link_rm : %d\t", s->room_tab[i].link_rm);
-		ft_printf("[yellow]links : ");
+		ft_printf("[white]cost : %d\t", s->room_tab[i].cost);
+		ft_printf("\n[yellow]links : ");
 		j = 0;
-		// while (j < s->room_tab[i].nb_link && s->room_tab[i].link[j] != -1)
 		while (j < s->room_tab[i].nb_link)
-			ft_printf("|%zd|\t", s->room_tab[i].link[j++]);
-		ft_printf("[a_reset]\n");
+			ft_printf("|%s|\t", s->room_tab[s->room_tab[i].link[j++]].name);
+		j = 0;
+		ft_printf("\n[yellow]prios : ");
+		while (j < s->room_tab[i].nb_link)
+		{
+			if (s->room_tab[i].prio[j] == ALL)
+				ft_printf("|%s|\t", "ALL");
+			else if (s->room_tab[i].prio[j] == LOCK)
+				ft_printf("|%s|\t", "LOCK");
+			else
+				ft_printf("|%s|\t", "DEL");
+				j++;
+		}
+		ft_printf("\n[a_reset]\n");
 		i++;
 	}
 }

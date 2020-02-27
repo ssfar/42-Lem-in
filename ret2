@@ -1,0 +1,9 @@
+0 > 1 6 9
+6 > 0 7
+7 > 6 8 10 9
+10 > 7 11
+
+[find] [find + 1]
+
+s->way[find].path[i] = 0
+s->room_tab[j] = 0

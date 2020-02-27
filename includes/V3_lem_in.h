@@ -16,6 +16,10 @@
 # include "ft_printf.h"
 # define MAP_SIZE	100000
 # define PATH_SIZE	2
+# define PATH_FOUNDED -1
+# define DEL -2
+# define LOCK -1
+# define ALL 0
 
 typedef	struct s_path
 {
@@ -72,7 +76,10 @@ typedef	struct	s_room
 	char	*name;
 	size_t	nb_link;
 	size_t	link_rm;
+	size_t	cost;
+	size_t	ascend;
 	ssize_t	*link;
+	ssize_t	*prio;
 }				t_room;
 
 

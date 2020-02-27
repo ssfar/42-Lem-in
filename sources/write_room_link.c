@@ -43,30 +43,29 @@ void			write_link(t_lem_in *s)
 	ssize_t	index1;
 	ssize_t	index2;
 	size_t	i;
-	t_info *save_pipe;
+	t_info	*save_info;
 	t_room	*tmp;
 
-	save_pipe = s->pipe;
-	while (s->pipe != NULL)
+	save_info = s->pipe;
+	while (save_info != NULL)
 	{
 		i = 0;
-		while (s->pipe->str[0] == '#')
+		while (save_info->str[0] == '#')
 		{
-			if (s->pipe->i_next == NULL)
+			if (save_info->i_next == NULL)
 				return;
-			s->pipe = s->pipe->i_next;
+			save_info = save_info->i_next;
 		}
-		while (s->pipe->str[i] != '\0')
+		while (save_info->str[i] != '\0')
 			i++;
-		tmp = find_room(s, s->pipe->str, hash_to_int(s->pipe->str));
+		tmp = find_room(s, save_info->str, hash_to_int(save_info->str));
 		index1 = tmp->index;
 		i += 1;
-		tmp = find_room(s, s->pipe->str + i, hash_to_int(s->pipe->str + i));
+		tmp = find_room(s, save_info->str + i, hash_to_int(save_info->str + i));
 		index2 = tmp->index;
 		add_link(s, index1, index2);
-		s->pipe = s->pipe->i_next;
+		save_info = save_info->i_next;
 	}
-	s->pipe = save_pipe;
 }
 
 void	write_room2(t_lem_in *s, t_table *tmp, size_t i)

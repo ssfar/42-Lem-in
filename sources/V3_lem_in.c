@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2020/02/04 18:07:15 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/02/27 18:12:20 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,49 @@ void			init_struct(t_lem_in *s)
 	init_map(s);
 }
 
+int		check_visited(ssize_t *visited, size_t size)
+{
+	size_t i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (visited[i] != -1)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	edit_cost(t_lem_in *s)
+{
+	ssize_t	i;
+	size_t	j;
+	ssize_t	*visited;
+
+	i = 0;
+	visited = malloc(sizeof(ssize_t) * s->nb_room + 1);
+	while (i < s->nb_room)
+	{
+		visited[i] = s->room_tab[i].index;
+		i++;
+	}
+	i = s->start;
+	j = 0;
+	while (check_visited(visited, s->nb_room) != -1 && i < s->nb_room)
+	{
+		j = 0;
+		while (j < s->room_tab[i].nb_link)
+		{
+			if (s->room_tab[i].cost + 1 < s->room_tab[s->room_tab[i].link[j]].cost)
+				s->room_tab[s->room_tab[i].link[j]].cost = s->room_tab[i].cost + 1;
+			j++;
+		}
+		i++;
+	}
+	visited[i] = -1;
+}
+
 int				main(void)
 {
 	t_lem_in	s;
@@ -115,9 +158,7 @@ int				main(void)
 	// print_ant(s.ant);
 	// print_datatab(&s);
 	// print_map(&s);
+	s.room_tab[s.start].cost = 0;
+	edit_cost(&s);
 	algo(&s);
-	// print_way(&s);
-	//if (!(s.room_tab = (t_room*)malloc(sizeof(t_room) * s.nb_room)))
-	//	return (EXIT_FAILURE);
-	// print_max_way(&s);
 }

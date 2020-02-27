@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:38:07 by vrobin            #+#    #+#             */
-/*   Updated: 2019/12/28 15:51:03 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/02/27 15:02:27 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_room	*init_room(t_lem_in *s, t_table *tmp, char *name)
 	tmp->room->name = name;
 	tmp->room->index = s->nb_room;
 	tmp->room->nb_link = 0;
+	tmp->room->cost = INT32_MAX;
 	tmp->room->link = NULL;
 	return	(tmp->room);
 }

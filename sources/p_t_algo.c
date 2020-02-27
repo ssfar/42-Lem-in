@@ -206,7 +206,7 @@ void		init_algo(t_lem_in *s)
 		exit_failure(s, 123, "No path from start to end", 1);
 }
 
-void		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t cur)
+int		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t cur)
 {
 	size_t	i;
 	size_t	j;
@@ -225,21 +225,24 @@ void		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t cur)
 			{
 				if (link[j] != -2)
 					copy_path(s, link[j], &tmp[i], cur);
+				if (tmp[i].path[tmp[i].last_node] == s->end)
+					return (i);
 				j++;
 			}
 		}
 		i++;
 	}
+	return (-1);
 }
 
-void		add_queu(t_lem_in *s, ssize_t *link, size_t nb_link)
+void		add_queu(t_lem_in *s, ssize_t *link, ssize_t *prio, size_t nb_link)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < nb_link)
 	{
-		if (link[i] != -2 && link[i] != s->end && add_on(s->on_q, link[i]))
+		if (prio[i] != -2 && prio[i] != -1 && link[i] != s->end && add_on(s->on_q, link[i]))
 		{
 			s->q_last++;
 			s->queu[s->q_last] = link[i];
@@ -360,35 +363,123 @@ uint_fast8_t	sort_way(t_lem_in *s, t_path *way, size_t path_size)
 	return (path_size);
 }
 
+void		clear_link(t_lem_in *s)
+{
+	ssize_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < s->nb_room)
+	{
+		if (s->room_tab[i].link[0] == -2 || s->room_tab[i].link[s->room_tab[i].nb_link - 1] == -2)
+		{
+			if (s->room_tab[i].link[0] == -2)
+				s->room_tab[i].link++;
+			s->room_tab[i].nb_link--;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	i = 0;
+	while (i < s->nb_room)
+	{
+		if (!(s->room_tab[i].prio = malloc(sizeof(ssize_t) * s->room_tab[i].nb_link + 1)))
+			exit_failure(s, 123, "can't malloc prio", 1);
+		j = 0;
+		while (j < s->room_tab[i].nb_link)
+		{
+			s->room_tab[i].prio[j] = ALL;
+			j++;
+		}
+		i++;
+	}
+}
+
+void		edit_link(t_lem_in *s, size_t find, size_t i, size_t j)
+{
+	size_t	k;
+
+	k = 0;
+	while (k < s->room_tab[j].nb_link)
+	{
+		if (i > 0 && s->room_tab[j].link[k] == s->way[find].path[i - 1])
+		{
+			if (s->room_tab[j].prio[k] == 1)
+				s->room_tab[j].prio[k] = 0;
+			else
+				s->room_tab[j].prio[k] = -2;
+			
+		}
+		if (i < find && s->room_tab[j].link[k] == s->way[find].path[i + 1])
+		{
+			if (s->room_tab[j].prio[k] == 1)
+				s->room_tab[j].prio[k] = -1;
+			else
+				s->room_tab[j].prio[k] = -2;
+		}
+		k++;
+	}
+}
+
+void		bhandari(t_lem_in *s, t_room *data_tab, ssize_t find)
+{
+	ssize_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < s->way[find].last_node)
+	{
+		ft_printf("%s\n", s->room_tab[i].name);
+		j = 0;
+		while (data_tab[j].index != s->way[find].path[i])
+			j++;
+		edit_link(s, find, i, j);
+		i++;
+	}
+}
+
+size_t		calcul_turn(t_lem_in s)
+{
+	size_t	act_case;
+
+	act_case = 0;
+	(void)(s);
+	return (act_case);
+}
+
 void		algo(t_lem_in *s)
 {
 	t_room	*data_tab;
 	ssize_t	cur;
-	size_t	old_p_last;
-	
+	ssize_t	find;
+	ssize_t	i;
+	// size_t	act_case;
 
-
+	clear_link(s);
+	init_algo(s);
 	cur = 0;
 	data_tab = s->room_tab;
-	init_algo(s);
-	// print_way_plus_bit(s);
-	//ft_printf("sizeof path_tab : %d, path_last : %d\n", s->p_size, s->p_last);
+	find = -1;
+	i = 0;
+	print_datatab(s);
+	/*
 	while (cur <= s->q_last)
 	{
-		add_queu(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link);
-		find_path(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link, cur);	
+		add_queu(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].prio, data_tab[s->queu[cur]].nb_link); // envoyer en + les prio
+		i = find_path(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link, cur); // pareil
+		// bhandari(s, data_tab, i);
 		cur++;
 	}
-	if (!valid_path(s->way, s->p_last, s->end))
-		exit_failure(s, 123, "No path from start to end", 1);
-	print_info(s);
-	print_way(s);
-	complete_path(s, s->way, s->p_last, s->end);
+	*/
+	// if (!valid_path(s->way, s->p_last, s->end))
+	// print_info(s);
+	// complete_path(s, s->way, s->p_last, s->end);
 	// new_p_last = sort_way(s, s->way, s->p_last);
-	old_p_last = s->p_last;
-	s->p_last = sort_way(s, s->way, s->p_last);
-	sort_path(s, s->p_last);
+	// sort_path(s, s->p_last);
+	// s->p_last = sort_way(s, s->way, s->p_last);
 	// ft_printf("\nafter completion \n\n");
 	// get_way(s, s->p_last);
-	throw_ant(s, get_way(s, s->p_last));
+	// throw_ant(s, get_way(s, s->p_last));
 }
