@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 14:51:48 by ssfar             #+#    #+#             */
-/*   Updated: 2020/02/27 18:28:36 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/02 15:38:16 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,14 @@
 
 
 
-void	exit_failure(t_lem_in *s, uint_fast8_t id, char *message, uint_fast8_t error)
+void	exit_failure(t_lem_in *s, char i, char *line, char j)
 {
-	ft_printf("[red]%s[a_reset]\n", message);
-	clear_info(s->info);
-	if (id == 1)
-		clear_map_room(s);
-	if (id == 2)
-		clear_room_tab(s);
-	if (error)
-		ft_printf("ERROR");
-	exit(EXIT_FAILURE);
+	s->nb_room++;
+	ft_printf("%s", line);
+	j++;
+	i++;
+	exit(0);
 }
-
 void			read_tip(t_lem_in *s, ssize_t *tip)
 {
 	char	*line;
@@ -97,7 +92,6 @@ void			init_struct(t_lem_in *s)
 	s->end = -1;
 	s->nb_room = 0;
 	s->room_tab = NULL;
-	s->res = NULL;
 	init_map(s);
 }
 

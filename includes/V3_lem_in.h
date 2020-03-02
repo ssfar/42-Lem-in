@@ -15,6 +15,7 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 # define MAP_SIZE	100000
+# define PATH_SIZE	10
 # define DEL -2
 # define LOCK -1
 # define PRIO 1

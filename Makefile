@@ -6,7 +6,7 @@
 #    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2020/02/27 17:57:32 by vrobin           ###   ########.fr        #
+#    Updated: 2020/03/02 16:27:35 by vrobin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +21,18 @@ INC_DIR = includes
 SRC_DIR = sources
 OBJ_DIR = objects
 
-SRC_NAME =	V3_lem_in.c \
-			room.c \
-			link.c \
-			hash.c \
-			info.c \
-			map.c \
-			print.c \
-			write_room_link.c \
-			clear_unlinked.c \
-			p_t_algo.c \
-			update_link.c \
+SRC_NAME =	les_mines.c \
+# SRC_NAME =	V3_lem_in.c 
+# 			room.c 
+# 			link.c 
+# 			hash.c 
+# 			info.c 
+# 			map.c 
+# 			print.c 
+# 			write_room_link.c 
+# 			clear_unlinked.c 
+# 			p_t_algo.c 
+# 			update_link.c 
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_NAME:.c=.o))

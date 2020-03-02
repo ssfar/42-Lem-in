@@ -76,12 +76,12 @@ uint_fast8_t	is_on_path(t_lem_in *s, unsigned char *on, t_path to_add)
 	size_t	compare;
 
 	index = 0;
-	while (index <= to_add.last_node)
+	while (index <= to_add.n_last)
 	{
-	if (to_add.path[index] != s->start && to_add.path[index] != s->end)
+	if (to_add.node[index] != s->start && to_add.node[index] != s->end)
 	{
-	on_index = to_add.path[index] / 8;
-	compare = binary_pow_2(to_add.path[index] % 8);
+	on_index = to_add.node[index] / 8;
+	compare = binary_pow_2(to_add.node[index] % 8);
 	if (compare & on[on_index])
 	return (1);
 	}
@@ -94,9 +94,9 @@ void		create_path(t_lem_in *s, t_path *new, size_t malloc_size)
 {
 	if (!(new->on_p = malloc(sizeof(uint8_t) * s->on_size)))
 		exit_failure(s, 123, "can't malloc on_p", 0);
-	if (!(new->path = malloc(sizeof(ssize_t) * malloc_size)))
+	if (!(new->node = malloc(sizeof(ssize_t) * malloc_size)))
 		exit_failure(s, 2, "can't malloc path tab", 0);
-	new->max_pos = malloc_size - 1;
+	new->n_size = malloc_size - 1;
 }
 
 void	realloc_path(t_lem_in *s, t_path *path, size_t malloc_size)
@@ -107,14 +107,14 @@ void	realloc_path(t_lem_in *s, t_path *path, size_t malloc_size)
 	if (!(new = malloc(sizeof(ssize_t) * malloc_size)))
 		exit_failure(s, 2, "can't malloc path tab", 0);
 	i = 0;
-	while (i <= path->last_node)
+	while (i <= path->n_last)
 	{
-		new[i] = path->path[i];
+		new[i] = path->node[i];
 		i++;
 	}
-	free(path->path);
-	path->path = new;
-	path->max_pos = malloc_size - 1;
+	free(path->node);
+	path->node = new;
+	path->n_size = malloc_size - 1;
 }
 
 void		realloc_path_tab(t_lem_in *s, t_path *path, size_t size)
@@ -142,36 +142,36 @@ void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
 	s->p_last++;
 	if (s->p_last >= s->p_size)
 		realloc_path_tab(s, s->way, s->p_last * s->p_last + 2);
-	create_path(s, &s->way[s->p_last], tmp->max_pos + 2);
+	create_path(s, &s->way[s->p_last], tmp->n_size + 2);
 	i = 0;
-	while (i < tmp->last_node)
+	while (i < tmp->n_last)
 	{
-		s->way[s->p_last].path[i] = tmp->path[i];
+		s->way[s->p_last].node[i] = tmp->node[i];
 		if ((size_t)i < s->on_size)
 			s->way[s->p_last].on_p[i] = tmp->on_p[i];
 		i++;
 	}
-	s->way[s->p_last].path[i] = to_add;
+	s->way[s->p_last].node[i] = to_add;
 	while ((size_t)i < s->on_size)
 	{
 		s->way[s->p_last].on_p[i] = tmp->on_p[i];
 		i++;
 	}
-	remove_on(s->way[s->p_last].on_p, tmp->path[tmp->last_node]);
+	remove_on(s->way[s->p_last].on_p, tmp->node[tmp->n_last]);
 	remove_on(tmp->on_p, to_add);
-	s->way[s->p_last].last_node = tmp->last_node;
+	s->way[s->p_last].n_last = tmp->n_last;
 }
 
 void		copy_path(t_lem_in *s, size_t to_add, t_path *tmp, size_t cur)
 {
 	if (add_on(tmp->on_p, to_add))
 	{
-		if (s->queu[cur] == tmp->path[tmp->last_node])
+		if (s->queu[cur] == tmp->node[tmp->n_last])
 		{
-			if (tmp->last_node == tmp->max_pos)
-				realloc_path(s, tmp, tmp->max_pos * 2 + 2);
-			tmp->last_node++;
-			tmp->path[tmp->last_node] = to_add;
+			if (tmp->n_last == tmp->n_size)
+				realloc_path(s, tmp, tmp->n_size * 2 + 2);
+			tmp->n_last++;
+			tmp->node[tmp->n_last] = to_add;
 		}
 		else		
 			duplicate_path(s, to_add, tmp);
@@ -188,8 +188,8 @@ void		init_algo(t_lem_in *s)
 		exit_failure(s, 123, "can't malloc s->way", 0);
 	create_path(s, &s->way[0], PATH_SIZE);
 	s->p_last = 0;
-	s->way[0].last_node = 0;
-	s->way[0].path[0] = s->start;
+	s->way[0].n_last = 0;
+	s->way[0].node[0] = s->start;
 	ft_bzero(s->way[0].on_p, s->on_size);
 	add_on(s->way[0].on_p, s->start);
 	//queu init ...	
@@ -218,14 +218,14 @@ int		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t cur)
 	i = 0;
 	while (i <= p_last)
 	{
-		if (tmp[i].path[tmp[i].last_node] == s->queu[cur])
+		if (tmp[i].node[tmp[i].n_last] == s->queu[cur])
 		{
 			j = 0;
 			while (j < nb_link)
 			{
 				if (link[j] != -2)
 					copy_path(s, link[j], &tmp[i], cur);
-				if (tmp[i].path[tmp[i].last_node] == s->end)
+				if (tmp[i].node[tmp[i].n_last] == s->end)
 					return (i);
 				j++;
 			}
@@ -257,7 +257,7 @@ uint_fast8_t	valid_path(t_path *way, size_t p_last, ssize_t end)
 	i = 0;
 	while (i <= p_last)
 	{
-		if (way[i].path[way[i].last_node] == end)
+		if (way[i].node[way[i].n_last] == end)
 			return (1);
 		i++;
 	}
@@ -269,37 +269,37 @@ void	duply(t_lem_in *s, size_t tmp_path_last, t_path *way_i, t_path *way_j)
 	size_t	l;
 	size_t	pos;
 	k = 0;
-	while (way_j->path[k] != way_i->path[way_i->last_node])
+	while (way_j->node[k] != way_i->node[way_i->n_last])
 		k++;
 	k++;
 	pos = k;
-	while (k < (size_t)way_j->last_node)
+	while (k < (size_t)way_j->n_last)
 	{
-		if (is_on(way_i->on_p, way_j->path[k]))
+		if (is_on(way_i->on_p, way_j->node[k]))
 			return ;
 		k++;
 	}
 	while (tmp_path_last <= s->p_last)
 	{
 		k = pos;
-		l = way_i->last_node + 1;
-		while (l < (size_t)s->way[tmp_path_last].last_node && way_j->path[k] == s->way[tmp_path_last].path[l])
+		l = way_i->n_last + 1;
+		while (l < (size_t)s->way[tmp_path_last].n_last && way_j->node[k] == s->way[tmp_path_last].node[l])
 		{
 			k++;
 			l++;
 		}
-		if (way_j->path[k] == s->way[tmp_path_last].path[l])
+		if (way_j->node[k] == s->way[tmp_path_last].node[l])
 			return ;
 		tmp_path_last++;
 	}
 	s->p_last++;
 	if (s->p_last >= s->p_size)
 		realloc_path_tab(s, s->way, s->p_size * s->p_size + 2);
-	create_path(s, &s->way[s->p_last], way_i->last_node + 1 + way_j->last_node - pos + 1);
+	create_path(s, &s->way[s->p_last], way_i->n_last + 1 + way_j->n_last - pos + 1);
 	k = 0;
-	while (k <= (size_t)way_i->last_node)
+	while (k <= (size_t)way_i->n_last)
 	{
-		s->way[s->p_last].path[k] = way_i->path[k];
+		s->way[s->p_last].node[k] = way_i->node[k];
 		if (k < s->on_size)
 			s->way[s->p_last].on_p[k] = way_i->on_p[k];
 		k++;
@@ -310,12 +310,12 @@ void	duply(t_lem_in *s, size_t tmp_path_last, t_path *way_i, t_path *way_j)
 		s->way[s->p_last].on_p[k] = way_i->on_p[k];
 		k++;
 	}
-	while (pos <= (size_t)way_j->last_node)
+	while (pos <= (size_t)way_j->n_last)
 	{
-		s->way[s->p_last].path[l++] = way_j->path[pos];
-		add_on(s->way[s->p_last].on_p, way_j->path[pos++]);
+		s->way[s->p_last].node[l++] = way_j->node[pos];
+		add_on(s->way[s->p_last].on_p, way_j->node[pos++]);
 	}
-	s->way[s->p_last].last_node = l - 1;
+	s->way[s->p_last].n_last = l - 1;
 }
 void	complete_path(t_lem_in *s, t_path *way, size_t p_last, ssize_t end)
 {
@@ -326,14 +326,14 @@ void	complete_path(t_lem_in *s, t_path *way, size_t p_last, ssize_t end)
 	i = 0;
 	while (i <= p_last)
 	{
-		if (way[i].path[way[i].last_node] != end)
+		if (way[i].node[way[i].n_last] != end)
 		{
-			i_last = way[i].path[way[i].last_node];
+			i_last = way[i].node[way[i].n_last];
 			j = 0;
 			tmp_last_path = s->p_last;
 			while (j <= p_last)
 			{
-				if (way[j].path[way[j].last_node] == end && is_on(way[j].on_p, i_last))
+				if (way[j].node[way[j].n_last] == end && is_on(way[j].on_p, i_last))
 					duply(s, tmp_last_path, &way[i], &way[j]);
 				j++;
 			}
@@ -350,7 +350,7 @@ uint_fast8_t	sort_way(t_lem_in *s, t_path *way, size_t path_size)
 	i = 0;
 	while (i <= path_size)
 	{
-		if (way[i].path[way[i].last_node] != s->end)
+		if (way[i].node[way[i].n_last] != s->end)
 		{
 			tmp = s->way[i];
 			s->way[i] = s->way[path_size];
@@ -403,7 +403,7 @@ void		edit_link(t_lem_in *s, size_t find, size_t i, size_t j)
 	k = 0;
 	while (k < s->room_tab[j].nb_link)
 	{
-		if (i > 0 && s->room_tab[j].link[k] == s->way[find].path[i - 1])
+		if (i > 0 && s->room_tab[j].link[k] == s->way[find].node[i - 1])
 		{
 			if (s->room_tab[j].prio[k] == 1)
 				s->room_tab[j].prio[k] = 0;
@@ -411,7 +411,7 @@ void		edit_link(t_lem_in *s, size_t find, size_t i, size_t j)
 				s->room_tab[j].prio[k] = -2;
 			
 		}
-		if (i < find && s->room_tab[j].link[k] == s->way[find].path[i + 1])
+		if (i < find && s->room_tab[j].link[k] == s->way[find].node[i + 1])
 		{
 			if (s->room_tab[j].prio[k] == 1)
 				s->room_tab[j].prio[k] = -1;
@@ -429,11 +429,11 @@ void		bhandari(t_lem_in *s, t_room *data_tab, ssize_t find)
 
 	i = 0;
 	j = 0;
-	while (i < s->way[find].last_node)
+	while (i < s->way[find].n_last)
 	{
 		ft_printf("%s\n", s->room_tab[i].name);
 		j = 0;
-		while (data_tab[j].index != s->way[find].path[i])
+		while (data_tab[j].index != s->way[find].node[i])
 			j++;
 		edit_link(s, find, i, j);
 		i++;

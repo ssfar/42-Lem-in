@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 11:33:28 by vrobin            #+#    #+#             */
-/*   Updated: 2020/02/27 18:12:14 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/01 13:38:07 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,8 @@ void	print_way(t_lem_in *s)
 	{
 		i = 0;
 		ft_printf("[blue]path[%d] = ", j);
-		while (i <= s->way[j].last_node)
-			ft_printf("%s ", s->room_tab[s->way[j].path[i++]].name);
+		while (i <= s->way[j].n_last)
+			ft_printf("%s ", s->room_tab[s->way[j].node[i++]].name);
 		total++;
 		ft_printf("\n");
 		j++;
@@ -168,8 +168,8 @@ void	print_way_plus_bit(t_lem_in *s)
 	{
 		i = 0;
 		ft_printf("[blue]Path :");
-		while (i <= s->way[j].last_node)
-			ft_printf("%s ", s->room_tab[s->way[j].path[i++]].name);
+		while (i <= s->way[j].n_last)
+			ft_printf("%s ", s->room_tab[s->way[j].node[i++]].name);
 		ft_printf("\n");
 		k = 0;
 		while(k < s->on_size)
