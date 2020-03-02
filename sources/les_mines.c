@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/02 18:01:43 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/02 19:37:55 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -901,7 +901,150 @@ void		algo(t_lem_in *s)
 	// throw_ant(s, get_way(s, s->w_last));
 }
 */
-int	main(void)
+
+size_t	count_turn(size_t nb_ant,size_t *path, size_t size)
+{
+	size_t	i;
+	size_t	ant;
+	size_t	ret;
+	size_t	save_size;
+
+	i = size;
+	save_size = size;
+	while (i > 0)
+	{
+		ant = nb_ant + path[0] - 1 - path[i];
+		ant /= size + 0.5; /* + 0.5 pour la demi fourmie */
+		path[i] += ant - 1;
+		nb_ant -= ant;
+		size--;
+		i--;
+	}
+	path[0] += nb_ant - 1;
+	i = 0;
+	ret = 0;
+	while (i < save_size) /* chercher + grand nbr de tours parmis les paths */
+	{
+		if (path[i] > ret)
+			ret = path[i];
+		i++;
+	}
+	return (ret);
+}
+
+size_t	get_size_path(t_lem_in *s, size_t act_path)
+{
+	ssize_t	i;
+	size_t	j;
+	size_t	ret;
+
+	i = s->room_tab[act_path].index;
+	j = 0;
+	ret = 1;
+	while (i != s->end)
+	{
+		while (s->room_tab[i].prio[j] != LOCK)
+			j++;
+		ret++;
+		i = s->room_tab[i].link[j];
+	}
+	return (ret);
+}
+
+size_t	count_path(t_lem_in *s)
+{
+	size_t	i;
+	size_t	j;
+	size_t	size;
+	size_t	*path;
+	ssize_t	*queue;
+
+	i = 0;
+	j = 0;
+	size = 0;
+	while (i < s->room_tab[s->start].nb_link)
+	{
+		if (s->room_tab[s->start].prio[i] == LOCK)
+			size++;
+		i++;
+	}
+	i = 0;
+	if (!(path = malloc(sizeof(size_t) * size + 1)))
+		exit_failure(s, 123, "cant malloc path_turn", 123);
+	if (!(queue = malloc(sizeof(ssize_t) * size + 1)))
+		exit_failure(s, 123, "cant malloc queu_turn", 123);
+	while (i < size)
+	{
+		path[i] = 0;
+		queue[i] = -1;
+		i++;
+	}
+	i = 0;
+	while (queue[size] == -1)
+	{
+		while (s->room_tab[s->start].prio[j] != LOCK)
+			j++;
+		path[i] = get_size_path(s, s->room_tab[s->start].link[j]);
+		queue[i] = s->room_tab[s->start].link[j];
+		j++;
+		i++;
+	}
+	return (count_turn(s->nb_ant, path, size));
+}
+
+void	reset_map(t_lem_in *s)
+{
+	ssize_t i;
+
+	i = 0;
+	while (i < s->nb_room)
+	{
+		s->room_tab[i].ascend = 0;
+		if (i == s->start)
+			s->room_tab[i].cost = 0;
+		else
+			s->room_tab[i].cost = SIZE_T_MAX;
+		s->room_tab[i].prev = -1;
+		i++;
+	}
+}
+
+void	edit_link(t_lem_in *s)
+{
+	ssize_t	i;
+	size_t	j;
+
+	i = s->end;
+	while (i != s->start)
+	{
+		j = 0;
+		while (s->room_tab[i].prev != s->room_tab[i].link[j])
+			j++;
+		if (s->room_tab[i].prio[j] == ALL)
+		{
+			s->room_tab[i].prio[j] = PRIO;
+			if (i != s->end)
+			{
+				while (s->room_tab[s->room_tab[i].prev].link[j] != i)
+					j++;
+				s->room_tab[s->room_tab[i].prev].prio[j] = LOCK;
+			}
+		}
+		else
+		{
+			s->room_tab[i].prio[j] = ALL;
+			if (i != s->end)
+			{
+				while (s->room_tab[s->room_tab[i].prev].link[j] != i)
+					j++;
+				s->room_tab[s->room_tab[i].prev].prio[j] = ALL;
+			}
+		}
+		i = s->room_tab[i].prev;
+	}
+}
+
+int		main(void)
 {
 	t_lem_in	s;
 
