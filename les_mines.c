@@ -6,13 +6,14 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/02 18:01:43 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/02 17:14:39 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "les_mines.h"
 
 // check the top functions
+
 
 
 void	exit_failure(t_lem_in *s, char i, char *line, char j)
@@ -240,6 +241,7 @@ t_room	*init_room(t_lem_in *s, t_hashmap *new, char *name)
 	new->room->cost = SSIZE_T_MAX;
 	new->room->prio = NULL;
 	new->room->ascend = 0;
+	new->room->ant = 0;
 	new->room->prev = -1;
 	return	(new->room);
 }
@@ -418,7 +420,7 @@ void	read_ant_nb(t_lem_in *s)
 			free(line);
 			if (s->nb_ant == 0)
 				exit_failure(s, 0, "\nToo many ants (overflow)", 1);
-			return ;
+			return ();
 		}
 		else
 		{
@@ -435,17 +437,6 @@ void	init_struct(t_lem_in *s)
 	init_hmap(s);
 }
 
-void		print_stab(ssize_t *tab, size_t size, char *msg)
-{
-	size_t i;
-
-	i = 0;
-	ft_printf("%s\n", msg);
-	while (i < size)
-		ft_printf("%d ", tab[i++]);
-	ft_printf("\n");	
-}
-
 void			add_link(t_lem_in *s, ssize_t index1, ssize_t index2)
 {
 	size_t	i;
@@ -453,7 +444,7 @@ void			add_link(t_lem_in *s, ssize_t index1, ssize_t index2)
 	if (index1 == index2)
 		return ;
 	i = 0;
-	while (s->room_tab[index1].link[i] != -1 && i < s->room_tab[index1].nb_link )
+	while (s->room_tab[index1].link[i] != -1)
 	{
 		if (s->room_tab[index1].link[i] == index2)
 		{
@@ -468,7 +459,7 @@ void			add_link(t_lem_in *s, ssize_t index1, ssize_t index2)
 	s->room_tab[index1].link[i] = index2;
 	s->room_tab[index1].prio[i] = 0;
 	i = 0;
-	while (s->room_tab[index2].link[i] != -1 && i < s->room_tab[index2].nb_link)
+	while (s->room_tab[index2].link[i] != -1)
 		i++;
 	s->room_tab[index2].link[i] = index1;
 	s->room_tab[index2].prio[i] = 0;
@@ -520,13 +511,11 @@ void	write_room2(t_lem_in *s, t_hashmap *tmp, size_t i)
 				clear_the_mess(s, i, tmp);
 			if (!(s->room_tab[j].prio 
 				= malloc(sizeof(signed char) * s->room_tab[j].nb_link)))
-				clear_the_mess(s, i, tmp);
 			k = 0;
 			while (k < s->room_tab[j].nb_link)
 			{
 				s->room_tab[j].prio[k] = -2;
-				s->room_tab[j].link[k] = -1;
-				k++;
+				s->room_tab[j].link[k++] = -1;
 			}
 		}
 		tmp->room = &s->room_tab[j]; /* relink of the room to the hmap */
@@ -568,14 +557,14 @@ void	clear_map(t_lem_in *s)
 	}
 }
 
-// void		create_path(t_lem_in *s, t_path *new, size_t malloc_size)
-// {
-// 	if (!(new->on_p = malloc(sizeof(unsigned char) * s->on_size)))
-// 		exit_failure(s, 123, "can't malloc on_p", 0);
-// 	if (!(new->node = malloc(sizeof(ssize_t) * malloc_size)))
-// 		exit_failure(s, 2, "can't malloc path tab", 0);
-// 	new->max_pos = malloc_size - 1;
-// }
+void		create_path(t_lem_in *s, t_path *new, size_t malloc_size)
+{
+	if (!(new->on_p = malloc(sizeof(unsigned char) * s->on_size)))
+		exit_failure(s, 123, "can't malloc on_p", 0);
+	if (!(new->node = malloc(sizeof(ssize_t) * malloc_size)))
+		exit_failure(s, 2, "can't malloc path tab", 0);
+	new->max_pos = malloc_size - 1;
+}
 
 unsigned char	binary_pow_2(unsigned char index)
 {
@@ -694,6 +683,7 @@ void		init_algo(t_lem_in *s)
 	mark_linked_to_end(s);
 }
 
+
 void		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t node_in_queu)
 {
 	size_t	i;
@@ -764,6 +754,7 @@ unsigned char	remove_on(unsigned char *on, size_t to_remove)
 	on[on_index] -= compare;
 	return (1);
 }
+
 void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
 {
 	ssize_t	i;
@@ -912,6 +903,10 @@ int	main(void)
 	read_link(&s, read_room(&s));
 	write_room(&s);
 	write_link(&s);
+	algo(&s);
+	
+	
+	
 	
 	//print_way(&s);
 }

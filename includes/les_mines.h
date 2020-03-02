@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:07 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/02 16:44:06 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:57:53 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef	struct	s_room
 	signed char	*prio;	// priorite des links
 	char	ascend;	// remonte ? (0 / 1)
 	ssize_t	prev; 	// introduced by
+	size_t	ant; /* identite de la fourmi */
 }				t_room;
 
 typedef	struct	s_hashmap
