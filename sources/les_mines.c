@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   les_mines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/03 19:21:27 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/03 21:42:07 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -723,8 +723,6 @@ void		init_algo(t_lem_in *s)
 	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room * s->nb_room)))
 		exit_failure(s, 123, "can't malloc queu", 0);
 	s->room_tab[s->start].cost = 0;
-	s->queu[0] = s->start;
-	s->q_last = 0;
 	if (!(s->on_q = malloc(sizeof(unsigned char) * s->on_size)))
 		exit_failure(s, 123, "can't malloc on_queu", 0);
 	ft_bzero(s->on_q, s->on_size);
@@ -1002,7 +1000,6 @@ size_t	edit_link(t_lem_in *s)
 	i = s->end;
 	while (i != s->start)
 	{
-		ft_printf("while\n");
 		j = 0;
 		if (s->room_tab[i].prev == -1)
 		{
@@ -1064,26 +1061,19 @@ size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 
 	i = size - 1;
 	save_size = size;
-	ft_printf("nb_ant %d\n", nb_ant);
-	ft_printf("size : %d\n", size);
 	while (i > 0)
 	{
 		ant = nb_ant + path[0] - 1 - path[i];
-		printf("ant : %f\n", ant);
 		ant /= size; 
 		ant += 0.5; // + 0.5 pour potentiellement arrondir au sup xd
-		printf("ant : %f\n", ant);
 		nb_ant -= ant;
 		path[i] += ant - 1;
-		ft_printf("path[%d] = %d\n", i, path[i]);
 		size--;
 		i--;
 	}
-	ft_printf("nb_ant %d\n", nb_ant);
 	path[0] += nb_ant - 1;
 	i = 0;
 	ret = 0;
-	print_tab(path, save_size, "count_turn");
 	while (i < save_size) /* chercher + grand nbr de tours parmis les paths */
 	{
 		if (path[i] > ret)
@@ -1137,7 +1127,7 @@ size_t	count_path(t_lem_in *s)
 			size++;
 		i++;
 	}
-	ft_printf("nb_path = %d\n", size);
+	ft_printf("Nb path = %zu\n", size);
 	if (!(path = malloc(sizeof(size_t) * size)))
 		exit_failure(s, 123, "cant malloc path_turn", 123);
 	i = 0;
@@ -1151,7 +1141,14 @@ size_t	count_path(t_lem_in *s)
 		i++;
 	}
 	bubbleSort(path, size);
-	ft_printf("after quick_sort\n");
+	//
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("path %d have size of %zu\n", i, path[i]);
+		i++;
+	}
+	//
 	return (count_turn(s->nb_ant, path, size));
 }
 
@@ -1161,8 +1158,10 @@ void		bfs(t_lem_in *s)
 	size_t	cur;
 
 	cur = 0;
+	s->queu[0] = s->start;
+	s->q_last = 0;
 	// s->q_overflow = 0;
-	tab = s->room_tab;	
+	tab = s->room_tab;
 	while (cur <= s->q_last /*|| s->q_overflow == 1*/)
 	{
 		if (tab[s->queu[cur]].ascend)
@@ -1243,7 +1242,6 @@ void		algo(t_lem_in *s)
 			ft_printf("break edit link\n");
 			break;
 		}
-		print_datatab(s);
 		ft_bzero(s->on_q, s->on_size);
 		if ((new_nb_turn = count_path(s)) >= nb_turn)
 		{
@@ -1255,9 +1253,7 @@ void		algo(t_lem_in *s)
 	}
 	ft_bzero(s->on_q, s->on_size);
 	return_to_the_future(s);
-	// print_datatab(s);
-	ft_printf("nb turn %d\n", count_path(s));
-	// retour en arrier
+	print_datatab(s);
 	// print ant
 }
 
