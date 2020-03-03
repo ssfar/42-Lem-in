@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/03 16:00:45 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/03 18:16:25 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -719,7 +719,7 @@ void		init_algo(t_lem_in *s)
 	clear_map(s);
 	s->on_size = (s->nb_room / 8) + 1;
 	//queu init ...
-	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room * 2)))
+	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room * s->nb_room)))
 		exit_failure(s, 123, "can't malloc queu", 0);
 	s->room_tab[s->start].cost = 0;
 	s->queu[0] = s->start;
@@ -727,7 +727,6 @@ void		init_algo(t_lem_in *s)
 	if (!(s->on_q = malloc(sizeof(unsigned char) * s->on_size)))
 		exit_failure(s, 123, "can't malloc on_queu", 0);
 	ft_bzero(s->on_q, s->on_size);
-	add_on(s->on_q, s->start);
 	hunt_deadend(s, s->start, s->end, s->room_tab);
 	if (s->room_tab[s->start].link_rm < 1 || s->room_tab[s->end].link_rm < 1)
 		exit_failure(s, 123, "No path from start to end", 1);
@@ -1002,11 +1001,19 @@ size_t	edit_link(t_lem_in *s)
 	i = s->end;
 	while (i != s->start)
 	{
+		ft_printf("while\n");
 		j = 0;
+		if (s->room_tab[i].prev == -1)
+		{
+			ft_printf("leave\n");
+			return (0);
+		}
 		while (s->room_tab[i].prev != s->room_tab[i].link[j])
 			j++;
 		if (add_on(s->on_q, s->room_tab[i].link[j]) == 0)
-			return(0);
+		{
+			return (0);
+		}
 		if (s->room_tab[i].prio[j] == ALL)
 		{
 			s->room_tab[i].prio[j] = PRIO;
@@ -1078,39 +1085,32 @@ size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 	return (ret);
 }
 
-void	swap_q(size_t *v, size_t i, size_t j)
+void	u_swap(size_t *a, size_t *b)
 {
-	size_t	temp;
+	size_t	tmp;
 
-	temp = v[i];
-	v[i] = v[j];
-	v[j] = temp;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
-void	trirapide(size_t *v, size_t gauche, size_t droit)
+void	bubbleSort(size_t *arr, size_t n) 
 {
-	size_t		i;
-	size_t		dernier;
+	size_t	i;
+	size_t	j;
 
-	if (gauche >= droit)
-		return ;
-	swap_q(v, gauche, (gauche + droit) / 2);
-	dernier = gauche;
-	i = gauche + 1;
-	while (i <= droit)
+	i = 0;
+	while (i < n - 1)
 	{
-		if (v[i] < v[gauche])
-			swap_q(v, ++dernier, i);
+		j = 0;
+		while (j < n - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+				u_swap(&arr[j], &arr[j + 1]);
+			j++;
+		}
 		i++;
 	}
-	swap_q(v, gauche, dernier);
-	trirapide(v, gauche, dernier - 1);
-	trirapide(v, dernier + 1, droit);
-}
-
-void				quicksort(size_t *v, size_t len)
-{
-	trirapide(v, 0, len);
 }
 
 size_t	count_path(t_lem_in *s)
@@ -1137,13 +1137,15 @@ size_t	count_path(t_lem_in *s)
 		while (s->room_tab[s->start].prio[j] != LOCK)
 			j++;
 		path[i] = get_size_path(s, s->room_tab[s->start].link[j]);
+		ft_printf("path[%d] vaut %d\n", i, path[i]);
 		j++;
 		i++;
 	}
-	// print_tab(path, size, "path tab");
-	ft_printf("quick in\n");
-	quicksort(path, size - 1);
-	ft_printf("quick out\n");
+	ft_printf("%d\n", size);
+	ft_printf("before quick_sort\n");
+	bubbleSort(path, size);
+	ft_printf("after quick_sort\n");
+	print_tab(path, size, "path tab");
 	return (count_turn(s->nb_ant, path, size));
 }
 
@@ -1195,8 +1197,12 @@ void		algo(t_lem_in *s)
 	while(1)
 	{
 		bfs(s);
-		if (!edit_link(s))
+		print_datatab(s);
+		if (edit_link(s) == 0)
+		{
+			ft_printf("here\n");
 			break;
+		}
 		ft_bzero(s->on_q, s->on_size);
 		if ((new_nb_turn = count_path(s)) >= nb_turn)
 			break;
