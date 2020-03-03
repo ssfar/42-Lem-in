@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/03 18:16:25 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/03 19:21:27 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,6 +378,7 @@ void			read_link(t_lem_in *s, char *line)
 {
 	if (!line || s->start == -1 || s->end == -1 || is_link(s, line) == 0)
 	{
+		ft_printf("line ; %s\n", line);
 		free(line);
 		exit_failure(s, 1, "Not enought viable info", 1);
 	}
@@ -1057,24 +1058,32 @@ size_t	get_size_path(t_lem_in *s, size_t act_path)
 size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 {
 	size_t	i;
-	size_t	ant;
+	float	ant;
 	size_t	ret;
 	size_t	save_size;
 
 	i = size - 1;
 	save_size = size;
+	ft_printf("nb_ant %d\n", nb_ant);
+	ft_printf("size : %d\n", size);
 	while (i > 0)
 	{
 		ant = nb_ant + path[0] - 1 - path[i];
-		ant /= size + 0.5; // + 0.5 pour potentiellement arrondir au sup xd
-		path[i] += ant - 1;
+		printf("ant : %f\n", ant);
+		ant /= size; 
+		ant += 0.5; // + 0.5 pour potentiellement arrondir au sup xd
+		printf("ant : %f\n", ant);
 		nb_ant -= ant;
+		path[i] += ant - 1;
+		ft_printf("path[%d] = %d\n", i, path[i]);
 		size--;
 		i--;
 	}
+	ft_printf("nb_ant %d\n", nb_ant);
 	path[0] += nb_ant - 1;
 	i = 0;
 	ret = 0;
+	print_tab(path, save_size, "count_turn");
 	while (i < save_size) /* chercher + grand nbr de tours parmis les paths */
 	{
 		if (path[i] > ret)
@@ -1128,6 +1137,7 @@ size_t	count_path(t_lem_in *s)
 			size++;
 		i++;
 	}
+	ft_printf("nb_path = %d\n", size);
 	if (!(path = malloc(sizeof(size_t) * size)))
 		exit_failure(s, 123, "cant malloc path_turn", 123);
 	i = 0;
@@ -1137,15 +1147,11 @@ size_t	count_path(t_lem_in *s)
 		while (s->room_tab[s->start].prio[j] != LOCK)
 			j++;
 		path[i] = get_size_path(s, s->room_tab[s->start].link[j]);
-		ft_printf("path[%d] vaut %d\n", i, path[i]);
 		j++;
 		i++;
 	}
-	ft_printf("%d\n", size);
-	ft_printf("before quick_sort\n");
 	bubbleSort(path, size);
 	ft_printf("after quick_sort\n");
-	print_tab(path, size, "path tab");
 	return (count_turn(s->nb_ant, path, size));
 }
 
@@ -1187,6 +1193,41 @@ void		bfs(t_lem_in *s)
 	//}
 }
 
+void	return_to_the_future(t_lem_in *s)
+{
+	ssize_t	i;
+	size_t	j;
+
+	i = s->end;
+	while (i != s->start)
+	{
+		if (s->room_tab[i].prev == -1)
+			return;
+		j = 0;
+		while (s->room_tab[i].prev != s->room_tab[i].link[j])
+			j++;
+		if (add_on(s->on_q, s->room_tab[i].link[j]) == 0)
+			return;
+		if (s->room_tab[i].prio[j] == PRIO)
+		{
+			s->room_tab[i].prio[j] = ALL;
+			j = 0;
+			while (s->room_tab[s->room_tab[i].prev].link[j] != i)
+				j++;
+			s->room_tab[s->room_tab[i].prev].prio[j] = ALL;
+		}
+		else
+		{
+			s->room_tab[i].prio[j] = PRIO;
+			j = 0;
+			while (s->room_tab[s->room_tab[i].prev].link[j] != i)
+				j++;
+			s->room_tab[s->room_tab[i].prev].prio[j] = LOCK;
+		}
+		i = s->room_tab[i].prev;
+	}
+}
+
 void		algo(t_lem_in *s)
 {
 	size_t	new_nb_turn;
@@ -1197,18 +1238,25 @@ void		algo(t_lem_in *s)
 	while(1)
 	{
 		bfs(s);
-		print_datatab(s);
 		if (edit_link(s) == 0)
 		{
-			ft_printf("here\n");
+			ft_printf("break edit link\n");
 			break;
 		}
+		print_datatab(s);
 		ft_bzero(s->on_q, s->on_size);
 		if ((new_nb_turn = count_path(s)) >= nb_turn)
+		{
+			ft_printf("break turn\n");
 			break;
+		}
 		nb_turn = new_nb_turn;
 		reset_map(s);
 	}
+	ft_bzero(s->on_q, s->on_size);
+	return_to_the_future(s);
+	// print_datatab(s);
+	ft_printf("nb turn %d\n", count_path(s));
 	// retour en arrier
 	// print ant
 }
