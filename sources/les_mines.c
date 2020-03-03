@@ -994,7 +994,7 @@ void	reset_map(t_lem_in *s)
 	s->room_tab[s->start].cost = 0;
 }
 
-void	edit_link(t_lem_in *s)
+size_t	edit_link(t_lem_in *s)
 {
 	ssize_t	i;
 	size_t	j;
@@ -1006,7 +1006,7 @@ void	edit_link(t_lem_in *s)
 		while (s->room_tab[i].prev != s->room_tab[i].link[j])
 			j++;
 		if (add_on(s->on_q, s->room_tab[i].link[j]) == 0)
-			break;
+			return(0);
 		if (s->room_tab[i].prio[j] == ALL)
 		{
 			s->room_tab[i].prio[j] = PRIO;
@@ -1025,6 +1025,7 @@ void	edit_link(t_lem_in *s)
 		}
 		i = s->room_tab[i].prev;
 	}
+	return (1);
 }
 
 size_t	get_size_path(t_lem_in *s, size_t act_path)
