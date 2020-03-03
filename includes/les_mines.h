@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:07 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/02 19:37:54 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:38:49 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_lem_in
 	size_t			*queu;
 	size_t			q_last;
 	unsigned char	*on_q;
-	char			q_overflow;
+	// char			q_overflow;
 	size_t			nb_turn;
 }				t_lem_in;
 

@@ -6,7 +6,7 @@
 /*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/02 19:37:55 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/03 16:00:45 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,56 @@
 
 // check the top functions
 
+void		print_tab(size_t *tab, size_t size, char *msg)
+{
+	size_t i;
+
+	i = 0;
+	ft_printf("%s\n", msg);
+	while (i < size)
+		ft_printf("%d ", tab[i++]);
+	ft_printf("\n");	
+}
+
+void	print_datatab(t_lem_in *s)
+{
+	ssize_t	i;
+	size_t	j;
+
+	ft_printf("\n##start\tname : |%s|\n##end\tname : |%s|\n", s->room_tab[s->start].name, s->room_tab[s->end].name);
+	i = 0;
+	while (i < s->nb_room)
+	{
+		ft_printf("[red]Name : %s\t", s->room_tab[i].name);
+		ft_printf("[blue]Index : %d\t", s->room_tab[i].index);
+		ft_printf("[green]Nb_link : %d\t", s->room_tab[i].nb_link);
+		ft_printf("[green]link_rm : %d\t", s->room_tab[i].link_rm);
+		ft_printf("[white]cost : %lu\t", s->room_tab[i].cost);
+		ft_printf("[white]prev : %d\t", s->room_tab[i].prev);
+		ft_printf("\n[yellow]links : ");
+		j = 0;
+		while (j < s->room_tab[i].nb_link)
+			ft_printf("|%s|\t", s->room_tab[s->room_tab[i].link[j++]].name);
+		j = 0;
+		ft_printf("\n[yellow]prios : ");
+		while (j < s->room_tab[i].nb_link)
+		{
+			if (s->room_tab[i].prio[j] == ALL)
+				ft_printf("|%s|\t", "ALL");
+			else if (s->room_tab[i].prio[j] == LOCK)
+				ft_printf("|%s|\t", "LOCK");
+			else if (s->room_tab[i].prio[j] == PRIO)
+				ft_printf("|%s|\t", "PRIO");
+			else if (s->room_tab[i].prio[j] == DEL)
+				ft_printf("|%s|\t", "DEL");
+			else
+				ft_printf("|%s|%d|\t", "WTF", s->room_tab[i].prio[j]);
+			j++;
+		}
+		ft_printf("\n[a_reset]\n");
+		i++;
+	}
+}
 
 void	exit_failure(t_lem_in *s, char i, char *line, char j)
 {
@@ -237,7 +287,7 @@ t_room	*init_room(t_lem_in *s, t_hashmap *new, char *name)
 	new->room->nb_link = 0;
 	new->room->link = NULL;
 	new->room->link_to_end = 0;
-	new->room->cost = SSIZE_T_MAX;
+	new->room->cost = SIZE_T_MAX;
 	new->room->prio = NULL;
 	new->room->ascend = 0;
 	new->room->prev = -1;
@@ -466,12 +516,12 @@ void			add_link(t_lem_in *s, ssize_t index1, ssize_t index2)
 	s->room_tab[index1].link_rm = s->room_tab[index1].nb_link; //peut être un peu trop répétitif
 	s->room_tab[index2].link_rm = s->room_tab[index2].nb_link; 
 	s->room_tab[index1].link[i] = index2;
-	s->room_tab[index1].prio[i] = 0;
+	s->room_tab[index1].prio[i] = ALL;
 	i = 0;
 	while (s->room_tab[index2].link[i] != -1 && i < s->room_tab[index2].nb_link)
 		i++;
 	s->room_tab[index2].link[i] = index1;
-	s->room_tab[index2].prio[i] = 0;
+	s->room_tab[index2].prio[i] = ALL;
 }
 
 void			write_link(t_lem_in *s)
@@ -524,7 +574,7 @@ void	write_room2(t_lem_in *s, t_hashmap *tmp, size_t i)
 			k = 0;
 			while (k < s->room_tab[j].nb_link)
 			{
-				s->room_tab[j].prio[k] = -2;
+				s->room_tab[j].prio[k] = DEL;
 				s->room_tab[j].link[k] = -1;
 				k++;
 			}
@@ -629,6 +679,7 @@ void	delete_link(t_lem_in *s, t_room *room_tab, ssize_t *link, ssize_t i)
 		while (room_tab[j].link[k] != i)
 			k++;
 		room_tab[j].link[k] = -2;
+		room_tab[j].prio[k] = DEL;
 		if (room_tab[j].link_rm == 1 && j != s->start && j != s->end)
 			return (delete_link(s, room_tab, room_tab[j].link, j));
 	}
@@ -663,25 +714,14 @@ void		mark_linked_to_end(t_lem_in *s)
 	}
 }
 
-/*
 void		init_algo(t_lem_in *s)
 {
 	clear_map(s);
 	s->on_size = (s->nb_room / 8) + 1;
-	//path init ...
-	// s->w_size = s->nb_room * 25; // possible overflow if this stay like that
-	// if (!(s->way = malloc(sizeof(t_path) * s->w_size)))
-	// 	exit_failure(s, 123, "can't malloc s->way", 0);
-	// create_path(s, &s->way[0], PATH_SIZE);
-	// s->w_last = 0;
-	// s->way[0].n_last = 0;
-	// s->way[0].node[0] = s->start;
-	// ft_bzero(s->way[0].on_p, s->on_size);
-	// add_on(s->way[0].on_p, s->start);
-
 	//queu init ...
-	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room)))
+	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room * 2)))
 		exit_failure(s, 123, "can't malloc queu", 0);
+	s->room_tab[s->start].cost = 0;
 	s->queu[0] = s->start;
 	s->q_last = 0;
 	if (!(s->on_q = malloc(sizeof(unsigned char) * s->on_size)))
@@ -694,31 +734,31 @@ void		init_algo(t_lem_in *s)
 	mark_linked_to_end(s);
 }
 
-void		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t node_in_queu)
-{
-	size_t	i;
-	size_t	j;
-	size_t	w_last;
-	t_path	*tmp;
+// void		find_path(t_lem_in *s, ssize_t *link, size_t nb_link, ssize_t node_in_queu)
+// {
+// 	size_t	i;
+// 	size_t	j;
+// 	size_t	w_last;
+// 	t_path	*tmp;
 
-	w_last = s->w_last;
-	tmp = s->way;
-	i = 0;
-	while (i <= w_last)
-	{
-		if (tmp[i].node[tmp[i].n_last] == node_in_queu)
-		{
-			j = 0;
-			while (j < nb_link)
-			{
-				if (link[j] != -2)
-					copy_path(s, link[j], &tmp[i], node_in_queu);
-				j++;
-			}
-		}
-		i++;
-	}
-}
+// 	w_last = s->w_last;
+// 	tmp = s->way;
+// 	i = 0;
+// 	while (i <= w_last)
+// 	{
+// 		if (tmp[i].node[tmp[i].n_last] == node_in_queu)
+// 		{
+// 			j = 0;
+// 			while (j < nb_link)
+// 			{
+// 				if (link[j] != -2)
+// 					copy_path(s, link[j], &tmp[i], node_in_queu);
+// 				j++;
+// 			}
+// 		}
+// 		i++;
+// 	}
+// }
 
 void		add_queu(t_lem_in *s, ssize_t *link, size_t nb_link)
 {
@@ -764,157 +804,261 @@ unsigned char	remove_on(unsigned char *on, size_t to_remove)
 	on[on_index] -= compare;
 	return (1);
 }
-void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
-{
-	ssize_t	i;
 
-	s->w_last++;
-	if (s->w_last >= s->w_size)
-		realloc_path_tab(s, s->way, s->w_last * s->w_last + 2);
-	create_path(s, &s->way[s->w_last], tmp->max_pos + 2);
-	i = 0;
-	while (i < tmp->n_last)
-	{
-		s->way[s->w_last].node[i] = tmp->node[i];
-		if ((size_t)i < s->on_size)
-			s->way[s->w_last].on_p[i] = tmp->on_p[i];
-		i++;
-	}
-	s->way[s->w_last].node[i] = to_add;
-	while ((size_t)i < s->on_size)
-	{
-		s->way[s->w_last].on_p[i] = tmp->on_p[i];
-		i++;
-	}
-	remove_on(s->way[s->w_last].on_p, tmp->node[tmp->n_last]);
-	remove_on(tmp->on_p, to_add);
-	s->way[s->w_last].n_last = tmp->n_last;
-}
+// void		duplicate_path(t_lem_in *s, size_t to_add, t_path *tmp)
+// {
+// 	ssize_t	i;
 
-void	realloc_path(t_lem_in *s, t_path *path, size_t malloc_size)
-{
-	ssize_t	*new;
-	ssize_t	i;
+// 	s->w_last++;
+// 	if (s->w_last >= s->w_size)
+// 		realloc_path_tab(s, s->way, s->w_last * s->w_last + 2);
+// 	create_path(s, &s->way[s->w_last], tmp->max_pos + 2);
+// 	i = 0;
+// 	while (i < tmp->n_last)
+// 	{
+// 		s->way[s->w_last].node[i] = tmp->node[i];
+// 		if ((size_t)i < s->on_size)
+// 			s->way[s->w_last].on_p[i] = tmp->on_p[i];
+// 		i++;
+// 	}
+// 	s->way[s->w_last].node[i] = to_add;
+// 	while ((size_t)i < s->on_size)
+// 	{
+// 		s->way[s->w_last].on_p[i] = tmp->on_p[i];
+// 		i++;
+// 	}
+// 	remove_on(s->way[s->w_last].on_p, tmp->node[tmp->n_last]);
+// 	remove_on(tmp->on_p, to_add);
+// 	s->way[s->w_last].n_last = tmp->n_last;
+// }
 
-	if (!(new = malloc(sizeof(ssize_t) * malloc_size)))
-		exit_failure(s, 2, "can't malloc path tab", 0);
-	i = 0;
-	while (i <= path->n_last)
-	{
-		new[i] = path->node[i];
-		i++;
-	}
-	free(path->node);
-	path->node = new;
-	path->max_pos = malloc_size - 1;
-}
+// void	realloc_path(t_lem_in *s, t_path *path, size_t malloc_size)
+// {
+// 	ssize_t	*new;
+// 	ssize_t	i;
 
-void		copy_path(t_lem_in *s, size_t to_add, t_path *way, ssize_t node_in_queu)
-{
-	if (add_on(way->on_p, to_add))
-	{
-		if (node_in_queu == way->node[way->n_last])
-		{
-			if (way->n_last == way->max_pos)
-				realloc_path(s, way, way->max_pos * 2 + 2);
-			way->n_last++;
-			way->node[way->n_last] = to_add;
-		}
-		else		
-			duplicate_path(s, to_add, way);
-	}
-}
+// 	if (!(new = malloc(sizeof(ssize_t) * malloc_size)))
+// 		exit_failure(s, 2, "can't malloc path tab", 0);
+// 	i = 0;
+// 	while (i <= path->n_last)
+// 	{
+// 		new[i] = path->node[i];
+// 		i++;
+// 	}
+// 	free(path->node);
+// 	path->node = new;
+// 	path->max_pos = malloc_size - 1;
+// }
 
-void		find_path_to_add_end(t_lem_in *s, ssize_t node_in_queu)
+// void		copy_path(t_lem_in *s, size_t to_add, t_path *way, ssize_t node_in_queu)
+// {
+// 	if (add_on(way->on_p, to_add))
+// 	{
+// 		if (node_in_queu == way->node[way->n_last])
+// 		{
+// 			if (way->n_last == way->max_pos)
+// 				realloc_path(s, way, way->max_pos * 2 + 2);
+// 			way->n_last++;
+// 			way->node[way->n_last] = to_add;
+// 		}
+// 		else		
+// 			duplicate_path(s, to_add, way);
+// 	}
+// }
+
+// void		find_path_to_add_end(t_lem_in *s, ssize_t node_in_queu)
+// {
+// 	size_t	i;
+// 	size_t	w_last;
+// 	t_path	*way;
+
+// 	w_last = s->w_last;
+// 	way = s->way;
+// 	i = 0;
+// 	while (i <= w_last)
+// 	{
+// 		if (way[i].node[way[i].n_last] == node_in_queu)
+// 			copy_path(s, s->end, &way[i], node_in_queu);
+// 		i++;
+// 	}
+// }
+
+// void	print_way(t_lem_in *s)
+// {
+// 	ssize_t	i;
+// 	size_t	j;
+// 	size_t	total;
+
+// 	total = 0;
+// 	j = 0;
+// 	while (j <= s->w_last)
+// 	{
+// 		i = 0;
+// 		ft_printf("[blue]path[%d] = ", j);
+// 		while (i <= s->way[j].n_last)
+// 			ft_printf("%s ", s->room_tab[s->way[j].node[i++]].name);
+// 		total++;
+// 		ft_printf("\n");
+// 		j++;
+// 	}
+// 	ft_printf("Total way = %d[a_reset]\n", total);
+// 	ft_printf("End room = %s\n", s->room_tab[s->end].name);
+// }
+
+char	search_for_all(t_lem_in *s, t_room *room, t_room *tab)
 {
 	size_t	i;
-	size_t	w_last;
-	t_path	*way;
+	char	all_found;
 
-	w_last = s->w_last;
-	way = s->way;
 	i = 0;
-	while (i <= w_last)
+	all_found = 0;
+	while (i < room->nb_link)
 	{
-		if (way[i].node[way[i].n_last] == node_in_queu)
-			copy_path(s, s->end, &way[i], node_in_queu);
+		if (room->prio[i] == ALL && room->cost + 1 < tab[room->link[i]].cost)
+		{
+			all_found = 1;
+			if (room->link[i] != s->end)
+			{
+				s->q_last++;
+				s->queu[s->q_last] = room->link[i];
+			}
+			tab[room->link[i]].cost = room->cost + 1;
+			tab[room->link[i]].prev = room->index;
+		}
 		i++;
 	}
+	return (all_found);
 }
 
-void	print_way(t_lem_in *s)
+void	ascend_case(t_lem_in *s, t_room *room, t_room *tab)
+{
+	size_t	i;
+
+	i = 0;
+	room->ascend = 0;
+	if (!search_for_all(s, room, tab))
+		while (i < room->nb_link)
+		{
+			if (room->prio[i] == PRIO && room->cost + 1 < tab[room->link[i]].cost)
+			{
+				if (room->link[i] != s->end)
+				{
+					s->q_last++;
+					s->queu[s->q_last] = room->link[i];
+				}
+				tab[room->link[i]].cost = room->cost + 1;
+				tab[room->link[i]].prev = room->index;
+				tab[room->link[i]].ascend = 1;
+				return;
+			}
+			i++;
+		}
+}
+
+void	normal_case(t_lem_in *s, t_room *room, t_room *tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < room->nb_link)
+	{
+		if (room->prio[i] == PRIO && room->cost + 1 < tab[room->link[i]].cost)
+		{
+			if (room->link[i] != s->end)
+			{
+				s->q_last++;
+				s->queu[s->q_last] = room->link[i];
+			}
+			tab[room->link[i]].cost = room->cost + 1;
+			tab[room->link[i]].prev = room->index;
+			tab[room->link[i]].ascend = 1;
+			return;
+		}
+		i++;
+	}
+	search_for_all(s, room, tab);
+}
+
+void	reset_map(t_lem_in *s)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (i < s->nb_room)
+	{
+		s->room_tab[i].ascend = 0;
+		s->room_tab[i].cost = SIZE_T_MAX;
+		s->room_tab[i].prev = -1;
+		i++;
+	}
+	s->room_tab[s->start].cost = 0;
+}
+
+void	edit_link(t_lem_in *s)
 {
 	ssize_t	i;
 	size_t	j;
-	size_t	total;
 
-	total = 0;
-	j = 0;
-	while (j <= s->w_last)
+	i = s->end;
+	while (i != s->start)
 	{
-		i = 0;
-		ft_printf("[blue]path[%d] = ", j);
-		while (i <= s->way[j].n_last)
-			ft_printf("%s ", s->room_tab[s->way[j].node[i++]].name);
-		total++;
-		ft_printf("\n");
-		j++;
-	}
-	ft_printf("Total way = %d[a_reset]\n", total);
-	ft_printf("End room = %s\n", s->room_tab[s->end].name);
-}
-
-void		algo(t_lem_in *s)
-{
-	t_room	*data_tab;
-	size_t	cur;
-	// size_t	old_p_last;
-
-	cur = 0;
-	s->q_overflow = 0;
-	data_tab = s->room_tab;
-	init_algo(s);
-	while (cur <= s->q_last || s->q_overflow == 1)
-	{
-		if (!data_tab[s->queu[cur]].link_to_end)
-			add_queu(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link);
-			find_path(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link, s->queu[cur]);
-
-		cur++;
-		if (s->q_overflow == 1 && cur == s->nb_room)
+		j = 0;
+		while (s->room_tab[i].prev != s->room_tab[i].link[j])
+			j++;
+		if (add_on(s->on_q, s->room_tab[i].link[j]) == 0)
+			break;
+		if (s->room_tab[i].prio[j] == ALL)
 		{
-			s->q_overflow = 0;
-			cur = 0;
+			s->room_tab[i].prio[j] = PRIO;
+			j = 0;
+			while (s->room_tab[s->room_tab[i].prev].link[j] != i)
+				j++;
+			s->room_tab[s->room_tab[i].prev].prio[j] = LOCK;
 		}
+		else
+		{
+			s->room_tab[i].prio[j] = ALL;
+			j = 0;
+			while (s->room_tab[s->room_tab[i].prev].link[j] != i)
+				j++;
+			s->room_tab[s->room_tab[i].prev].prio[j] = ALL;
+		}
+		i = s->room_tab[i].prev;
 	}
-	// if (!valid_path(s->way, s->w_last, s->end))
-	// 	exit_failure(s, 123, "No path from start to end", 1);
-	// print_info(s);
-	// print_way(s);
-	// complete_path(s, s->way, s->w_last, s->end);
-	// // new_p_last = sort_way(s, s->way, s->p_last);
-	// old_p_last = s->w_last;
-	// s->w_last = sort_way(s, s->way, s->w_last);
-	// sort_path(s, s->w_last);
-	// // ft_printf("\nafter completion \n\n");
-	// // get_way(s, s->p_last);
-	// throw_ant(s, get_way(s, s->w_last));
 }
-*/
 
-size_t	count_turn(size_t nb_ant,size_t *path, size_t size)
+size_t	get_size_path(t_lem_in *s, size_t act_path)
+{
+	ssize_t	i;
+	size_t	j;
+	size_t	ret;
+
+	i = s->room_tab[act_path].index;
+	ret = 1;
+	while (i != s->end)
+	{
+		j = 0;
+		while (s->room_tab[i].prio[j] != LOCK)
+			j++;
+		ret++;
+		i = s->room_tab[i].link[j];
+	}
+	return (ret);
+}
+
+size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 {
 	size_t	i;
 	size_t	ant;
 	size_t	ret;
 	size_t	save_size;
 
-	i = size;
+	i = size - 1;
 	save_size = size;
 	while (i > 0)
 	{
 		ant = nb_ant + path[0] - 1 - path[i];
-		ant /= size + 0.5; /* + 0.5 pour la demi fourmie */
+		ant /= size + 0.5; // + 0.5 pour potentiellement arrondir au sup xd
 		path[i] += ant - 1;
 		nb_ant -= ant;
 		size--;
@@ -929,26 +1073,43 @@ size_t	count_turn(size_t nb_ant,size_t *path, size_t size)
 			ret = path[i];
 		i++;
 	}
+	free(path);
 	return (ret);
 }
 
-size_t	get_size_path(t_lem_in *s, size_t act_path)
+void	swap_q(size_t *v, size_t i, size_t j)
 {
-	ssize_t	i;
-	size_t	j;
-	size_t	ret;
+	size_t	temp;
 
-	i = s->room_tab[act_path].index;
-	j = 0;
-	ret = 1;
-	while (i != s->end)
+	temp = v[i];
+	v[i] = v[j];
+	v[j] = temp;
+}
+
+void	trirapide(size_t *v, size_t gauche, size_t droit)
+{
+	size_t		i;
+	size_t		dernier;
+
+	if (gauche >= droit)
+		return ;
+	swap_q(v, gauche, (gauche + droit) / 2);
+	dernier = gauche;
+	i = gauche + 1;
+	while (i <= droit)
 	{
-		while (s->room_tab[i].prio[j] != LOCK)
-			j++;
-		ret++;
-		i = s->room_tab[i].link[j];
+		if (v[i] < v[gauche])
+			swap_q(v, ++dernier, i);
+		i++;
 	}
-	return (ret);
+	swap_q(v, gauche, dernier);
+	trirapide(v, gauche, dernier - 1);
+	trirapide(v, dernier + 1, droit);
+}
+
+void				quicksort(size_t *v, size_t len)
+{
+	trirapide(v, 0, len);
 }
 
 size_t	count_path(t_lem_in *s)
@@ -957,10 +1118,8 @@ size_t	count_path(t_lem_in *s)
 	size_t	j;
 	size_t	size;
 	size_t	*path;
-	ssize_t	*queue;
 
 	i = 0;
-	j = 0;
 	size = 0;
 	while (i < s->room_tab[s->start].nb_link)
 	{
@@ -968,83 +1127,86 @@ size_t	count_path(t_lem_in *s)
 			size++;
 		i++;
 	}
-	i = 0;
-	if (!(path = malloc(sizeof(size_t) * size + 1)))
+	if (!(path = malloc(sizeof(size_t) * size)))
 		exit_failure(s, 123, "cant malloc path_turn", 123);
-	if (!(queue = malloc(sizeof(ssize_t) * size + 1)))
-		exit_failure(s, 123, "cant malloc queu_turn", 123);
-	while (i < size)
-	{
-		path[i] = 0;
-		queue[i] = -1;
-		i++;
-	}
 	i = 0;
-	while (queue[size] == -1)
+	j = 0;
+	while (i < size)
 	{
 		while (s->room_tab[s->start].prio[j] != LOCK)
 			j++;
 		path[i] = get_size_path(s, s->room_tab[s->start].link[j]);
-		queue[i] = s->room_tab[s->start].link[j];
 		j++;
 		i++;
 	}
+	// print_tab(path, size, "path tab");
+	ft_printf("quick in\n");
+	quicksort(path, size - 1);
+	ft_printf("quick out\n");
 	return (count_turn(s->nb_ant, path, size));
 }
 
-void	reset_map(t_lem_in *s)
+void		bfs(t_lem_in *s)
 {
-	ssize_t i;
+	t_room	*tab;
+	size_t	cur;
 
-	i = 0;
-	while (i < s->nb_room)
+	cur = 0;
+	// s->q_overflow = 0;
+	tab = s->room_tab;	
+	while (cur <= s->q_last /*|| s->q_overflow == 1*/)
 	{
-		s->room_tab[i].ascend = 0;
-		if (i == s->start)
-			s->room_tab[i].cost = 0;
+		if (tab[s->queu[cur]].ascend)
+			ascend_case(s, &tab[s->queu[cur]], tab);
 		else
-			s->room_tab[i].cost = SIZE_T_MAX;
-		s->room_tab[i].prev = -1;
-		i++;
+			normal_case(s, &tab[s->queu[cur]], tab);
+		cur++;
 	}
+		// while (i < nb_link)
+		// {
+		// 	if (link[i] != -2 && link[i] != s->end && add_on(s->on_q, link[i]))
+		// 	{
+		// 		s->q_last++;
+		// 		s->queu[s->q_last] = link[i];
+		// 	}
+		// 	i++;
+		// }
+		// if (!data_tab[s->queu[cur]].link_to_end)
+		// 	add_queu(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link);
+		// 	find_path(s, data_tab[s->queu[cur]].link, data_tab[s->queu[cur]].nb_link, s->queu[cur]);
+
+		// cur++;
+		// if (s->q_overflow == 1 && cur == s->nb_room)
+		// {
+		// 	s->q_overflow = 0;
+		// 	cur = 0;
+		// }
+	//}
 }
 
-void	edit_link(t_lem_in *s)
+void		algo(t_lem_in *s)
 {
-	ssize_t	i;
-	size_t	j;
+	size_t	new_nb_turn;
+	size_t	nb_turn;
 
-	i = s->end;
-	while (i != s->start)
+	nb_turn = SIZE_T_MAX;
+	init_algo(s);
+	while(1)
 	{
-		j = 0;
-		while (s->room_tab[i].prev != s->room_tab[i].link[j])
-			j++;
-		if (s->room_tab[i].prio[j] == ALL)
-		{
-			s->room_tab[i].prio[j] = PRIO;
-			if (i != s->end)
-			{
-				while (s->room_tab[s->room_tab[i].prev].link[j] != i)
-					j++;
-				s->room_tab[s->room_tab[i].prev].prio[j] = LOCK;
-			}
-		}
-		else
-		{
-			s->room_tab[i].prio[j] = ALL;
-			if (i != s->end)
-			{
-				while (s->room_tab[s->room_tab[i].prev].link[j] != i)
-					j++;
-				s->room_tab[s->room_tab[i].prev].prio[j] = ALL;
-			}
-		}
-		i = s->room_tab[i].prev;
+		bfs(s);
+		if (!edit_link(s))
+			break;
+		ft_bzero(s->on_q, s->on_size);
+		if ((new_nb_turn = count_path(s)) >= nb_turn)
+			break;
+		nb_turn = new_nb_turn;
+		reset_map(s);
 	}
+	// retour en arrier
+	// print ant
 }
 
-int		main(void)
+int	main(void)
 {
 	t_lem_in	s;
 
@@ -1055,6 +1217,6 @@ int		main(void)
 	read_link(&s, read_room(&s));
 	write_room(&s);
 	write_link(&s);
-	
+	algo(&s);
 	//print_way(&s);
 }
