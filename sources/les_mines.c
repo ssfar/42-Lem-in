@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/04 13:33:47 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/04 14:55:00 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -937,16 +937,19 @@ void	ascend_case(t_lem_in *s, t_room *room, t_room *tab)
 	if (!search_for_all(s, room, tab))
 		while (i < room->nb_link)
 		{
-			if (room->prio[i] == PRIO && room->cost + 1 < tab[room->link[i]].cost)
+			if (room->prio[i] == PRIO)
 			{
-				if (room->link[i] != s->end)
+				if (room->cost + 1 < tab[room->link[i]].cost)
 				{
-					s->q_last++;
-					s->queu[s->q_last] = room->link[i];
+					if (room->link[i] != s->end)
+					{
+						s->q_last++;
+						s->queu[s->q_last] = room->link[i];
+					}
+					tab[room->link[i]].cost = room->cost + 1;
+					tab[room->link[i]].prev = room->index;
+					tab[room->link[i]].ascend = 1;
 				}
-				tab[room->link[i]].cost = room->cost + 1;
-				tab[room->link[i]].prev = room->index;
-				tab[room->link[i]].ascend = 1;
 				return;
 			}
 			i++;
@@ -960,16 +963,19 @@ void	normal_case(t_lem_in *s, t_room *room, t_room *tab)
 	i = 0;
 	while (i < room->nb_link)
 	{
-		if (room->prio[i] == PRIO && room->cost + 1 < tab[room->link[i]].cost)
+		if (room->prio[i] == PRIO)
 		{
-			if (room->link[i] != s->end)
+			if (room->cost + 1 < tab[room->link[i]].cost)
 			{
-				s->q_last++;
-				s->queu[s->q_last] = room->link[i];
+				if (room->link[i] != s->end)
+				{
+					s->q_last++;
+					s->queu[s->q_last] = room->link[i];
+				}
+				tab[room->link[i]].cost = room->cost + 1;
+				tab[room->link[i]].prev = room->index;
+				tab[room->link[i]].ascend = 1;
 			}
-			tab[room->link[i]].cost = room->cost + 1;
-			tab[room->link[i]].prev = room->index;
-			tab[room->link[i]].ascend = 1;
 			return;
 		}
 		i++;
@@ -1003,13 +1009,14 @@ size_t	edit_link(t_lem_in *s)
 		j = 0;
 		if (s->room_tab[i].prev == -1)
 		{
-			ft_printf("leave\n");
+			ft_printf("leave -1\n");
 			return (0);
 		}
 		while (s->room_tab[i].prev != s->room_tab[i].link[j])
 			j++;
 		if (add_on(s->on_q, s->room_tab[i].link[j]) == 0)
 		{
+			ft_printf("leave boucle\n");
 			return (0);
 		}
 		if (s->room_tab[i].prio[j] == ALL)
@@ -1170,6 +1177,14 @@ void		bfs(t_lem_in *s)
 			normal_case(s, &tab[s->queu[cur]], tab);
 		cur++;
 	}
+	size_t i = 0;
+	ft_printf ("queu : ");
+	while (i <= s->q_last)
+	{
+		ft_printf("%s ", s->room_tab[s->queu[i]].name);
+		i++;
+	}
+	ft_printf("\n");
 		// while (i < nb_link)
 		// {
 		// 	if (link[i] != -2 && link[i] != s->end && add_on(s->on_q, link[i]))
@@ -1268,9 +1283,12 @@ void		algo(t_lem_in *s)
 	while(1)
 	{
 		bfs(s);
+		ft_printf("before edit\n");
+		print_datatab(s);
 		if (edit_link(s) == 0)
 		{
 			ft_printf("break edit link\n");
+			print_datatab(s);
 			break;
 		}
 		ft_bzero(s->on_q, s->on_size);
@@ -1284,8 +1302,8 @@ void		algo(t_lem_in *s)
 	}
 	ft_bzero(s->on_q, s->on_size);
 	return_to_the_future(s);
-	print_datatab(s);
-	print_path(s);
+	// print_datatab(s);
+	// print_path(s);
 	// print ant
 }
 
