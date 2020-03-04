@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/03 21:42:07 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/04 13:33:47 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1227,6 +1227,37 @@ void	return_to_the_future(t_lem_in *s)
 	}
 }
 
+void	retrace_path(t_lem_in *s, size_t node)
+{
+	size_t i;
+
+	i = 0;
+	ft_printf("%s ", s->room_tab[node].name);
+	while (i < s->room_tab[node].nb_link)
+	{
+		if (s->room_tab[node].prio[i] == LOCK)
+			return (retrace_path(s, s->room_tab[node].link[i]));
+		i++;
+	}
+}
+
+void	print_path(t_lem_in *s)
+{
+	size_t i;
+
+	i = 0;
+	while (i < s->room_tab[s->start].nb_link)
+	{
+		if (s->room_tab[s->start].prio[i] == LOCK)
+		{
+			ft_printf("%s ", s->room_tab[s->start].name);
+			retrace_path(s, s->room_tab[s->start].link[i]);
+			ft_printf("\n");
+		}
+		i++;
+	}
+}
+
 void		algo(t_lem_in *s)
 {
 	size_t	new_nb_turn;
@@ -1254,6 +1285,7 @@ void		algo(t_lem_in *s)
 	ft_bzero(s->on_q, s->on_size);
 	return_to_the_future(s);
 	print_datatab(s);
+	print_path(s);
 	// print ant
 }
 
