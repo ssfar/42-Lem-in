@@ -6,7 +6,7 @@
 #    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2020/03/04 15:27:26 by vrobin           ###   ########.fr        #
+#    Updated: 2020/03/05 17:03:24 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = lem-in
 
-CC = gcc -g #-fsanitize=address -fno-omit-frame-pointer
+CC = gcc # -g #-fsanitize=address -fno-omit-frame-pointer
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 INC_DIR = includes
