@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/05 19:24:32 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/05 19:46:45 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -934,24 +934,19 @@ void	bubble_sort_node(size_t *arr, ssize_t *node, size_t n)
 	}
 }
 
-void	get_prev_ant(t_lem_in *s, ssize_t cur, char *run, char *new_line)
+void	get_prev_ant(t_lem_in *s, ssize_t cur, char *run)
 {
 	if (s->room_tab[cur].prev != -1)
 	{
 		s->room_tab[cur].ant = s->room_tab[s->room_tab[cur].prev].ant;
 		if (s->room_tab[cur].ant != 0)
 		{
-			if (*new_line == 1)
-			{
-				*new_line = 2;
-				ft_printf("\n");
-			}
 			if (*run)
 				ft_printf(" ");
 			ft_printf("L%zu-%s", s->room_tab[cur].ant, s->room_tab[cur].name);
 			*run = 1;
 		}
-		return (get_prev_ant(s, s->room_tab[cur].prev, run, new_line));
+		return (get_prev_ant(s, s->room_tab[cur].prev, run));
 	}
 }
 
@@ -960,11 +955,9 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 	size_t	i;
 	char	run;
 	size_t	ant;
-	char	new_line;
 
 	run = 1;
 	ant = 1;
-	new_line = 0;
 	while (run)
 	{
 		run = 0;
@@ -975,17 +968,12 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 			{
 				if (s->room_tab[s->room_tab[s->end].link[i]].ant != 0)
 				{
-					if (new_line == 1)
-					{
-						new_line = 2;
-						ft_printf("\n");
-					}
 					if (run)
 						ft_printf(" ");
 					run = 1;
 					ft_printf("L%zu-%s", s->room_tab[s->room_tab[s->end].link[i]].ant, s->room_tab[s->end].name);
 				}
-				get_prev_ant(s, s->room_tab[s->end].link[i], &run, &new_line);
+				get_prev_ant(s, s->room_tab[s->end].link[i], &run);
 			}
 			i++;
 		}
@@ -994,11 +982,6 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 		{
 			if (path[i] > 0)
 			{
-				if (new_line == 1)
-				{
-					new_line = 2;
-					ft_printf("\n");
-				}
 				if (run)
 					ft_printf(" ");
 				path[i]--;
@@ -1011,7 +994,8 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 				s->room_tab[node[i]].ant = 0;
 			i++;
 		}
-			new_line = 1;
+		if (run)
+			ft_printf("\n");
 	}
 	free(path);
 	free(node);
