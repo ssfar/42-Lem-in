@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   les_mines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/04 18:12:41 by vrobin           ###   ########.fr       */
+/*   Updated: 2020/03/05 16:19:35 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -903,6 +903,226 @@ unsigned char	remove_on(unsigned char *on, size_t to_remove)
 // 	ft_printf("End room = %s\n", s->room_tab[s->end].name);
 // }
 
+void	u_swap(size_t *a, size_t *b)
+{
+	size_t	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void	bubble_sort_node(size_t *arr, ssize_t *node, size_t n) 
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < n - 1)
+	{
+		j = 0;
+		while (j < n - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				u_swap(&arr[j], &arr[j + 1]);
+				swap(&node[j], &node[j + 1]);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	get_prev_ant(t_lem_in *s, ssize_t cur, char *run, char *new_line)
+{
+	if (s->room_tab[cur].prev != -1)
+	{
+		s->room_tab[cur].ant = s->room_tab[s->room_tab[cur].prev].ant;
+		if (s->room_tab[cur].ant != 0)
+		{
+			if (*new_line == 1)
+			{
+				*new_line = 2;
+				ft_printf("\n");
+			}
+			if (*run)
+				ft_printf(" ");
+			ft_printf("L%zu-%s", s->room_tab[cur].ant, s->room_tab[cur].name);
+			*run = 1;
+		}
+		return (get_prev_ant(s, s->room_tab[cur].prev, run, new_line));
+	}
+}
+
+void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
+{
+	size_t	i;
+	char	run;
+	char	ant;
+	char	new_line;
+
+	run = 1;
+	ant = 1;
+	new_line = 0;
+	while (run)
+	{
+		run = 0;
+		i = 0;
+		while (i < s->room_tab[s->end].nb_link)
+		{
+			if (s->room_tab[s->end].prio[i] == PRIO)
+			{
+				if (s->room_tab[s->room_tab[s->end].link[i]].ant != 0)
+				{
+					if (new_line == 1)
+					{
+						new_line = 2;
+						ft_printf("\n");
+					}
+					if (run)
+						ft_printf(" ");
+					run = 1;
+					ft_printf("L%zu-%s", s->room_tab[s->room_tab[s->end].link[i]].ant, s->room_tab[s->end].name);
+				}
+				get_prev_ant(s, s->room_tab[s->end].link[i], &run, &new_line);
+			}
+			i++;
+		}
+		i = 0;
+		while (i < size)
+		{
+			if (path[i] > 0)
+			{
+				if (new_line == 1)
+				{
+					new_line = 2;
+					ft_printf("\n");
+				}
+				if (run)
+					ft_printf(" ");
+				path[i]--;
+				s->room_tab[node[i]].ant = ant;
+				ft_printf("L%zu-%s", ant, s->room_tab[node[i]].name);
+				ant++;
+				run = 1;
+			}
+			else
+				s->room_tab[node[i]].ant = 0;
+			i++;
+		}
+			new_line = 1;
+	}
+	free(path);
+	free(node);
+}
+
+size_t	get_size_path_prev(t_lem_in *s, size_t act_path)
+{
+	ssize_t	i;
+	size_t	j;
+	size_t	ret;
+
+	i = s->room_tab[act_path].index;
+	ret = 1;
+	while (i != s->end)
+	{
+		j = 0;
+		while (s->room_tab[i].prio[j] != LOCK)
+			j++;
+		s->room_tab[s->room_tab[i].link[j]].prev = s->room_tab[i].index;
+		ret++;
+		i = s->room_tab[i].link[j];
+	}
+	return (ret);
+}
+
+size_t	*get_ant(size_t nb_ant, size_t *path, size_t size)
+{
+	size_t i;
+	size_t ret;
+	size_t	j;
+	size_t *ant_tab;
+
+	i = 0;
+	ret = 0;
+	if (!(ant_tab = malloc(sizeof(size_t) * size)))
+		return (NULL);
+	while (i < size)
+	{
+		ant_tab[i] = 0;
+		i++;
+	}
+	i = 0;
+	while (i < size - 1 && nb_ant > ret && nb_ant > 0)
+	{
+		j = 0;
+		ret = path[i + 1] - path[i];
+		while (ret > nb_ant)
+			ret--;
+		while (j < i + 1 && nb_ant > 0 && nb_ant > ret)
+		{
+			ant_tab[j] += ret;
+			nb_ant -= ret;
+			j++;
+		}
+		i++;
+	}
+	// print_tab(ant_tab, size, "ant_tab v2");
+	while (nb_ant > 0)
+	{
+		i = 0;
+		while (i < size && nb_ant > 0)
+		{
+			ant_tab[i]++;
+			nb_ant--;
+			i++;
+		}
+	}
+	if (ant_tab[size - 1] == 0)
+		return(NULL);
+	return (ant_tab);
+}
+
+void	print_ant(t_lem_in *s)
+{
+	size_t	i;
+	size_t	j;
+	size_t	size;
+	size_t	*path;
+	ssize_t	*node;
+
+	i = 0;
+	size = 0;
+	while (i < s->room_tab[s->start].nb_link)
+	{
+		if (s->room_tab[s->start].prio[i] == LOCK)
+			size++;
+		i++;
+	}
+	if (!(path = malloc(sizeof(size_t) * size)))
+		exit_failure(s, 123, "cant malloc path_turn", 123);
+	if (!(node = malloc(sizeof(size_t) * size)))
+		exit_failure(s, 123, "cant malloc path_turn", 123);
+	i = 0;
+	j = 0;
+	while (i < size)
+	{
+		while (s->room_tab[s->start].prio[j] != LOCK)
+			j++;
+		node[i] = s->room_tab[s->start].link[j];
+		path[i] = get_size_path_prev(s, s->room_tab[s->start].link[j]);
+		j++;
+		i++;
+	}
+	bubble_sort_node(path, node, size);
+	get_ant(s->nb_ant, path, size);
+	// print_path(s);
+	//end test
+	// appel de fonction qui rentre le nb de fourmis dans path 
+	move_ant(s, path, node, size);
+}
+
 char	search_for_all(t_lem_in *s, t_room *room, t_room *tab)
 {
 	size_t	i;
@@ -1077,52 +1297,6 @@ size_t	get_size_path(t_lem_in *s, size_t act_path)
 	return (ret);
 }
 
-size_t	*get_ant(size_t nb_ant, size_t *path, size_t size)
-{
-	size_t i;
-	size_t ret;
-	size_t	j;
-	size_t *ant_tab;
-
-	i = 0;
-	ret = 0;
-	if (!(ant_tab = malloc(sizeof(size_t) * size)))
-		return (NULL);
-	while (i < size)
-	{
-		ant_tab[i] = 0;
-		i++;
-	}
-	i = 0;
-	while (i < size - 1 && nb_ant > ret && nb_ant > 0)
-	{
-		j = 0;
-		ret = path[i + 1] - path[i];
-		while (ret > nb_ant)
-			ret--;
-		while (j < i + 1 && nb_ant > 0 && nb_ant > ret)
-		{
-			ant_tab[j] += ret;
-			nb_ant -= ret;
-			j++;
-		}
-		i++;
-	}
-	// print_tab(ant_tab, size, "ant_tab v2");
-	while (nb_ant > 0)
-	{
-		i = 0;
-		while (i < size && nb_ant > 0)
-		{
-			ant_tab[i]++;
-			nb_ant--;
-			i++;
-		}
-	}
-	if (ant_tab[size - 1] == 0)
-		return(NULL);
-	return (ant_tab);
-}
 
 size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 {
@@ -1155,15 +1329,6 @@ size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 	print_tab(path, size, "path_tab");
 	free(path);
 	return (ret);
-}
-
-void	u_swap(size_t *a, size_t *b)
-{
-	size_t	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
 }
 
 void	bubbleSort(size_t *arr, size_t n) 
@@ -1371,9 +1536,9 @@ void		algo(t_lem_in *s)
 	ft_bzero(s->on_q, s->on_size);
 	// print_datatab(s);
 	// print_path(s);
-	ft_printf("%s\n", s->info->str);
-	ft_printf("nb turn %d\n", count_path(s));
-	// print ant
+	// ft_printf("%s\n", s->info->str);
+	// ft_printf("nb turn %d\n", count_path(s));
+	print_ant(s);
 }
 
 int	main(void)
