@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/05 19:03:48 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/05 19:24:32 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -959,7 +959,7 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 {
 	size_t	i;
 	char	run;
-	char	ant;
+	size_t	ant;
 	char	new_line;
 
 	run = 1;
