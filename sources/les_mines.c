@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/05 19:46:45 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/06 12:30:31 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1067,6 +1067,21 @@ size_t	*get_ant(size_t nb_ant, size_t *path, size_t size)
 	return (ant_tab);
 }
 
+void	reset_map(t_lem_in *s)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (i < s->nb_room)
+	{
+		s->room_tab[i].ascend = 0;
+		s->room_tab[i].cost = SIZE_T_MAX;
+		s->room_tab[i].prev = -1;
+		i++;
+	}
+	s->room_tab[s->start].cost = 0;
+}
+
 void	print_ant(t_lem_in *s)
 {
 	size_t	i;
@@ -1075,6 +1090,7 @@ void	print_ant(t_lem_in *s)
 	size_t	*path;
 	ssize_t	*node;
 
+	reset_map(s);
 	i = 0;
 	size = 0;
 	while (i < s->room_tab[s->start].nb_link)
@@ -1184,21 +1200,6 @@ void	normal_case(t_lem_in *s, t_room *room, t_room *tab)
 		i++;
 	}
 	search_for_all(s, room, tab);
-}
-
-void	reset_map(t_lem_in *s)
-{
-	ssize_t	i;
-
-	i = 0;
-	while (i < s->nb_room)
-	{
-		s->room_tab[i].ascend = 0;
-		s->room_tab[i].cost = SIZE_T_MAX;
-		s->room_tab[i].prev = -1;
-		i++;
-	}
-	s->room_tab[s->start].cost = 0;
 }
 
 void	edit_link(t_lem_in *s)
@@ -1457,10 +1458,10 @@ void		algo(t_lem_in *s)
 	while(1)
 	{
 		bfs(s);
+		ft_bzero(s->on_q, s->on_size);
 		if (check_ledit(s) == 0)
 			break;
 		edit_link(s);
-		ft_bzero(s->on_q, s->on_size);
 		if ((new_nb_turn = count_path(s)) >= nb_turn) /* > || >= ? */
 		{
 			return_to_the_future(s);
