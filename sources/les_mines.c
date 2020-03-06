@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/06 12:30:31 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/06 15:29:51 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,7 +378,6 @@ void			read_link(t_lem_in *s, char *line)
 {
 	if (!line || s->start == -1 || s->end == -1 || is_link(s, line) == 0)
 	{
-		ft_printf("line ; %s\n", line);
 		free(line);
 		exit_failure(s, 1, "Not enought viable info", 1);
 	}
@@ -583,6 +582,31 @@ void	write_room2(t_lem_in *s, t_hashmap *tmp, size_t i)
 		tmp->room = &s->room_tab[j]; /* relink of the room to the hmap */
 		tmp = tmp->collision_next;
 	}
+}
+
+void	print_start_to_end(t_lem_in *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < s->room_tab[s->start].nb_link)
+	{
+		if (s->room_tab[s->start].link[i] == s->end)
+		{
+			i = 1;
+			ft_printf("L%zu-%s", i, s->room_tab[s->end].name);
+			i++;
+			while (i <= s->nb_ant)
+			{
+				ft_printf(" L%zu-%s", i, s->room_tab[s->end].name);
+				i++;
+			}
+			ft_printf("\n");
+			exit(1);
+		}
+		i++;
+	}
+	
 }
 
 void	write_room(t_lem_in *s)
@@ -955,6 +979,7 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 	size_t	i;
 	char	run;
 	size_t	ant;
+	size_t	line = 1;
 
 	run = 1;
 	ant = 1;
@@ -995,7 +1020,7 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 			i++;
 		}
 		if (run)
-			ft_printf("\n");
+			ft_printf(" [%zu]\n", line++);
 	}
 	free(path);
 	free(node);
@@ -1244,7 +1269,7 @@ size_t	check_ledit(t_lem_in *s)
 		j = 0;
 		if (s->room_tab[i].prev == -1)
 		{
-			ft_printf("leave -1\n");
+			// ft_printf("leave -1\n");
 			return (0);
 		}
 		while (s->room_tab[i].prev != s->room_tab[i].link[j])
@@ -1453,6 +1478,7 @@ void		algo(t_lem_in *s)
 	size_t	new_nb_turn;
 	size_t	nb_turn;
 
+	print_start_to_end(s);
 	nb_turn = SIZE_T_MAX;
 	init_algo(s);
 	while(1)
