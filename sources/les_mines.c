@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/06 15:29:51 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/06 16:18:38 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -584,6 +584,33 @@ void	write_room2(t_lem_in *s, t_hashmap *tmp, size_t i)
 	}
 }
 
+void	print_info(t_lem_in *s)
+{
+	char	pipe;
+
+	pipe = 0;
+	ft_printf("%zu\n", s->nb_ant);
+	while (s->info)
+	{
+		s->i_curr = s->info;
+		if (s->info->str[0] != '#')
+		{
+			if (pipe)
+				ft_printf("%s-", s->info->str);
+			else
+				ft_printf("%s ", s->info->str);
+			ft_printf("%s\n", &s->info->str[ft_strlen(s->info->str) + 1]);
+		}
+		else
+			ft_printf("%s\n", s->info->str);
+		s->info = s->info->i_next;
+		free(s->i_curr);
+		if (s->info == s->i_pipe)
+			pipe = 1;
+	}
+	ft_printf("\n");
+}
+
 void	print_start_to_end(t_lem_in *s)
 {
 	size_t	i;
@@ -593,6 +620,7 @@ void	print_start_to_end(t_lem_in *s)
 	{
 		if (s->room_tab[s->start].link[i] == s->end)
 		{
+			print_info(s);
 			i = 1;
 			ft_printf("L%zu-%s", i, s->room_tab[s->end].name);
 			i++;
@@ -606,7 +634,6 @@ void	print_start_to_end(t_lem_in *s)
 		}
 		i++;
 	}
-	
 }
 
 void	write_room(t_lem_in *s)
@@ -1497,6 +1524,7 @@ void		algo(t_lem_in *s)
 		reset_map(s);
 	}
 	ft_bzero(s->on_q, s->on_size);
+	print_info(s);
 	print_ant(s);
 }
 
