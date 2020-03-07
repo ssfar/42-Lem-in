@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 13:54:53 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 14:11:43 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	free_hash_map_whitout_room(t_lem_in *s)
 	t_hashmap	*tmp;
 	t_hashmap	*tmp2;
 
-	tmp = s->hmap[i]->collision_next;
 	i = 0;
 	while (i < MAP_SIZE)
 	{
+		tmp = s->hmap[i]->collision_next;
 		while (tmp)
 		{
 			tmp2 = tmp;
@@ -61,11 +61,11 @@ void	free_hash_map_whit_room(t_lem_in *s)
 	t_hashmap	*tmp;
 	t_hashmap	*tmp2;
 
-	free_room(s->hmap[i]->room);
-	tmp = s->hmap[i]->collision_next;
 	i = 0;
 	while (i < MAP_SIZE)
 	{
+		free_room(s->hmap[i]->room);
+		tmp = s->hmap[i]->collision_next;
 		while (tmp)
 		{
 			free_room(tmp->room);
