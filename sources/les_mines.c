@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 14:11:43 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 14:41:51 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,15 @@ void	free_hash_map_whitout_room(t_lem_in *s)
 	i = 0;
 	while (i < MAP_SIZE)
 	{
-		tmp = s->hmap[i]->collision_next;
-		while (tmp)
+		if (s->hmap[i])
 		{
-			tmp2 = tmp;
-			tmp = tmp->collision_next;
-			free(tmp2);
+			tmp = s->hmap[i]->collision_next;
+			while (tmp)
+			{
+				tmp2 = tmp;
+				tmp = tmp->collision_next;
+				free(tmp2);
+			}
 		}
 		i++;
 	}
@@ -64,14 +67,17 @@ void	free_hash_map_whit_room(t_lem_in *s)
 	i = 0;
 	while (i < MAP_SIZE)
 	{
-		free_room(s->hmap[i]->room);
-		tmp = s->hmap[i]->collision_next;
-		while (tmp)
+		if (s->hmap[i])
 		{
-			free_room(tmp->room);
-			tmp2 = tmp;
-			tmp = tmp->collision_next;
-			free(tmp2);
+			free_room(s->hmap[i]->room);
+			tmp = s->hmap[i]->collision_next;
+			while (tmp)
+			{
+				free_room(tmp->room);
+				tmp2 = tmp;
+				tmp = tmp->collision_next;
+				free(tmp2);
+			}
 		}
 		i++;
 	}
@@ -208,7 +214,7 @@ void	clear_the_mess(t_lem_in *s, size_t i, t_hashmap *unlinked)
 	free(s->room_tab);
 	clean_after_unlinked(s, i, unlinked->collision_next);
 	free(unlinked);
-	exit_failure(s, 0, "Malloc error room_tab", 0);
+	exit_failure(s, NULL, 0, 0); // verif free
 }
 
 // until here
