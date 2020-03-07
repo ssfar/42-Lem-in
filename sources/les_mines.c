@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 22:39:32 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 23:36:27 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ void	free_info(t_lem_in *s)
 	}
 }
 
-void	free_room(t_room *room, char free_room_too)
+void	free_room(t_room *room, char mode)
 {
-	if (room)
+	if (mode)
 	{
 		free(room->link);
 		free(room->prio);
-		if (free_room_too)
-			free(room);
 	}
+	else
+		free(room);
 }
 
-void	free_hash_map(t_lem_in *s, char free_room_too)
+void	free_hash_map(t_lem_in *s, char mode)
 {
 	size_t		i;
 	t_hashmap	*tmp;
@@ -48,7 +48,8 @@ void	free_hash_map(t_lem_in *s, char free_room_too)
 		tmp = s->hmap[i];
 		while (tmp)
 		{
-			free_room(tmp->room, free_room_too);
+			free_room(tmp->room, mode);
+			ft_printf("for your mind\n");
 			tmp2 = tmp;
 			tmp = tmp->collision_next;
 			free(tmp2);
@@ -57,10 +58,10 @@ void	free_hash_map(t_lem_in *s, char free_room_too)
 	}
 }
 
-void	free_struct(t_lem_in *s, char free_room_too)
+void	free_struct(t_lem_in *s, char mode)
 {
 	free_info(s);
-	free_hash_map(s, free_room_too);
+	free_hash_map(s, mode);
 	free(s->room_tab);
 	free(s->on_q);
 	free(s->queu);
@@ -124,10 +125,10 @@ void	exit_success(t_lem_in *s)
 }
 
 void	exit_failure(t_lem_in *s, void *to_free,
-	char free_room_too, char print_error)
+	char mode, char print_error)
 {
 	free(to_free);
-	free_struct(s, free_room_too);
+	free_struct(s, mode);
 	if (print_error)
 		ft_printf("ERROR\n");
 	exit(EXIT_FAILURE);
@@ -532,8 +533,7 @@ void	init_struct(t_lem_in *s)
 	s->room_tab = NULL;
 	s->on_q = NULL;
 	s->queu = NULL;
-	//init_hmap(s);
-	ft_bzero(s->hmap, MAP_SIZE);
+	init_hmap(s);
 }
 
 void		print_stab(ssize_t *tab, size_t size, char *msg)
