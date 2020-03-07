@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 14:41:51 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 15:48:44 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ void	free_info(t_lem_in *s)
 	}
 }
 
-void	free_room(t_room *room)
+void	free_room(t_room *room, char free_room_too)
 {
 	if (room)
 	{
 		free(room->link);
 		free(room->prio);
-		free(room);
+		if (free_room_too);
+			free(room);
 	}
 }
 
@@ -69,11 +70,11 @@ void	free_hash_map_whit_room(t_lem_in *s)
 	{
 		if (s->hmap[i])
 		{
-			free_room(s->hmap[i]->room);
+			free_room(s->hmap[i]->room, 1);
 			tmp = s->hmap[i]->collision_next;
 			while (tmp)
 			{
-				free_room(tmp->room);
+				free_room(tmp->room, 1);
 				tmp2 = tmp;
 				tmp = tmp->collision_next;
 				free(tmp2);
@@ -191,7 +192,7 @@ void	clean_before_unlinked(t_lem_in *s, size_t i, t_hashmap *unliked)
 		tmp = s->hmap[j];
 		while (tmp)
 		{
-			free(s->room_tab[tmp->room->index].link);
+			free_room(tmp->room, 0);
 			tmp2 = tmp->collision_next;
 			free(tmp);
 			tmp = tmp2;
@@ -201,7 +202,7 @@ void	clean_before_unlinked(t_lem_in *s, size_t i, t_hashmap *unliked)
 	tmp = s->hmap[i];
 	while (tmp && tmp != unliked)
 	{
-		free(s->room_tab[tmp->room->index].link);
+		free_room(tmp->room, 0);
 		tmp2 = tmp->collision_next;
 		free(tmp);
 		tmp = tmp2;
@@ -214,7 +215,8 @@ void	clear_the_mess(t_lem_in *s, size_t i, t_hashmap *unlinked)
 	free(s->room_tab);
 	clean_after_unlinked(s, i, unlinked->collision_next);
 	free(unlinked);
-	exit_failure(s, NULL, 0, 0); // verif free
+	free_info(s);
+	exit(-1);
 }
 
 // until here
@@ -580,8 +582,8 @@ void			add_link(t_lem_in *s, ssize_t index1, ssize_t index2)
 		}
 		i++;
 	}
-	s->room_tab[index1].link_rm = s->room_tab[index1].nb_link; //peut être un peu trop répétitif
-	s->room_tab[index2].link_rm = s->room_tab[index2].nb_link; 
+	s->room_tab[index1].link_rm = s->room_tab[index1].nb_link;//peut être un peu trop répétitif
+	s->room_tab[index2].link_rm = s->room_tab[index2].nb_link;
 	s->room_tab[index1].link[i] = index2;
 	s->room_tab[index1].prio[i] = ALL;
 	i = 0;
@@ -620,6 +622,19 @@ void			write_link(t_lem_in *s)
 	}
 }
 
+void	write_room_alloc(t_lem_in *s, ssize_t j, size_t i, t_hashmap *tmp)
+{
+	if (!(s->room_tab[j].link
+		= malloc(sizeof(ssize_t) * s->room_tab[j].nb_link)))
+			clear_the_mess(s, i, tmp);
+	if (!(s->room_tab[j].prio
+		= malloc(sizeof(signed char) * s->room_tab[j].nb_link)))
+	{
+		free(s->room_tab[j].link);
+		clear_the_mess(s, i, tmp);
+	}
+}
+
 void	write_room2(t_lem_in *s, t_hashmap *tmp, size_t i)
 {
 	ssize_t	j;
@@ -632,12 +647,7 @@ void	write_room2(t_lem_in *s, t_hashmap *tmp, size_t i)
 		free(tmp->room);
 		if (s->room_tab[j].nb_link > 0)
 		{
-			if (!(s->room_tab[j].link
-				= malloc(sizeof(ssize_t) * s->room_tab[j].nb_link)))
-				clear_the_mess(s, i, tmp);
-			if (!(s->room_tab[j].prio 
-				= malloc(sizeof(signed char) * s->room_tab[j].nb_link)))
-				clear_the_mess(s, i, tmp);
+			write_room_alloc(s, j, i, tmp);
 			k = 0;
 			while (k < s->room_tab[j].nb_link)
 			{
