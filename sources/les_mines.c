@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/06 18:46:13 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 13:54:53 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,26 @@ void	free_room(t_room *room)
 		free(room->link);
 		free(room->prio);
 		free(room);
+	}
+}
+
+void	free_hash_map_whitout_room(t_lem_in *s)
+{
+	size_t		i;
+	t_hashmap	*tmp;
+	t_hashmap	*tmp2;
+
+	tmp = s->hmap[i]->collision_next;
+	i = 0;
+	while (i < MAP_SIZE)
+	{
+		while (tmp)
+		{
+			tmp2 = tmp;
+			tmp = tmp->collision_next;
+			free(tmp2);
+		}
+		i++;
 	}
 }
 
@@ -340,6 +360,7 @@ t_room	*init_room(t_lem_in *s, t_hashmap *new, char *name)
 	new->room->prio = NULL;
 	new->room->ascend = 0;
 	new->room->prev = -1;
+	new->room->ant = 0;
 	return	(new->room);
 }
 
@@ -1381,7 +1402,10 @@ size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 	j = 0;
 	ret = 0;
 	if ((ant_tab = get_ant(nb_ant, path, size)) == NULL)
-		return(INT32_MAX);
+	{
+		free(path);
+		return(SIZE_T_MAX);
+	}
 	while (i < size)
 	{
 		path[i] += ant_tab[i] - 1;
@@ -1395,6 +1419,7 @@ size_t	count_turn(size_t nb_ant, size_t *path, size_t size)
 			ret = path[i];
 		i++;
 	}
+	free(ant_tab);
 	free(path);
 	return (ret);
 }
