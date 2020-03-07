@@ -6,13 +6,62 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/06 16:18:38 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/06 18:46:13 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "les_mines.h"
 
 // check the top functions
+
+void	free_info(t_lem_in *s)
+{
+	while (s->info)
+	{
+		s->i_curr = s->info;
+		s->info = s->info->i_next;
+		free(s->i_curr->str);
+		free(s->i_curr);
+	}
+}
+
+void	free_room(t_room *room)
+{
+	if (room)
+	{
+		free(room->link);
+		free(room->prio);
+		free(room);
+	}
+}
+
+void	free_hash_map_whit_room(t_lem_in *s)
+{
+	size_t		i;
+	t_hashmap	*tmp;
+	t_hashmap	*tmp2;
+
+	free_room(s->hmap[i]->room);
+	tmp = s->hmap[i]->collision_next;
+	i = 0;
+	while (i < MAP_SIZE)
+	{
+		while (tmp)
+		{
+			free_room(tmp->room);
+			tmp2 = tmp;
+			tmp = tmp->collision_next;
+			free(tmp2);
+		}
+		i++;
+	}
+}
+
+void	free_everything_before_room_tab(t_lem_in *s)
+{
+	free_info(s);
+	free_hash_map_whit_room(s);
+}
 
 void		print_tab(size_t *tab, size_t size, char *msg)
 {
@@ -65,12 +114,15 @@ void	print_datatab(t_lem_in *s)
 	}
 }
 
-void	exit_failure(t_lem_in *s, char i, char *line, char j)
+void	exit_failure(t_lem_in *s, char *to_free, char mode, char print_error)
 {
-	s->nb_room++;
-	ft_printf("%s", line);
-	j++;
-	i++;
+	free(to_free);
+	if (mode == 0)
+		free_everything_before_room_tab(s);
+	else
+		
+	if (print_error)
+		ft_printf("ERROR\n");
 	exit(0);
 }
 
@@ -171,10 +223,7 @@ char	is_link2(t_lem_in *s, char *line, t_room *room1)
 	room1->nb_link++;
 	room2->nb_link++;
 	if (room1->nb_link == SIZE_T_MAX || room2->nb_link == SIZE_T_MAX)
-	{
-		free(line);
-		exit_failure(s, 1, "too many links", 0);
-	}
+		exit_failure(s, line, 0, 0);
 	return (1);
 }
 
@@ -281,7 +330,7 @@ void			init_hmap(t_lem_in *s)
 t_room	*init_room(t_lem_in *s, t_hashmap *new, char *name)
 {
 	if (!(new->room = malloc(sizeof(t_room))))
-		exit_failure(s, 1, "Can't malloc tmp->room", 0);
+		exit_failure(s, NULL, 0, 0);
 	new->room->name = name;
 	new->room->index = s->nb_room;
 	new->room->nb_link = 0;
@@ -301,7 +350,7 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 	if (!(s->hmap[index]))
 	{
 		if (!(s->hmap[index] = malloc(sizeof(t_hashmap))))
-			exit_failure(s, 1, "Can't malloc s->hmap[i]", 0);
+			exit_failure(s, NULL, 0, 0);
 		s->hmap[index]->collision_next = NULL;
 		return (init_room(s, s->hmap[index], key));
 	}
@@ -309,13 +358,13 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 	while (tmp->collision_next)
 	{
 		if (ft_strcmp(key, tmp->room->name) == 0)
-			exit_failure(s, 1, "Room already exist", 1);
+			exit_failure(s, NULL, 0, 1);
 		tmp = tmp->collision_next;
 	}
 	if (ft_strcmp(key, tmp->room->name) == 0)
-		exit_failure(s, 1, "Room already exist", 1);
+		exit_failure(s, NULL, 0, 1);
 	if (!(tmp->collision_next = malloc(sizeof(t_hashmap))))
-		exit_failure(s, 1, "Can't malloc tmp->collision_next", 0);
+		exit_failure(s, NULL, 0, 0);
 	tmp = tmp->collision_next;
 	tmp->collision_next = NULL;
 	return (init_room(s, tmp, key));
@@ -326,8 +375,8 @@ void	add_room(t_lem_in *s, char *line)
 	info_push_back(s, create_info(s, line));
 	place_room(s, line, hash_to_int(line));
 	s->nb_room++;
-	if (s->nb_room >= SSIZE_T_MAX - 2)
-		exit_failure(s, 123, "Too many rooms", 0);
+	if (s->nb_room > SSIZE_T_MAX)
+		exit_failure(s, NULL, 0, 0);
 }
 
 void			read_tip(t_lem_in *s, ssize_t *tip)
@@ -335,14 +384,14 @@ void			read_tip(t_lem_in *s, ssize_t *tip)
 	char	*line;
 
 	if (*tip != -1)
-		exit_failure(s, 1, "Tip already read", 1);
+		exit_failure(s, NULL, 0, 1);
 	while (get_next_line(0, &line) > 0)
 	{
 		if (*line == '#')
 		{
 			info_push_back(s, create_info(s, line));
 			if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
-				exit_failure(s, 1, "Two ##star/end command for the same room", 1); 
+				exit_failure(s, NULL, 0, 1);
 		}
 		else if (is_room(line))
 		{
@@ -351,10 +400,7 @@ void			read_tip(t_lem_in *s, ssize_t *tip)
 			break;
 		}
 		else
-		{
-			free(line);
-			exit_failure(s, 1, "Invalid/already exist room after ##start/end command", 1);
-		}
+			exit_failure(s, line, 0, 1);
 	}
 }
 
@@ -377,10 +423,7 @@ t_room		*find_room(t_lem_in *s, char *key, size_t index)
 void			read_link(t_lem_in *s, char *line)
 {
 	if (!line || s->start == -1 || s->end == -1 || is_link(s, line) == 0)
-	{
-		free(line);
-		exit_failure(s, 1, "Not enought viable info", 1);
-	}
+		exit_failure(s, line, 0, 1);
 	s->i_pipe = s->i_curr;
 	while (get_next_line(0, &line) > 0)
 	{
@@ -441,10 +484,10 @@ t_info	*create_info(t_lem_in *s, char *str)
 {
 	t_info	*new;
 
-	if (!(new = malloc(sizeof(t_info))))
+	if (!(new = malloc(sizeof(*new))))
 	{
 		free(str);
-		exit_failure(s, 1, "Can't malloc t_info new", 0);
+		exit_failure(s, NULL, 0, 0);
 	}
 	init_info(new, str);
 	return (new);
@@ -460,23 +503,20 @@ void	read_ant_nb(t_lem_in *s)
 		{
 			info_push_back(s, create_info(s, line));
 			if (!ft_strcmp(line, "##start") || !ft_strcmp(line, "##end"))
-				exit_failure(s, 0, "\nNo/invalid ant nbr", 1);
+				exit_failure(s, NULL, 0, 1);
 		}
 		else if (str_is_numeric_no_symbol(line) && *line != '0')
 		{
 			s->nb_ant = atou(line);
 			free(line);
 			if (s->nb_ant == 0)
-				exit_failure(s, 0, "\nToo many ants (overflow)", 1);
+				exit_failure(s, NULL, 0, 0);
 			return ;
 		}
 		else
-		{
-			free(line);
-			exit_failure(s, 0, "\nNo/invalid ant nbr", 1);
-		}
+			exit_failure(s, line, 0, 1);
 	}
-	exit_failure(s, 0, "\nNo ant nbr", 1);
+	exit_failure(s, NULL, 0, 1);
 }
 
 void	init_struct(t_lem_in *s)
@@ -590,22 +630,21 @@ void	print_info(t_lem_in *s)
 
 	pipe = 0;
 	ft_printf("%zu\n", s->nb_ant);
-	while (s->info)
+	s->i_curr = s->info;
+	while (s->i_curr)
 	{
-		s->i_curr = s->info;
-		if (s->info->str[0] != '#')
+		if (s->i_curr->str[0] != '#')
 		{
 			if (pipe)
-				ft_printf("%s-", s->info->str);
+				ft_printf("%s-", s->i_curr->str);
 			else
-				ft_printf("%s ", s->info->str);
-			ft_printf("%s\n", &s->info->str[ft_strlen(s->info->str) + 1]);
+				ft_printf("%s ", s->i_curr->str);
+			ft_printf("%s\n", &s->i_curr->str[ft_strlen(s->i_curr->str) + 1]);
 		}
 		else
-			ft_printf("%s\n", s->info->str);
-		s->info = s->info->i_next;
-		free(s->i_curr);
-		if (s->info == s->i_pipe)
+			ft_printf("%s\n", s->i_curr->str);
+		s->i_curr = s->i_curr->i_next;
+		if (s->i_curr == s->i_pipe)
 			pipe = 1;
 	}
 	ft_printf("\n");
@@ -641,7 +680,7 @@ void	write_room(t_lem_in *s)
 	size_t	i;
 
 	if (!(s->room_tab = malloc(sizeof(t_room) * s->nb_room)))
-		exit_failure(s, 1, "Malloc error room_tab", 0);
+		exit_failure(s, NULL, 0, 0);
 	i = 0;
 	while (i < MAP_SIZE)
 	{

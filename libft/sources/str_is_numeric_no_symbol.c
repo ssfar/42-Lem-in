@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 10:13:37 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/10 15:04:03 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/06 17:45:54 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** if so the function return 1 otherwise 0.
 */
 
-uint_fast8_t	str_is_numeric_no_symbol(char *str)
+char	str_is_numeric_no_symbol(char *str)
 {
 	if (!str)
 		return (0);

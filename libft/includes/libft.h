@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 19:44:32 by ssfar             #+#    #+#             */
-/*   Updated: 2019/11/11 21:12:49 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/06 17:46:32 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ char			*utoa(size_t unb);
 char			**strtab(ssize_t x, ssize_t y);
 void			strtab_iteri(char **tab, void (*f)(unsigned int, char *));
 char			**free_strtab_offset(char **tab, ssize_t offset);
-uint_fast8_t	str_is_numeric_no_symbol(char *str);
+char			str_is_numeric_no_symbol(char *str);
 size_t			atou(const char *str);
 ssize_t			hash(char *key, ssize_t tab_size);
 ssize_t			hash_to_c(char *key, ssize_t tab_size, char c);
