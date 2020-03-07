@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 21:22:45 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 22:39:32 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ void	print_datatab(t_lem_in *s)
 	}
 }
 
-void	exit_success(t_lem_in *s, char free_room_too)
+void	exit_success(t_lem_in *s)
 {
-	free_struct(s, free_room_too);
+	free_struct(s, 0);
 	exit(EXIT_SUCCESS);
 }
 
@@ -495,10 +495,7 @@ t_info	*create_info(t_lem_in *s, char *str)
 	t_info	*new;
 
 	if (!(new = malloc(sizeof(*new))))
-	{
-		free(str);
-		exit_failure(s, NULL, 0, 0);
-	}
+		exit_failure(s, str, 0, 0);
 	init_info(new, str);
 	return (new);
 }
@@ -693,7 +690,7 @@ void	print_start_to_end(t_lem_in *s)
 		}
 		i++;
 	}
-	exit_success(s, 0);
+	exit_success(s);
 }
 
 void	write_room(t_lem_in *s)
@@ -863,23 +860,23 @@ void		add_queu(t_lem_in *s, ssize_t *link, size_t nb_link)
 	}
 }
 
-void		realloc_path_tab(t_lem_in *s, t_path *path, size_t size)
-{
-	t_path	*new;
-	size_t	i;
+// void		realloc_path_tab(t_lem_in *s, t_path *path, size_t size)
+// {
+// 	t_path	*new;
+// 	size_t	i;
 
-	if (!(new = malloc(sizeof(t_path) * size)))
-		exit_failure(s, 2, "can't malloc *way", 0);
-	i = 0;
-	while (i < s->w_last)
-	{
-		new[i] = path[i];
-		i++;
-	}
-	free(s->way);
-	s->way = new;
-	s->w_size = size;
-}
+// 	if (!(new = malloc(sizeof(t_path) * size)))
+// 		exit_failure(s, 2, "can't malloc *way", 0);
+// 	i = 0;
+// 	while (i < s->w_last)
+// 	{
+// 		new[i] = path[i];
+// 		i++;
+// 	}
+// 	free(s->way);
+// 	s->way = new;
+// 	s->w_size = size;
+// }
 
 unsigned char	remove_on(unsigned char *on, size_t to_remove)
 {
@@ -1023,72 +1020,84 @@ void	bubble_sort_node(size_t *arr, ssize_t *node, size_t n)
 	}
 }
 
-void	get_prev_ant(t_lem_in *s, ssize_t cur, char *run)
+void	get_prev_ant(t_lem_in *s, ssize_t cur)
 {
 	if (s->room_tab[cur].prev != -1)
 	{
 		s->room_tab[cur].ant = s->room_tab[s->room_tab[cur].prev].ant;
 		if (s->room_tab[cur].ant != 0)
 		{
-			if (*run)
+			if (s->run)
 				ft_printf(" ");
 			ft_printf("L%zu-%s", s->room_tab[cur].ant, s->room_tab[cur].name);
-			*run = 1;
+			s->run = 1;
 		}
-		return (get_prev_ant(s, s->room_tab[cur].prev, run));
+		return (get_prev_ant(s, s->room_tab[cur].prev));
+	}
+}
+
+void	update_ant_pos(t_lem_in *s)
+{
+	size_t	i;
+
+	s->run = 0;
+	i = 0;
+	while (i < s->room_tab[s->end].nb_link)
+	{
+		if (s->room_tab[s->end].prio[i] == PRIO)
+		{
+			if (s->room_tab[s->room_tab[s->end].link[i]].ant != 0)
+			{
+				if (s->run)
+					ft_printf(" ");
+				s->run = 1;
+				ft_printf("L%zu-%s",
+					s->room_tab[s->room_tab[s->end].link[i]].ant,
+						s->room_tab[s->end].name);
+			}
+			get_prev_ant(s, s->room_tab[s->end].link[i]);
+		}
+		i++;
+	}
+}
+
+void	get_ant_out(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (path[i] > 0)
+		{
+			if (s->run)
+				ft_printf(" ");
+			path[i]--;
+			s->room_tab[node[i]].ant = s->ant;
+			ft_printf("L%zu-%s", s->ant, s->room_tab[node[i]].name);
+			s->ant++;
+			s->run = 1;
+		}
+		else
+			s->room_tab[node[i]].ant = 0;
+		i++;
 	}
 }
 
 void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 {
-	size_t	i;
-	char	run;
-	size_t	ant;
-	size_t	line = 1;
-
-	run = 1;
-	ant = 1;
-	while (run)
+	s->run = 1;
+	s->ant = 1;
+	while (s->run)
 	{
-		run = 0;
-		i = 0;
-		while (i < s->room_tab[s->end].nb_link)
-		{
-			if (s->room_tab[s->end].prio[i] == PRIO)
-			{
-				if (s->room_tab[s->room_tab[s->end].link[i]].ant != 0)
-				{
-					if (run)
-						ft_printf(" ");
-					run = 1;
-					ft_printf("L%zu-%s", s->room_tab[s->room_tab[s->end].link[i]].ant, s->room_tab[s->end].name);
-				}
-				get_prev_ant(s, s->room_tab[s->end].link[i], &run);
-			}
-			i++;
-		}
-		i = 0;
-		while (i < size)
-		{
-			if (path[i] > 0)
-			{
-				if (run)
-					ft_printf(" ");
-				path[i]--;
-				s->room_tab[node[i]].ant = ant;
-				ft_printf("L%zu-%s", ant, s->room_tab[node[i]].name);
-				ant++;
-				run = 1;
-			}
-			else
-				s->room_tab[node[i]].ant = 0;
-			i++;
-		}
-		if (run)
-			ft_printf(" [%zu]\n", line++);
+		update_ant_pos(s);
+		get_ant_out(s, path, node, size);
+		if (s->run)
+			ft_printf("\n");
 	}
 	free(path);
 	free(node);
+	exit_success(s);
 }
 
 size_t	get_size_path_prev(t_lem_in *s, size_t act_path)
@@ -1177,6 +1186,22 @@ void	reset_map(t_lem_in *s)
 	s->room_tab[s->start].cost = 0;
 }
 
+size_t	count_nb_path(t_lem_in *s)
+{
+	size_t	i;
+	size_t	nb_path;
+
+	i = 0;
+	nb_path = 0;
+	while (i < s->room_tab[s->start].nb_link)
+	{
+		if (s->room_tab[s->start].prio[i] == LOCK)
+			nb_path++;
+		i++;
+	}
+	return (nb_path);
+}
+
 void	print_ant(t_lem_in *s)
 {
 	size_t	i;
@@ -1186,18 +1211,11 @@ void	print_ant(t_lem_in *s)
 	ssize_t	*node;
 
 	reset_map(s);
-	i = 0;
-	size = 0;
-	while (i < s->room_tab[s->start].nb_link)
-	{
-		if (s->room_tab[s->start].prio[i] == LOCK)
-			size++;
-		i++;
-	}
+	size = count_nb_path(s);
 	if (!(path = malloc(sizeof(size_t) * size)))
-		exit_failure(s, 123, "cant malloc path_turn", 123);
+		exit_failure(s, NULL, 0, 0);
 	if (!(node = malloc(sizeof(size_t) * size)))
-		exit_failure(s, 123, "cant malloc path_turn", 123);
+		exit_failure(s, path, 0, 0);
 	i = 0;
 	j = 0;
 	while (i < size)
@@ -1211,7 +1229,6 @@ void	print_ant(t_lem_in *s)
 	}
 	bubble_sort_node(path, node, size);
 	move_ant(s, get_ant(s, s->nb_ant, path, size), node, size);
-	free(path);
 }
 
 char	search_for_all(t_lem_in *s, t_room *room, t_room *tab)
@@ -1424,12 +1441,7 @@ size_t	count_path(t_lem_in *s, size_t i, size_t j, size_t size)
 	size_t	*path;
 	size_t	ret;
 
-	while (i < s->room_tab[s->start].nb_link)
-	{
-		if (s->room_tab[s->start].prio[i] == LOCK)
-			size++;
-		i++;
-	}
+	size = count_nb_path(s);
 	if (!(path = malloc(sizeof(size_t) * size)))
 		exit_failure(s, NULL, 0, 0);
 	i = 0;

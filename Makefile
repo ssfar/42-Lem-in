@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2020/03/05 17:03:24 by ssfar            ###   ########.fr        #
+#    Updated: 2020/03/07 22:54:37 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME = lem-in
 
-CC = gcc # -g #-fsanitize=address -fno-omit-frame-pointer
+CC = gcc #-g -fsanitize=address -fno-omit-frame-pointer
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
 
 INC_DIR = includes

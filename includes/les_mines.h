@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:07 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/06 15:28:59 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 22:37:35 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct	s_lem_in
 	unsigned char	*on_q;
 	// char			q_overflow;
 	size_t			nb_turn;
+	size_t			ant;
+	char			run;
 }				t_lem_in;
 
 typedef	struct s_path
@@ -59,7 +61,7 @@ typedef	struct	s_info
 
 typedef	struct	s_room
 {
-	size_t	index;
+	ssize_t	index;
 	char	*name;
 	size_t	nb_link;
 	size_t	link_rm;
