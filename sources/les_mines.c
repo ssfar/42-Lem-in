@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 19:57:57 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/07 21:22:45 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	exit_success(t_lem_in *s, char free_room_too)
 	exit(EXIT_SUCCESS);
 }
 
-void	exit_failure(t_lem_in *s, char *to_free,
+void	exit_failure(t_lem_in *s, void *to_free,
 	char free_room_too, char print_error)
 {
 	free(to_free);
@@ -1141,7 +1141,7 @@ size_t	*get_ant(t_lem_in *s, size_t nb_ant, size_t *path, size_t size)
 	size_t *ant_tab;
 
 	if (!(ant_tab = malloc(sizeof(size_t) * size)))
-		exit_failure(s, NULL, 0, 0);
+		exit_failure(s, path, 0, 0);
 	ft_bzero(ant_tab, size);
 	ret = 0;
 	i = 0;
