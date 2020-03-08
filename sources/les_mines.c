@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/07 23:36:27 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/08 01:43:00 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	free_hash_map(t_lem_in *s, char mode)
 		tmp = s->hmap[i];
 		while (tmp)
 		{
+			
 			free_room(tmp->room, mode);
-			ft_printf("for your mind\n");
 			tmp2 = tmp;
 			tmp = tmp->collision_next;
 			free(tmp2);
@@ -120,7 +120,7 @@ void	print_datatab(t_lem_in *s)
 
 void	exit_success(t_lem_in *s)
 {
-	free_struct(s, 0);
+	free_struct(s, 1);
 	exit(EXIT_SUCCESS);
 }
 
@@ -232,7 +232,7 @@ char	is_link2(t_lem_in *s, char *line, t_room *room1)
 	room1->nb_link++;
 	room2->nb_link++;
 	if (room1->nb_link == SIZE_T_MAX || room2->nb_link == SIZE_T_MAX)
-		exit_failure(s, line, 1, 0);
+		exit_failure(s, line, 0, 0);
 	return (1);
 }
 
@@ -340,7 +340,7 @@ t_room	*init_room(t_lem_in *s, t_hashmap *new, char *name)
 {
 	new->room = NULL; /* in case of malloc fail*/
 	if (!(new->room = malloc(sizeof(t_room))))
-		exit_failure(s, NULL, 1, 0);
+		exit_failure(s, NULL, 0, 0);
 	new->room->name = name;
 	new->room->index = s->nb_room;
 	new->room->nb_link = 0;
@@ -361,7 +361,7 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 	if (!(s->hmap[index]))
 	{
 		if (!(s->hmap[index] = malloc(sizeof(t_hashmap))))
-			exit_failure(s, NULL, 1, 0);
+			exit_failure(s, NULL, 0, 0);
 		s->hmap[index]->collision_next = NULL;
 		return (init_room(s, s->hmap[index], key));
 	}
@@ -369,7 +369,7 @@ t_room	*place_room(t_lem_in *s, char *key, size_t index)
 	while (tmp->collision_next)
 	{
 		if (ft_strcmp(key, tmp->room->name) == 0)
-			exit_failure(s, NULL, 1, 1);
+			exit_failure(s, NULL, 0, 1);
 		tmp = tmp->collision_next;
 	}
 	if (ft_strcmp(key, tmp->room->name) == 0)
@@ -387,7 +387,7 @@ void	add_room(t_lem_in *s, char *line)
 	place_room(s, line, hash_to_int(line));
 	s->nb_room++;
 	if (s->nb_room > SSIZE_T_MAX)
-		exit_failure(s, NULL, 1, 0);
+		exit_failure(s, NULL, 0, 0);
 }
 
 void			read_tip(t_lem_in *s, ssize_t *tip)
@@ -434,7 +434,7 @@ t_room		*find_room(t_lem_in *s, char *key, size_t index)
 void			read_link(t_lem_in *s, char *line)
 {
 	if (!line || s->start == -1 || s->end == -1 || is_link(s, line) == 0)
-		exit_failure(s, line, 1, 1);
+		exit_failure(s, line, 0, 1);
 	s->i_pipe = s->i_curr;
 	while (get_next_line(0, &line) > 0)
 	{
@@ -687,10 +687,10 @@ void	print_start_to_end(t_lem_in *s)
 				i++;
 			}
 			ft_printf("\n");
+			exit_success(s);
 		}
 		i++;
 	}
-	exit_success(s);
 }
 
 void	write_room(t_lem_in *s)
@@ -698,7 +698,7 @@ void	write_room(t_lem_in *s)
 	size_t	i;
 
 	if (!(s->room_tab = malloc(sizeof(t_room) * s->nb_room)))
-		exit_failure(s, NULL, 1, 0);
+		exit_failure(s, NULL, 0, 0);
 	i = 0;
 	while (i < MAP_SIZE)
 	{
@@ -807,14 +807,14 @@ void		init_algo(t_lem_in *s)
 {
 	s->on_size = (s->nb_room / 8) + 1;
 	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room * s->nb_room)))
-		exit_failure(s, NULL, 0, 0);
+		exit_failure(s, NULL, 1, 0);
 	s->room_tab[s->start].cost = 0;
 	if (!(s->on_q = malloc(sizeof(unsigned char) * s->on_size)))
-		exit_failure(s, NULL, 0, 0);
+		exit_failure(s, NULL, 1, 0);
 	ft_bzero(s->on_q, s->on_size);
 	hunt_deadend(s, s->start, s->end, s->room_tab);
 	if (s->room_tab[s->start].link_rm < 1 || s->room_tab[s->end].link_rm < 1)
-		exit_failure(s, NULL, 0, 1);
+		exit_failure(s, NULL, 1, 1);
 	mark_linked_to_end(s); // MMMMAYBE DELETE THAT
 }
 
@@ -1150,10 +1150,15 @@ size_t	*get_ant(t_lem_in *s, size_t nb_ant, size_t *path, size_t size)
 	size_t *ant_tab;
 
 	if (!(ant_tab = malloc(sizeof(size_t) * size)))
-		exit_failure(s, path, 0, 0);
-	ft_bzero(ant_tab, size);
-	ret = 0;
+		exit_failure(s, path, 1, 0);
 	i = 0;
+	while (i < size)
+	{
+		ant_tab[i] = 0;
+		i++;
+	}
+	i = 0;
+	ret = 0;
 	while (i < size - 1 && nb_ant > ret && nb_ant > 0)
 	{
 		j = 0;
@@ -1213,9 +1218,9 @@ void	print_ant(t_lem_in *s)
 	reset_map(s);
 	size = count_nb_path(s);
 	if (!(path = malloc(sizeof(size_t) * size)))
-		exit_failure(s, NULL, 0, 0);
+		exit_failure(s, NULL, 1, 0);
 	if (!(node = malloc(sizeof(size_t) * size)))
-		exit_failure(s, path, 0, 0);
+		exit_failure(s, path, 1, 0);
 	i = 0;
 	j = 0;
 	while (i < size)
@@ -1443,7 +1448,7 @@ size_t	count_path(t_lem_in *s, size_t i, size_t j, size_t size)
 
 	size = count_nb_path(s);
 	if (!(path = malloc(sizeof(size_t) * size)))
-		exit_failure(s, NULL, 0, 0);
+		exit_failure(s, NULL, 1, 0);
 	i = 0;
 	while (i < size)
 	{
