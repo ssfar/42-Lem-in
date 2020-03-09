@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   les_mines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 19:39:11 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/08 01:43:00 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/09 18:37:19 by vrobin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "les_mines.h"
 
 // check the top functions
+
+void	print_q(unsigned char *on_q, size_t size, char *msg)
+{
+	size_t i;
+
+	ft_printf("msg : %s\n", msg);
+	i = 0;
+	while (i < size)
+	{
+		ft_printf("%d ", on_q[i]);
+		i++;
+	}
+	ft_printf("\n\n");
+}
 
 void	free_info(t_lem_in *s)
 {
@@ -805,6 +819,9 @@ void		mark_linked_to_end(t_lem_in *s)
 
 void		init_algo(t_lem_in *s)
 {
+	size_t i;
+
+	i = 0;
 	s->on_size = (s->nb_room / 8) + 1;
 	if (!(s->queu = malloc(sizeof(size_t) * s->nb_room * s->nb_room)))
 		exit_failure(s, NULL, 1, 0);
@@ -812,6 +829,12 @@ void		init_algo(t_lem_in *s)
 	if (!(s->on_q = malloc(sizeof(unsigned char) * s->on_size)))
 		exit_failure(s, NULL, 1, 0);
 	ft_bzero(s->on_q, s->on_size);
+	// print_q(s->on_q, s->on_size, "on_q");
+	// while (i < s->on_size)
+	// {
+	// 	s->on_q[i] = 0;
+	// 	i++;
+	// }
 	hunt_deadend(s, s->start, s->end, s->room_tab);
 	if (s->room_tab[s->start].link_rm < 1 || s->room_tab[s->end].link_rm < 1)
 		exit_failure(s, NULL, 1, 1);
@@ -1086,6 +1109,7 @@ void	get_ant_out(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 
 void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 {
+	static size_t u = 0;
 	s->run = 1;
 	s->ant = 1;
 	while (s->run)
@@ -1093,7 +1117,10 @@ void	move_ant(t_lem_in *s, size_t *path, ssize_t *node, size_t size)
 		update_ant_pos(s);
 		get_ant_out(s, path, node, size);
 		if (s->run)
-			ft_printf("\n");
+		{
+			ft_printf("[%d]\n", u);
+			u++;
+		}
 	}
 	free(path);
 	free(node);
@@ -1139,6 +1166,7 @@ size_t	*get_ant2(size_t nb_ant, size_t *ant_tab, size_t size)
 		free(ant_tab);
 		return (NULL);
 	}
+	// print_tab(ant_tab, size, "ant_tab v3");
 	return (ant_tab);
 }
 
@@ -1157,6 +1185,7 @@ size_t	*get_ant(t_lem_in *s, size_t nb_ant, size_t *path, size_t size)
 		ant_tab[i] = 0;
 		i++;
 	}
+	// print_tab(ant_tab, size, "ant_tab v1");
 	i = 0;
 	ret = 0;
 	while (i < size - 1 && nb_ant > ret && nb_ant > 0)
@@ -1173,6 +1202,7 @@ size_t	*get_ant(t_lem_in *s, size_t nb_ant, size_t *path, size_t size)
 		}
 		i++;
 	}
+	// print_tab(ant_tab, size, "ant_tab v2");
 	return (get_ant2(nb_ant, ant_tab, size));
 }
 
@@ -1189,6 +1219,26 @@ void	reset_map(t_lem_in *s)
 		i++;
 	}
 	s->room_tab[s->start].cost = 0;
+}
+
+void	full_reset(t_lem_in *s)
+{
+	ssize_t i;
+	size_t j;
+
+	i = 0;
+	while (i < s->nb_room)
+	{
+		j = 0;
+		while (j < s->room_tab[i].nb_link)
+		{
+			if (s->room_tab[i].prio[j] != -2)
+				s->room_tab[i].prio[j] = 0;
+			j++;
+		}
+		i++;
+	}
+	reset_map(s);
 }
 
 size_t	count_nb_path(t_lem_in *s)
@@ -1236,12 +1286,13 @@ void	print_ant(t_lem_in *s)
 	move_ant(s, get_ant(s, s->nb_ant, path, size), node, size);
 }
 
-char	search_for_all(t_lem_in *s, t_room *room, t_room *tab)
+char	search_for_all(t_lem_in *s, t_room *room, t_room *tab, unsigned char on)
 {
 	size_t	i;
 	char	all_found;
 
 	i = 0;
+	(void)on;
 	all_found = 0;
 	while (i < room->nb_link)
 	{
@@ -1264,18 +1315,19 @@ char	search_for_all(t_lem_in *s, t_room *room, t_room *tab)
 	return (all_found);
 }
 
-void	ascend_case(t_lem_in *s, t_room *room, t_room *tab)
+void	ascend_case(t_lem_in *s, t_room *room, t_room *tab, unsigned char on)
 {
 	size_t	i;
 
 	i = 0;
+	(void)on;
 	room->ascend = 0;
-	if (!search_for_all(s, room, tab))
+	if (!search_for_all(s, room, tab, on))
 		while (i < room->nb_link)
 		{
 			if (room->prio[i] == PRIO)
 			{
-				if (room->cost + 1 < tab[room->link[i]].cost)
+				if (room->cost + 1 < tab[room->link[i]].cost || on > 2)
 				{
 					if (room->link[i] != s->end)
 					{
@@ -1292,7 +1344,7 @@ void	ascend_case(t_lem_in *s, t_room *room, t_room *tab)
 		}
 }
 
-void	normal_case(t_lem_in *s, t_room *room, t_room *tab)
+void	normal_case(t_lem_in *s, t_room *room, t_room *tab, unsigned char on)
 {
 	size_t	i;
 
@@ -1301,7 +1353,7 @@ void	normal_case(t_lem_in *s, t_room *room, t_room *tab)
 	{
 		if (room->prio[i] == PRIO)
 		{
-			if (room->cost + 1 < tab[room->link[i]].cost)
+			if (room->cost + 1 < tab[room->link[i]].cost || (on > 1 && on < 4))
 			{
 				if (room->link[i] != s->end)
 				{
@@ -1316,7 +1368,7 @@ void	normal_case(t_lem_in *s, t_room *room, t_room *tab)
 		}
 		i++;
 	}
-	search_for_all(s, room, tab);
+	search_for_all(s, room, tab, on);
 }
 
 void	set_link_to_all(t_lem_in *s, ssize_t i, size_t j)
@@ -1392,7 +1444,6 @@ size_t	get_size_path(t_lem_in *s, size_t act_path)
 	return (ret);
 }
 
-
 size_t	count_turn(t_lem_in *s, size_t nb_ant, size_t *path, size_t size)
 {
 	size_t	i;
@@ -1459,12 +1510,15 @@ size_t	count_path(t_lem_in *s, size_t i, size_t j, size_t size)
 		i++;
 	}
 	bubbleSort(path, size);
+	// print_tab(path, size, "path v1");
 	ret = count_turn(s, s->nb_ant, path, size);
+	// ft_printf("ret : %d\n", ret);
+	// print_tab(path, size, "path v2");
 	free(path);
 	return (ret);
 }
 
-void		bfs(t_lem_in *s)
+void		bfs(t_lem_in *s, unsigned char on)
 {
 	t_room	*tab;
 	size_t	cur;
@@ -1477,9 +1531,9 @@ void		bfs(t_lem_in *s)
 	while (cur <= s->q_last /*|| s->q_overflow == 1*/)
 	{
 		if (tab[s->queu[cur]].ascend)
-			ascend_case(s, &tab[s->queu[cur]], tab);
+			ascend_case(s, &tab[s->queu[cur]], tab, on);
 		else
-			normal_case(s, &tab[s->queu[cur]], tab);
+			normal_case(s, &tab[s->queu[cur]], tab, on);
 		cur++;
 	}
 		// if (s->q_overflow == 1 && cur == s->nb_room)
@@ -1548,17 +1602,15 @@ void	print_path(t_lem_in *s)
 	}
 }
 
-void		algo(t_lem_in *s)
+size_t		algo(t_lem_in *s, char on)
 {
 	size_t	new_nb_turn;
 	size_t	nb_turn;
 
-	print_start_to_end(s);
 	nb_turn = SIZE_T_MAX;
-	init_algo(s);
 	while (1)
 	{
-		bfs(s);
+		bfs(s, on);
 		ft_bzero(s->on_q, s->on_size);
 		if (check_ledit(s) == 0)
 			break;
@@ -1571,14 +1623,46 @@ void		algo(t_lem_in *s)
 		nb_turn = new_nb_turn;
 		reset_map(s);
 	}
-	ft_bzero(s->on_q, s->on_size);
-	print_info(s);
-	print_ant(s);
+	return(count_path(s, 0, 0, 0));
+}
+
+size_t		algo_base(t_lem_in *s)
+{
+	size_t	nb_turn;
+	size_t	new_turn;
+	size_t	check;
+
+	nb_turn = SSIZE_T_MAX;
+	if (nb_turn > (new_turn = algo(s, 1)))
+	{
+		nb_turn = new_turn;
+		check = 1;
+	}
+	full_reset(s);
+	if (nb_turn > (new_turn = algo(s, 2)))
+	{
+		nb_turn = new_turn;
+		check = 2;
+	}
+	full_reset(s);
+	if (nb_turn > (new_turn = algo(s, 3)))
+	{
+		nb_turn = new_turn;
+		check = 3;
+	}
+	full_reset(s);
+	if (nb_turn > (new_turn = algo(s, 4)))
+	{
+		nb_turn = new_turn;
+		check = 4;
+	}
+	return (check);
 }
 
 int	main(void)
 {
 	t_lem_in	s;
+	size_t		check;
 
 	if (MAP_SIZE < 1 || MAP_SIZE >= SSIZE_T_MAX)
 		return (EXIT_FAILURE);
@@ -1587,5 +1671,12 @@ int	main(void)
 	read_link(&s, read_room(&s));
 	write_room(&s);
 	write_link(&s);
-	algo(&s);
+	print_start_to_end(&s);
+	init_algo(&s);
+	check = algo_base(&s);
+	full_reset(&s);
+	algo(&s, check);
+	ft_bzero(s.on_q, s.on_size);
+	print_info(&s);
+	print_ant(&s);
 }
