@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 16:15:36 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/09 22:50:04 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/10 18:26:42 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,19 @@ void	center_start(t_visu *v)
 ssize_t	linear_interpolation(float percentage, ssize_t p1, ssize_t p2)
 {
 	return (percentage * (p2 - p1) + p1);
+}
+
+void	reset(t_visu *v)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < v->ant_nb)
+	{
+		v->ant[i].goal = 0;
+		i++;
+	}
+	v->turn = 0;
+	v->percent = 0;
+	v->all_ant_arrived = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 16:36:31 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/09 22:50:23 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/10 18:25:18 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,6 @@ size_t				store_ant_path(t_visu *v, char *line, size_t i);
 void				store_link(t_visu *v, char *to_free);
 void				store_room(t_visu *v);
 void				center_start(t_visu *v);
+void				reset(t_visu *v);
 
 #endif

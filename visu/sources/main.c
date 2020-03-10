@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 15:55:59 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/09 22:49:38 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/10 18:26:03 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	display_map(t_visu *v)
 
 void	handle_keystate(t_visu *v, const uint8_t *keystate)
 {
+	if (keystate[SDL_SCANCODE_R])
+		reset(v);
 	if (v->prev_time_b + 50 < v->cur_time
 		&& keystate[SDL_SCANCODE_KP_PLUS] && v->zoom < 30)
 	{
