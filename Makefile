@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2020/03/11 14:04:54 by vrobin           ###   ########.fr        #
+#    Updated: 2020/07/04 21:37:37 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all, clean, fclean, re
 
 NAME = lem-in
+LFT = libft/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
@@ -46,13 +47,15 @@ EOC			= \033[0;0m
 RED			= \033[0;31m
 GREEN		= \033[0;32m
 
-all: $(NAME)
+all: $(LFT) $(NAME)
 
-$(NAME): $(OBJ)
-	@make -C ./libft
+$(NAME): $(LFT) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $@
 	@chmod 755 $(NAME)
 	@printf "$(GREEN)$(NAME) Makefile : $(OBJ_DIR) and $(NAME) created\n$(EOC)"
+
+$(LFT): FORCE
+	@make -C ./libft
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -66,5 +69,5 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@printf "$(RED)$(NAME) Makefile : $(NAME) deleted\n$(EOC)"
-
 re: fclean all
+FORCE:

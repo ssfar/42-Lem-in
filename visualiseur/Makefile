@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vrobin <vrobin@student.42.fr>              +#+  +:+       +#+         #
+#    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/11 17:08:22 by ssfar             #+#    #+#              #
-#    Updated: 2020/03/11 14:36:23 by vrobin           ###   ########.fr        #
+#    Updated: 2020/07/04 21:41:22 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all, clean, fclean, re, install
 
 NAME = visu
+LFT = ../libft/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ../libft/includes
@@ -32,13 +33,15 @@ EOC			= \033[0;0m
 RED			= \033[0;31m
 GREEN		= \033[0;32m
 
-all: $(NAME)
+all: $(LFT) $(NAME)
 
-$(NAME): $(OBJ)
-	@make -C ../libft
+$(NAME): $(LFT) $(OBJ)
 	@$(CC) $(CFLAGS) $(shell sdl2-config --libs) -lSDL2_ttf ../libft/libft.a $(OBJ) -o $@
 	@chmod 755 $(NAME)
 	@printf "$(GREEN)$(NAME) Makefile : $(OBJ_DIR) and $(NAME) created\n$(EOC)"
+
+$(LFT): FORCE
+	@make -C ../libft
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -54,6 +57,7 @@ fclean: clean
 	@printf "$(RED)$(NAME) Makefile : $(NAME) deleted\n$(EOC)"
 
 re: fclean all
+FORCE:
 
 install :
 	@brew install sdl2
