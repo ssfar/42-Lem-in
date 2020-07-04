@@ -6,7 +6,7 @@
 /*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 19:44:32 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/06 17:46:32 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/03/10 21:17:12 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ uint_fast8_t	intlen(ssize_t nb);
 uint_fast8_t	intlen_no_symbol(ssize_t nb);
 uint_fast8_t	ft_isalnum(int_fast8_t c);
 uint_fast8_t	ft_isalpha(int_fast8_t c);
-uint_fast8_t	ft_isascii(int_fast8_t c);
+int		ft_isascii(int c);
 uint_fast8_t	ft_isblank(int_fast8_t c);
 uint_fast8_t	ischarset(int_fast8_t c, char *charset);
 uint_fast8_t	ft_iscntrl(int_fast8_t c);
@@ -122,6 +122,7 @@ char			*ft_strchr(const char *s, int_fast8_t c);
 size_t			strchr_len(const char *s, int_fast8_t c);
 void			ft_strclr(char *s);
 int_fast16_t	ft_strcmp(const char *s1, const char *s2);
+uint_fast16_t	strcmp_charset(const char *s1, const char *s2, char *charset);
 char			*ft_strcpy(char *dst, const char *src);
 void			ft_strdel(char **as);
 char			*ft_strdup(const char *s1);
@@ -153,6 +154,7 @@ char			*ft_strsub(char const *s, size_t start, size_t len);
 char			*ft_strtrim(char const *s);
 void			strupcase(char *str);
 void			swap(ssize_t *a, ssize_t *b);
+void			u_swap(size_t *a, size_t *b);
 int_fast8_t		ft_tolower(int_fast8_t c);
 int_fast8_t		ft_toupper(int_fast8_t c);
 uint_fast8_t	uintlen(size_t unb);
@@ -164,6 +166,5 @@ void			strtab_iteri(char **tab, void (*f)(unsigned int, char *));
 char			**free_strtab_offset(char **tab, ssize_t offset);
 char			str_is_numeric_no_symbol(char *str);
 size_t			atou(const char *str);
-ssize_t			hash(char *key, ssize_t tab_size);
-ssize_t			hash_to_c(char *key, ssize_t tab_size, char c);
+void			bubble_sort(size_t *arr, size_t n);
 #endif
