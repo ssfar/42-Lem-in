@@ -147,7 +147,7 @@ char			*ft_strnew(size_t size);
 char			*ft_strnstr(const char *haystack,
 	const char *needle, size_t len);
 char			*ft_strrchr(const char *s, int_fast8_t c);
-void			strrev(char *str);
+void			ft_strrev(char *str);
 char			**ft_strsplit(char const *s, int_fast8_t c);
 char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strsub(char const *s, size_t start, size_t len);

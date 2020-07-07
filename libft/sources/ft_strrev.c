@@ -16,7 +16,7 @@
 ** Reverse the string (str).
 */
 
-void	strrev(char *str)
+void	ft_strrev(char *str)
 {
 	int_fast8_t	cache;
 	int			end;

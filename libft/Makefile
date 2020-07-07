@@ -27,7 +27,7 @@ SRC_NAME = ft_atoi.c intlen_no_symbol.c ft_islower.c ft_lstdelone.c \
   ft_tolower.c ft_bzero.c ft_isalnum.c ft_isprint.c ft_lstiter.c ft_memmove.c \
   ft_putstr_fd.c ft_strcasestr.c ft_strequ.c ft_strmapi.c ft_strrchr.c \
   ft_toupper.c ft_casecmp.c ft_isalpha.c ft_isspace.c ft_lstmap.c ft_memset.c \
-  str_is_alpha.c ft_strcat.c ft_striter.c strn_is_charset.c strrev.c \
+  str_is_alpha.c ft_strcat.c ft_striter.c strn_is_charset.c ft_strrev.c \
   utoa_base.c count_char_occur.c ft_isascii.c ft_isupper.c ft_lstnew.c \
   ft_putchar.c str_is_charset.c ft_strchr.c ft_striteri.c ft_strncat.c \
   ft_strsplit.c count_word.c ft_isblank.c ft_isxdigit.c strcmp_charset.c \
