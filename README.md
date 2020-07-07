@@ -8,7 +8,7 @@ Bonus 22/25:
  :heavy_check_mark: Graphic visualiser (SDL2) | :heavy_check_mark: Very quick
 
 #### Objectives :
-• Graph traversal
+• Graph traversal  
 • Depth-first search
 
 #### Skills :
