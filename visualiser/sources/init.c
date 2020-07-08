@@ -42,7 +42,8 @@ void	init(t_visu *v)
 		sdl_exit_fail(v, "CreateRenderer()", &SDL_GetError);
 	if (TTF_Init() < 0)
 		sdl_exit_fail(v, "Init()", &TTF_GetError);
-	if (!(v->font = TTF_OpenFont("/Library/Fonts/Herculanum.ttf", 150)))
+	if (!(v->font = TTF_OpenFont("visualiser/fonts/Herculanum.ttf", 150)) 
+		&& !(v->font = TTF_OpenFont("fonts/Herculanum.ttf", 150))) 
 		sdl_exit_fail(v, "OpenFont()", &TTF_GetError);
 }
 

@@ -16,7 +16,7 @@ NAME = visu
 LFT = ../libft/libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ../libft/includes
+CFLAGS = -Wall -Wextra -Werror
 
 
 INC_DIR = includes
@@ -36,7 +36,7 @@ GREEN		= \033[0;32m
 all: $(LFT) $(NAME)
 
 $(NAME): $(LFT) $(OBJ)
-	@$(CC) $(CFLAGS) $(shell sdl2-config --libs) -lSDL2_ttf ../libft/libft.a $(OBJ) -o $@
+	@$(CC) $(CFLAGS) $(OBJ) $(shell sdl2-config --libs) -lSDL2_ttf ../libft/libft.a -o $@
 	@chmod 755 $(NAME)
 	@printf "$(GREEN)$(NAME) Makefile : $(OBJ_DIR) and $(NAME) created\n$(EOC)"
 
@@ -45,7 +45,7 @@ $(LFT): FORCE
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(shell sdl2-config --cflags) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INC_DIR) $(shell sdl2-config --cflags) -I ../libft/includes -c $< -o $@
 
 clean:
 	@make -C ../libft fclean

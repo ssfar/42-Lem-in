@@ -15,7 +15,7 @@
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)
+CFLAGS = -Wall -Wextra -Werror
 
 
 INC_DIR = includes
@@ -70,7 +70,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I includes -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)

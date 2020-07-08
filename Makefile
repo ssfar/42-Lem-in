@@ -17,7 +17,7 @@ LFT = libft/libft.a
 VISU = visualiser/visu
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR) -I ./libft/includes
+CFLAGS = -Wall -Wextra -Werror
 
 INC_DIR = includes
 SRC_DIR = sources
@@ -62,7 +62,7 @@ $(VISU): FORCE
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(INC_DIR) -I libft/includes -c $< -o $@
 
 clean:
 	@make -C ./libft fclean
