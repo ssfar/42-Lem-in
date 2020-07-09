@@ -17,7 +17,7 @@ Bonus 22/25:
 • Rigor  
 
 #### Developed for Mac OS X.  
-(It might work on other OS, otherwise I may do modifications later on).  
+(It might work on other operating systems, otherwise I may apply some modifications later on).  
 
 ## How to use
 
