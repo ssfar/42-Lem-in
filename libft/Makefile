@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+         #
+#    By: ssfar <samisfar.dev@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 12:15:55 by ssfar             #+#    #+#              #
-#    Updated: 2020/03/10 21:17:49 by ssfar            ###   ########.fr        #
+#    Updated: 2020/07/24 10:59:23 by ssfar            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ SRC_NAME = ft_atoi.c intlen_no_symbol.c ft_islower.c ft_lstdelone.c \
   strlowcase.c ft_strnew.c swap.c repeat_chardup.c str_is_numeric_no_symbol.c \
   strjoin_free.c utoa.c u_swap.c uintlen.c upower.c round_float.c \
   get_float_mantissa.c aproximative_ftoa_no_symbol.c strtab.c \
-  free_strtab_offset.c ft_memdel.c gnl_no_buff.c atou.c bubble_sort.c\
+  free_strtab_offset.c ft_memdel.c atou.c bubble_sort.c\
   get_next_line.c strtab_iteri.c \
   ft_printf/ft_printf.c \
   ft_printf/parsing.c \

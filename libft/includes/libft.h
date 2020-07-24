@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ssfar <samisfar.dev@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 19:44:32 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/10 21:17:12 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/07/24 11:04:04 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@
 # define EOC			"\033[39m"
 # define EOB			"\033[49m"
 
+typedef enum
+{
+	false,
+	true
+}	t_bool;
+
 typedef struct	s_list
 {
 	void			*content;
@@ -62,7 +68,7 @@ size_t			count_char_occur(char *str, int_fast8_t c);
 size_t			count_word(const char *s, int_fast8_t separator);
 char			**free_strtab(char **tab);
 char			*aproximative_ftoa_no_symbol(long double fnb,
-	uint_fast8_t precision, uint_fast8_t sharp);
+	uint_fast8_t precision, t_bool sharp);
 char			*get_float_mantissa(long double fnb, uint_fast8_t precision);
 ssize_t			get_va_int(va_list arg, uint_fast8_t bits, uint_fast8_t z);
 size_t			get_va_uint(va_list arg, uint_fast8_t bits, uint_fast8_t z);
@@ -70,7 +76,7 @@ uint_fast8_t	intlen(ssize_t nb);
 uint_fast8_t	intlen_no_symbol(ssize_t nb);
 uint_fast8_t	ft_isalnum(int_fast8_t c);
 uint_fast8_t	ft_isalpha(int_fast8_t c);
-int		ft_isascii(int c);
+int				ft_isascii(int c);
 uint_fast8_t	ft_isblank(int_fast8_t c);
 uint_fast8_t	ischarset(int_fast8_t c, char *charset);
 uint_fast8_t	ft_iscntrl(int_fast8_t c);

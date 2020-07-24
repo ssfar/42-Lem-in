@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssfar <ssfar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ssfar <samisfar.dev@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:56:03 by ssfar             #+#    #+#             */
-/*   Updated: 2020/03/09 17:58:56 by ssfar            ###   ########.fr       */
+/*   Updated: 2020/07/24 11:13:41 by ssfar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	init(t_visu *v)
 		sdl_exit_fail(v, "CreateRenderer()", &SDL_GetError);
 	if (TTF_Init() < 0)
 		sdl_exit_fail(v, "Init()", &TTF_GetError);
-	if (!(v->font = TTF_OpenFont("visualiser/fonts/Herculanum.ttf", 150)) 
-		&& !(v->font = TTF_OpenFont("fonts/Herculanum.ttf", 150))) 
+	if (!(v->font = TTF_OpenFont("visualiser/fonts/Herculanum.ttf", 150))
+		&& !(v->font = TTF_OpenFont("fonts/Herculanum.ttf", 150)))
 		sdl_exit_fail(v, "OpenFont()", &TTF_GetError);
 }
 
